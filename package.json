@@ -1,0 +1,27 @@
+{
+  "name": "stack-track",
+  "version": "1.0.0",
+  "description": "track your stack with ease",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon test",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esyeng/stacktrack.git"
+  },
+  "author": "Emre Yenigun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/esyeng/stacktrack/issues"
+  },
+  "homepage": "https://github.com/esyeng/stacktrack#readme",
+  "dependencies": {
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "mocha": "8.1.3"
+  }
+}
