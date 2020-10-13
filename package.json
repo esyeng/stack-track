@@ -4,8 +4,9 @@
   "description": "track your stack with ease",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon test",
-    "start": "nodemon index.js"
+    "test-b": "nodemon tests/backend",
+    "test-f": "nodemon tests/frontend",
+    "start-server": "nodemon server"
   },
   "repository": {
     "type": "git",
