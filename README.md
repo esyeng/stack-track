@@ -20,13 +20,12 @@ Automated kanban board and 3rd party integrations: GitHub & LinkedIn
 - [ ] - VSCode integration / extention to allow for easy ticket creation upon finding runtime error
 - [ ] - Chat bot to guide user experience
 
-## Tiers:	## Tiers:
+## Tiers:	
 
 
-### Tier 1:	### Tier 1:
+### Tier 1:	
 
-
-       - [ ] ...	- [ ] As a developer, I must be able to:
+- [ ] As a developer, I must be able to:
   - [ ] serve static files and frontend on development server [ ]
   - [ ] access and update SQL database [ ]
   - [ ] automate dev build process [ ]
