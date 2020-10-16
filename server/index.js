@@ -3,7 +3,14 @@ const path = require("path");
 const morgan = require("morgan");
 const app = express();
 const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () =>
+  console.log(`tracking stacks on ${PORT}`)
+);
+const io = require("socket.io")(server);
 
+module.exports = app;
+
+require("./socket")(io);
 // pull in api keys as needed
 // if (process.env.NODE_ENV !== "production") require("../secrets");
 
@@ -22,10 +29,3 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, "..", "public")));
-
-const startServer = () => {
-  app.listen(PORT);
-  console.log(`tracking stacks on ${PORT}`);
-};
-
-startServer();
