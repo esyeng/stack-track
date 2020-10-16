@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 const app = express();
+const db = require("./db");
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () =>
   console.log(`tracking stacks on ${PORT}`)
@@ -9,6 +10,18 @@ const server = app.listen(PORT, () =>
 const io = require("socket.io")(server);
 
 module.exports = app;
+
+const syncDb = async () => {
+  try {
+    console.log("..syncing database..");
+    db.sync();
+    console.log("sync successful!");
+  } catch (err) {
+    next(err);
+  }
+};
+
+syncDb();
 
 require("./socket")(io);
 // pull in api keys as needed
@@ -29,7 +42,7 @@ app.use((req, res, next) =>
 );
 
 app.use("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public.index.html"));
+  res.sendFile(path.join(__dirname, "..", "public/index.html"));
 });
 
 app.use((err, req, res, next) => {

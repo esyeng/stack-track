@@ -1,9 +1,8 @@
 # Software Requirement Specification:
 
-
 ## MVP
 
-Stack Track is a fast and lightweight help-desk ticket application. As an open-source JIRA inspired interface, StackTrack can be used to log technical issues and bugs for teams to track and fix, as well as to help development teams in agile development. 
+Stack Track is a fast and lightweight help-desk ticket application. As an open-source JIRA inspired interface, StackTrack can be used to log technical issues and bugs for teams to track and fix, as well as to help development teams in agile development.
 
 ## Proof of Concept 1:
 
@@ -20,10 +19,11 @@ Automated kanban board and 3rd party integrations: GitHub & LinkedIn
 - [ ] - VSCode integration / extention to allow for easy ticket creation upon finding runtime error
 - [ ] - Chat bot to guide user experience
 
-## Tiers:	
+## Tiers:
 
+<!-- AD393D red for this -->
 
-### Tier 1:	
+### Tier 1:
 
 - [ ] As a developer, I must be able to:
   - [ ] serve static files and frontend on development server [ ]
