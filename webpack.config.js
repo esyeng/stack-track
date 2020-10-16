@@ -1,47 +1,28 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const isDev = process.env.NODE_ENV === "development" ? true : false;
+const isDev = process.env.NODE_ENV !== "production";
 
 module.exports = {
+  mode: isDev ? "development" : "production",
+  entry: [
+    "@babel/polyfill", // enables async-await
+    "./client/index.js",
+  ],
+  output: {
+    path: __dirname,
+    filename: "./public/bundle.js",
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
+  devtool: "source-map",
+  watchOptions: {
+    ignored: /node_modules/,
+  },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         loader: "babel-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.module\.s(a|c)ss$/,
-        loader: [
-          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: isDev,
-            },
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: isDev,
-            },
-          },
-        ],
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
-          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: isDev,
-            },
-          },
-        ],
         exclude: /node_modules/,
       },
     ],

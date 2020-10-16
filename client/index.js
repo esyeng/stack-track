@@ -11,9 +11,9 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <App />
-    </Router>
+    {/* <Router history={history}> */}
+    <App />
+    {/* </Router> */}
   </Provider>,
   document.getElementById("app")
 );
