@@ -1,4 +1,4 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
 const isDev = process.env.NODE_ENV !== "production";
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
     "./client/index.js",
   ],
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
   },
   resolve: {

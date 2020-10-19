@@ -21,7 +21,7 @@ const syncDb = async () => {
   }
 };
 
-syncDb();
+// syncDb();
 
 require("./socket")(io);
 // pull in api keys as needed
@@ -35,20 +35,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // app.use("/auth", require("./auth"));
-// app.use("/api", require("./api"));
+app.use("/api", require("./api"));
 
-app.use((req, res, next) =>
-  path.extname(req.path).length > 0 ? res.status(404).send("Not found") : next()
-);
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/index.html"));
 });
+app.use((req, res, next) =>
+  path.extname(req.path).length > 0 ? res.status(404).send("Not found") : next()
+);
 
 app.use((err, req, res, next) => {
   console.error(err);
   console.error(err.stack);
   res.status(err.status || 500).send(err.message || "Internal server error");
 });
-
-app.use(express.static(path.join(__dirname, "..", "public")));
