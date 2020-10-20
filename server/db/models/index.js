@@ -1,18 +1,68 @@
-// const User = require("./User");
+const User = require("./User");
+const Team = require("./Team");
+const Tag = require("./Tag");
+const Project = require("./Project");
+const Organization = require("./Organization");
+const Message = require("./Message");
+const Issue = require("./Issue");
+const Comment = require("./Comment");
 
-// /**
-//  * If we had any associations to make, this would be a great place to put them!
-//  * ex. if we had another model called BlogPost, we might say:
-//  *
-//  *    BlogPost.belongsTo(User)
-//  */
+/**
+ * ASSOCIATIONS
+ *
+ * - Organization -
+ */
 
-// /**
-//  * We'll export all of our models here, so that any time a module needs a model,
-//  * we can just require it from 'db/models'
-//  * for example, we can say: const {User} = require('../db/models')
-//  * instead of: const User = require('../db/models/user')
-//  */
-// module.exports = {
-//   User
-// };
+Organization.hasMany(Team);
+
+// - Team -
+
+Team.hasMany(User);
+Team.hasMany(Project);
+Team.belongsTo(Organization);
+
+// - User -
+
+User.hasMany(Project);
+User.hasMany(Comment);
+User.belongsToMany(Message, { through: "chat", as: "sender" });
+User.belongsToMany(Message, { through: "chat", as: "receiver" });
+User.belongsTo(Team);
+User.belongsToMany(Issue, { through: "user-issue", as: "user" });
+
+// - Project -
+
+Project.belongsTo(Team);
+Project.belongsToMany(User, { through: "user-project", as: "project" });
+Project.hasMany(Issue);
+
+// - Issue -
+
+Issue.belongsTo(Project);
+Issue.belongsToMany(User, { through: "user-issue", as: "issue" });
+Issue.hasMany(Comment);
+Issue.hasMany(Tag);
+
+// - Comment -
+
+Comment.belongsTo(Issue);
+Comment.belongsTo(User);
+
+// - Tag -
+
+Tag.belongsTo(Issue);
+
+// - Message -
+
+Message.belongsTo(User, { through: "chat", as: "message" });
+
+module.exports = {
+  User: User,
+  Team: Team,
+  Tag: Tag,
+  Issue: Issue,
+  Project: Project,
+  Comment: Comment,
+  Organization: Organization,
+  Message: Message,
+};

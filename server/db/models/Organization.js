@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const db = require("../db");
 const crypto = require("crypto");
 
-const Organization = db.define("Organization", {
+const Organization = db.define("organization", {
   name: {
     type: Sequelize.STRING,
     allowNull: "false",
@@ -44,7 +44,7 @@ Organization.prototype.correctPassword = function (candidatePwd) {
   );
 };
 
-Organization.generateSalt() = function () {
+Organization.generateSalt = function () {
   return crypto.randomBytes(16).toString("base64");
 };
 
@@ -58,10 +58,10 @@ Organization.encryptPassword = function (plainText, salt) {
 
 const setAndSaltPassword = organization => {
   if (organization.changed("password")) {
-    Organization.salt = Organization.generateSalt();
-    Organization.password = Organization.encryptPassword(
-      Organization.password(),
-      Organization.salt()
+    organization.salt = Organization.generateSalt();
+    organization.password = Organization.encryptPassword(
+      organization.password(),
+      organization.salt()
     );
   }
 };

@@ -18,6 +18,7 @@ const User = db.define("user", {
   role: {
     type: Sequelize.ENUM("admin", "user"),
     defaultValue: "user",
+    allowNull: true,
   },
   title: {
     type: Sequelize.STRING,
@@ -60,7 +61,7 @@ User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt() === this.password());
 };
 
-User.generateSalt() = function () {
+User.generateSalt = function () {
   return crypto.randomBytes(16).toString("base64");
 };
 
