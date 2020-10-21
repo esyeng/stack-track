@@ -13,13 +13,13 @@ const Comment = require("./Comment");
  * - Organization -
  */
 
-Organization.hasMany(Team);
+Organization.hasMany(Team); // - seed complete -
 
 // - Team -
 
-Team.hasMany(User);
+Team.hasMany(User); // - seed complete -
 Team.hasMany(Project);
-Team.belongsTo(Organization);
+Team.belongsTo(Organization); // - seed complete -
 
 // - User -
 
@@ -27,7 +27,7 @@ User.hasMany(Project);
 User.hasMany(Comment);
 User.belongsToMany(Message, { through: "chat", as: "sender" });
 User.belongsToMany(Message, { through: "chat", as: "receiver" });
-User.belongsTo(Team);
+User.belongsTo(Team); // - seed complete -
 User.belongsToMany(Issue, { through: "user-issue", as: "user" });
 
 // - Project -

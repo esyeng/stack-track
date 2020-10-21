@@ -1,5 +1,5 @@
 "use strict";
-
+const faker = require("faker");
 const db = require("./db");
 const {
   User,
@@ -11,6 +11,24 @@ const {
   Team,
   Tag,
 } = require("./models");
+
+// DUMMY GENERATORS //
+
+const makeProds = n => {
+  const data = [];
+  for (let i = 0; i < n; i++) {
+    let newObj = {};
+    newObj.title = faker.commerce.productName();
+    newObj.description = faker.lorem.sentences();
+    newObj.category = "macOS";
+    newObj.dateCreated = faker.date.recent();
+    newObj.status = "Prototype";
+    data.push(newObj);
+  }
+  return data;
+};
+
+// DUMMY DATASETS //
 
 const dummyUsers = [
   {
@@ -664,6 +682,7 @@ const dummyUsers = [
     lName: "Van Giffen",
     email: "gvangiffen1i@barnesandnoble.com",
     title: "Director of Sales",
+
     bio:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
     profileImageUrl: "http://dummyimage.com/102x196.png/5fa2dd/ffffff",
@@ -769,12 +788,58 @@ const dummyOrgs = [
   },
 ];
 
-async function seed(data, model) {
-  const items = await Promise.all([
-    data.forEach(dataPoint => model.create(dataPoint)),
-  ]);
-  console.log(`dataset seeded successfully`);
-}
+const dummyProjects = [
+  {
+    title: "IncredibleApp",
+    description:
+      "Quas assumenda ea. Aut et dicta dolore quia molestiae omnis. Ad aut eos vel voluptatem unde quod doloremque.",
+    category: "macOS",
+    dateCreated: "2020-10-2112:04:49.209Z",
+    status: "Prototype",
+  },
+  {
+    title: "Singify",
+    description:
+      "Et saepe qui aspernatur in facere deleniti sit ut earum. Perferendis enim nulla laudantium fuga quis. Similique praesentium error voluptatem.",
+    category: "macOS",
+    dateCreated: "2020-10-20T22:23:05.060Z",
+    status: "Prototype",
+  },
+  {
+    title: "Domaingo-API",
+    description:
+      "Quibusdam occaecati et similique quasi sed necessitatibus. Tempore consectetur atque iure autem possimus est. Porro eligendi ut amet et.",
+    category: "macOS",
+    dateCreated: "2020-10-21T04:58:48.351Z",
+    status: "Prototype",
+  },
+  {
+    title: "InLink-Inbox-Redesign",
+    description:
+      "Possimus sit ut doloremque consequatur enim. Ut quae quam. At velit sed id quod. Dolore consequatur enim et qui natus necessitatibus culpa.",
+    category: "macOS",
+    dateCreated: "2020-10-21T11:21:01.854Z",
+    status: "Prototype",
+  },
+  {
+    title: "FactChecker-Demo",
+    description:
+      "Consequatur neque debitis iure laudantium porro voluptas voluptas dolore quia. Non itaque et sunt. Repellat nihil maiores fugiat pariatur temporibus. Iusto itaque tenetur et dolorem nisi ut necessitatibus. Corporis architecto temporibus voluptatem sit odit et.",
+    category: "macOS",
+    dateCreated: "2020-10-21T17:09:06.199Z",
+    status: "Prototype",
+  },
+  {
+    title: "BlocParty",
+    description:
+      "At quaerat occaecati suscipit odio non. Deserunt voluptatum et maxime quos illo. Est nihil et ab voluptas. Dolores sequi repudiandae omnis.",
+    category: "macOS",
+    dateCreated: "2020-10-21T12:29:42.927Z",
+    status: "Prototype",
+  },
+];
+
+// DUMMY ASSOCIATORS //
 
 async function associateTeamOrgs() {
   try {
@@ -800,7 +865,6 @@ async function associateUserTeams() {
   try {
     const users = await User.findAll();
     const teams = await Team.findAll();
-    // console.log(Team.prototype);
     for (let i = 0; i < users.length; i++) {
       let team1 = teams[0];
       let team2 = teams[1];
@@ -811,22 +875,51 @@ async function associateUserTeams() {
       } else {
         await curUser.setTeam(team2);
       }
-      console.log(curUser);
     }
   } catch (err) {
     console.error(err);
   }
 }
 
+async function associateProjectTeams() {
+  try {
+    const projects = await Project.findAll();
+    const teams = await Team.findAll();
+    for (let i = 0; i < projects.length; i++) {
+      let team1 = teams[0];
+      let team2 = teams[1];
+
+      let curProject = projects[i];
+      if (i % 2 !== 0) {
+        await curProject.setTeam(team1);
+      } else {
+        await curProject.setTeam(team2);
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.
+
+// MAIN SEED FUNCTION //
+
+async function seed(data, model) {
+  const items = await Promise.all([
+    data.forEach(dataPoint => model.create(dataPoint)),
+  ]);
+  console.log(`dataset seeded successfully`);
+}
+
+// MULTI-SEEDER FUNCTION //
 
 async function runSeed() {
   console.log("seeding...");
   try {
     // await db.sync({ force: true });
-    console.log("db synced!");
+    // console.log("db synced!");
     await seed(dummyTeams, Team);
     console.log(`seeded ${dummyTeams.length} teams`);
   } catch (err) {
@@ -843,6 +936,13 @@ async function runSeed() {
   try {
     await seed(dummyOrgs, Organization);
     console.log(`seeded ${dummyOrgs.length} organizations`);
+  } catch (err) {
+    console.error(err);
+  }
+
+  try {
+    await seed(dummyProjects, Project);
+    console.log(`seeded ${dummyProjects.length} projects`);
   } catch (err) {
     console.error(err);
   }
@@ -865,7 +965,9 @@ if (module === require.main) {
   runSeed();
 }
 
+// ASSOCIATOR SEQUENCE //
 associateTeamOrgs();
 associateUserTeams();
+associateProjectTeams();
 // we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;

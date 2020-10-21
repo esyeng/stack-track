@@ -5,11 +5,13 @@ const Project = db.define("project", {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
   description: {
     type: Sequelize.TEXT,
     allowNull: true,
     defaultValue: "Project description",
+    unique: true,
   },
   category: {
     type: Sequelize.ENUM(
