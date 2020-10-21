@@ -900,6 +900,26 @@ async function associateProjectTeams() {
     console.error(err);
   }
 }
+
+async function associateProjectUsers() {
+  try {
+    const projects = await Project.findAll();
+    const users = await User.findAll();
+    for (let i = 0; i < users.length; i++) {
+      let project1 = projects[0];
+      let project2 = projects[1];
+      console.log(User.prototype);
+      let curUser = users[i];
+      if (i % 2 !== 0) {
+        await curUser.setOwner(project1);
+      } else {
+        await curUser.setOwner(project2);
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.
@@ -969,5 +989,6 @@ if (module === require.main) {
 associateTeamOrgs();
 associateUserTeams();
 associateProjectTeams();
+associateProjectUsers();
 // we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;

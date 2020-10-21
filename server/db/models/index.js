@@ -19,11 +19,12 @@ Organization.hasMany(Team); // - seed complete -
 
 Team.hasMany(User); // - seed complete -
 Team.hasMany(Project);
+// - seed complete -
 Team.belongsTo(Organization); // - seed complete -
 
 // - User -
 
-User.hasMany(Project);
+User.belongsToMany(Project, { through: "user-project", as: "owner" });
 User.hasMany(Comment);
 User.belongsToMany(Message, { through: "chat", as: "sender" });
 User.belongsToMany(Message, { through: "chat", as: "receiver" });
