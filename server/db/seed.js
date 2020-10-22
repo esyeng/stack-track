@@ -1,4 +1,5 @@
 "use strict";
+const { fake } = require("faker");
 const faker = require("faker");
 const db = require("./db");
 const {
@@ -27,6 +28,29 @@ const makeProds = n => {
   }
   return data;
 };
+
+const writeComments = n => {
+  const data = [];
+  for (let i = 0; i < n; i++) {
+    let comment = {};
+    comment.dateSent = `${faker.time.recent()}`;
+    comment.body = faker.lorem.sentences();
+    data.push(comment);
+  }
+  return data;
+};
+
+const writeMessages = n => {
+  const data = [];
+  for (let i = 0; i < n; i++) {
+    let message = {};
+    message.body = faker.lorem.sentences();
+    message.timestamp = `${faker.time.recent()}`;
+    data.push(message);
+  }
+  return data;
+};
+// console.log(writeMessages(20));
 
 // DUMMY DATASETS //
 
@@ -839,6 +863,211 @@ const dummyProjects = [
   },
 ];
 
+const dummyComments = [
+  {
+    dateSent: 1603322999971,
+    body:
+      "Quo culpa consequatur dolorum id esse dolorem blanditiis dicta. Voluptas est minus esse. Quas omnis accusantium facilis aut voluptatum et.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Et praesentium aut omnis aut voluptatem iure accusantium. Excepturi sit est quidem dolore sit consequatur consequatur recusandae. Aut totam eum maxime odit sint. Quidem tempora magnam omnis recusandae saepe nisi quo maxime. Laboriosam explicabo sequi et sequi tempore non vero ipsa aliquam.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Unde autem maiores voluptatem est quia praesentium dolore. Delectus aut accusantium similique ratione nisi inventore dolorem velit. Soluta iusto alias voluptas sit sed et veritatis qui praesentium. Veritatis quo quia. Autem et eos praesentium eos nihil vero.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "A temporibus voluptas saepe temporibus odio dolor voluptates saepe repellat. Nostrum reprehenderit ex architecto sequi et quia asperiores.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Accusantium molestias praesentium voluptas occaecati suscipit praesentium aut ut iusto. Harum consectetur dolorem. Quia aperiam nobis itaque et et dicta. Sed commodi occaecati nihil sunt labore. Veniam hic corrupti minus qui est.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Ut minima pariatur voluptas modi quo. Aut atque dolor laboriosam explicabo dolores quis dignissimos. Soluta ducimus nihil facilis. Inventore quidem deleniti nostrum. Velit quam suscipit totam animi necessitatibus.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Voluptas similique modi nemo molestiae asperiores. Quasi et voluptatum nihil itaque est beatae omnis ut. Et perferendis eos consectetur cupiditate enim. Exercitationem sapiente et doloribus delectus quis et.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Quo accusantium doloribus dicta ut sit ab possimus ullam. Cumque cupiditate nam ut et ea id reprehenderit temporibus. Qui voluptas eos. Corporis aut id laboriosam et et voluptatem magnam.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Quia similique qui. Ipsum qui sed eos molestias doloremque ratione. Unde dolor eveniet sint perferendis illo ipsam nisi. Maxime excepturi soluta temporibus. Vel ut porro repudiandae iusto esse.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Et esse dicta libero quibusdam labore perferendis suscipit. Sint aliquid repellat vel suscipit. Perspiciatis quae totam aut iure earum fuga. Qui vel quia excepturi similique asperiores sint id optio est.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Dolor nesciunt tempora nihil pariatur aut aliquid perspiciatis earum. Illo unde ut. Quo porro nihil aut magni corporis eius error. Nostrum quibusdam laudantium in illum. Et quod a est eveniet distinctio voluptatum ut aut. Sit harum accusamus.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Nostrum quis sit ipsa explicabo quisquam velit inventore perspiciatis voluptatibus. Minus voluptatum qui.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Voluptatem eum facere sit quod quis eius qui fuga. Cupiditate est dicta voluptatibus. Sunt enim sunt dolorem et sit. Debitis quis voluptatum blanditiis consequatur.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Ducimus occaecati quae assumenda. Temporibus id esse aut totam vitae incidunt facilis. Quia impedit perspiciatis beatae voluptas vel.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Perspiciatis et corrupti molestiae consequuntur. Vel cum perspiciatis quia eius pariatur. Quia voluptas occaecati veritatis porro iste esse aliquid omnis. Alias ipsam pariatur accusamus molestiae qui reiciendis. Recusandae iusto rerum est totam laudantium in quidem quae soluta. Veniam rem laudantium quia esse distinctio et nulla quidem.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Sunt tempore laboriosam aut provident pariatur autem. Rerum nobis officia vitae sunt excepturi. Eveniet tenetur et quis quia animi eos sunt deleniti voluptatem.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Et maiores unde quia. Distinctio labore illum consequatur sit a voluptates quasi ullam ut. Blanditiis totam soluta vel dolorem cumque accusamus natus. Porro ullam et est.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Error dolorem minima in. Rerum placeat libero. Quae exercitationem perspiciatis vel. Eum molestias commodi soluta quia aut et laudantium et. Accusantium sunt earum. Laboriosam ut laborum expedita laborum porro.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Fugit dolores alias vero architecto qui repudiandae nihil qui. In et consequatur est velit dolor amet ab totam. Aut deserunt reprehenderit aspernatur animi.",
+  },
+  {
+    dateSent: 1603322999972,
+    body:
+      "Et voluptas mollitia qui labore asperiores similique. Nesciunt et id cumque adipisci similique quae. Id voluptatem praesentium voluptas optio neque unde eveniet.",
+  },
+];
+
+const dummyMessages = [
+  {
+    body:
+      "Impedit distinctio corrupti debitis ipsum. Doloribus voluptas iure veniam eaque possimus. Vel minima aliquid in id deleniti et. Fugiat ratione ea corrupti. Quia esse nisi. Ipsam blanditiis soluta architecto libero.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Sapiente et veritatis illum id iste debitis doloribus commodi culpa. Assumenda doloribus cupiditate et dolore rem. In occaecati sit labore quae quia perspiciatis ab dolore. Qui sit et.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Et ea iusto accusantium et. Est ut ullam velit. Aut vel incidunt temporibus reiciendis soluta ratione ipsa. Veniam ab explicabo ut perspiciatis aut accusamus. Quam et facere earum.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Quidem dolorum sint cum amet ducimus omnis optio non. Voluptas qui ab eius.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Repellat ea qui voluptas. Ut nostrum rerum. Aspernatur odit similique quia et voluptates earum dignissimos. Aut aut explicabo. Qui voluptatibus deserunt deleniti sint dolor est ut.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Pariatur laboriosam voluptatem distinctio eveniet ut. Exercitationem cum omnis aut et facilis debitis voluptatem dolores reprehenderit.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Et necessitatibus molestias natus odio velit. Tenetur consequatur ducimus vel explicabo nostrum.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Quidem blanditiis dolorum sit quo quia dolores recusandae commodi molestiae. Suscipit corrupti ipsam magni.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Dolorem rerum velit. Voluptatem architecto itaque quas officia. Omnis non vitae beatae explicabo velit rerum sit deleniti fugit. Debitis voluptas occaecati nulla et iusto. Aperiam eum vero voluptas molestiae vero. Occaecati qui harum rerum incidunt.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Temporibus distinctio eum quia inventore dolorem recusandae ratione quasi. Voluptas enim nihil. Voluptatem ea quibusdam exercitationem. Occaecati suscipit molestiae quaerat harum aliquam et delectus voluptatem.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Adipisci porro quia vitae. Ipsa est illo incidunt. Ratione aut qui quibusdam aut velit. Sit nemo dolore ut quia. Nobis deleniti et.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Rem cumque et cum et voluptas et. Non ratione velit sit officiis natus qui sapiente. Optio commodi dolorem rerum optio cumque incidunt repellendus quasi quis.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Alias dolorem delectus molestiae quo exercitationem. Ut provident autem aut veritatis cum consequatur repudiandae molestias earum. Est perspiciatis asperiores est id ipsam laborum ea. Similique dolor omnis est necessitatibus sequi voluptatem necessitatibus sint.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Beatae sit enim quia repellat. Harum minima aut quas dolorum repellat ipsam. Vero natus aut laboriosam tenetur id architecto sapiente voluptatem.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Autem ea itaque blanditiis. Quia nihil et neque rerum ut est doloremque harum. Dolorem voluptatem ut quas ea voluptatum cumque quo placeat illum. Consequatur magnam dolores mollitia dolore ducimus vero dolore.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Voluptatem quia quo unde recusandae maxime. Quis possimus non qui facilis. Cum nisi tempora repudiandae natus omnis autem fuga fugit. Quia dicta rem officiis incidunt dolorem officia necessitatibus aut. Consectetur repellendus neque earum in. Nemo excepturi eveniet animi et architecto porro ex voluptates.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Quas tempora non doloribus incidunt vel fugiat quae. Suscipit sapiente error dolor. Aut rerum odio voluptatem est. Aut optio quia voluptas. Ut nihil quo accusantium dolores. Et numquam commodi similique alias.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Et est omnis recusandae aliquam officiis. Qui deleniti dolor rerum. Sit doloremque et dolorem maiores neque. Ut quia nulla sunt omnis ipsa minima fugit.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Qui et nisi amet veritatis. Ab aut aut perspiciatis labore voluptatem deleniti.",
+    timestamp: "1603330454010",
+  },
+  {
+    body:
+      "Quaerat ea deserunt officiis maxime aliquid. Ratione ea repudiandae vero et quo corporis. Cumque animi voluptatem esse esse fugit vel mollitia.",
+    timestamp: "1603330454010",
+  },
+];
 // DUMMY ASSOCIATORS //
 
 async function associateTeamOrgs() {
@@ -908,13 +1137,48 @@ async function associateProjectUsers() {
     for (let i = 0; i < users.length; i++) {
       let project1 = projects[0];
       let project2 = projects[1];
-      console.log(User.prototype);
       let curUser = users[i];
       if (i % 2 !== 0) {
         await curUser.setOwner(project1);
       } else {
         await curUser.setOwner(project2);
       }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function associateUserComments() {
+  try {
+    const comments = await Comment.findAll();
+    const users = await User.findAll();
+    for (let i = 0; i < users.length; i++) {
+      let user = users[i];
+      for (let j = i + 1; j < comments.length; j++) {
+        let curComment = comments[j];
+        await curComment.setUser(user);
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function associateUserMessages() {
+  try {
+    const messages = await Message.findAll();
+    const users = await User.findAll();
+    for (let i = 0; i < messages.length; i++) {
+      let message1 = messages[i];
+      let message2 = messages[i + 1];
+      let user1 = users[0];
+      let user2 = users[1];
+
+      message1.setSender(user1);
+      message1.setReceiver(user2);
+      message2.setSender(user2);
+      message2.setReceiver(user1);
     }
   } catch (err) {
     console.error(err);
@@ -928,7 +1192,13 @@ async function associateProjectUsers() {
 
 async function seed(data, model) {
   const items = await Promise.all([
-    data.forEach(dataPoint => model.create(dataPoint)),
+    data.forEach(async dataPoint => {
+      try {
+        await model.create(dataPoint);
+      } catch (err) {
+        console.error(err);
+      }
+    }),
   ]);
   console.log(`dataset seeded successfully`);
 }
@@ -938,31 +1208,34 @@ async function seed(data, model) {
 async function runSeed() {
   console.log("seeding...");
   try {
-    // await db.sync({ force: true });
-    // console.log("db synced!");
-    await seed(dummyTeams, Team);
-    console.log(`seeded ${dummyTeams.length} teams`);
-  } catch (err) {
-    console.error(err);
-  }
+    await db.sync({ force: true });
+    console.log("db synced!");
+    await seed(dummyTeams, Team).then(() =>
+      console.log(`seeded ${dummyTeams.length} teams`)
+    );
+    await seed(dummyUsers, User).then(() =>
+      console.log(`seeded ${dummyUsers.length} users`)
+    );
+    await seed(dummyOrgs, Organization).then(() =>
+      console.log(`seeded ${dummyOrgs.length} organizations`)
+    );
+    await seed(dummyProjects, Project).then(() =>
+      console.log(`seeded ${dummyProjects.length} projects`)
+    );
+    await seed(dummyComments, Comment).then(() =>
+      console.log(`seeded ${dummyComments.length} comments`)
+    );
+    await seed(dummyMessages, Message).then(() =>
+      console.log(`seeded ${dummyMessages.length} messages`)
+    );
 
-  try {
-    await seed(dummyUsers, User);
-    console.log(`seeded ${dummyUsers.length} users`);
-  } catch (err) {
-    console.error(err);
-  }
-
-  try {
-    await seed(dummyOrgs, Organization);
-    console.log(`seeded ${dummyOrgs.length} organizations`);
-  } catch (err) {
-    console.error(err);
-  }
-
-  try {
-    await seed(dummyProjects, Project);
-    console.log(`seeded ${dummyProjects.length} projects`);
+    console.log("now associating");
+    await associateTeamOrgs();
+    await associateUserTeams();
+    await associateProjectTeams();
+    await associateProjectUsers();
+    await associateUserComments();
+    await associateUserMessages();
   } catch (err) {
     console.error(err);
   }
@@ -981,14 +1254,14 @@ async function closeDb() {
 // Execute the `seed` function, IF we ran this module directly (`node seed`).
 // `Async` functions always return a promise, so we can use `catch` to handle
 // any errors that might occur inside of `seed`.
+
 if (module === require.main) {
   runSeed();
+  // console.log(Message.prototype);
+  // console.log(User.prototype);
 }
 
 // ASSOCIATOR SEQUENCE //
-associateTeamOrgs();
-associateUserTeams();
-associateProjectTeams();
-associateProjectUsers();
+
 // we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;

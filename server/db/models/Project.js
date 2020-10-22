@@ -26,7 +26,7 @@ const Project = db.define("project", {
     defaultValue: "Web",
   },
   dateCreated: {
-    type: Sequelize.DATEONLY,
+    type: Sequelize.STRING,
   },
   status: {
     type: Sequelize.ENUM(

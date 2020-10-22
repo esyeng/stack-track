@@ -3,7 +3,7 @@ const db = require("../db");
 
 const Comment = db.define("comment", {
   dateSent: {
-    type: Sequelize.TIME,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   body: {

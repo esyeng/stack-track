@@ -7,7 +7,7 @@ const Message = db.define("message", {
     allowNull: false,
   },
   timestamp: {
-    type: Sequelize.TIME,
+    type: Sequelize.STRING,
   },
 });
 
