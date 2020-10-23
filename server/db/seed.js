@@ -45,13 +45,29 @@ const writeMessages = n => {
   for (let i = 0; i < n; i++) {
     let message = {};
     message.body = faker.lorem.sentences();
-    message.timestamp = `${faker.time.recent()}`;
+    message.timestamp = `${new Date()}`;
+
     data.push(message);
   }
   return data;
 };
-// console.log(writeMessages(20));
 
+const createIssues = n => {
+  const categories = ["bug", "task", "feature", "report"];
+  const statuses = ["open", "in progress", "closed"];
+  const data = [];
+  for (let i = 0; i < n; i++) {
+    let issue = {};
+    issue.ticketNumber = faker.random.number(2999999999);
+    issue.description = faker.lorem.sentences(3);
+    issue.category = categories[Math.floor(Math.random() * categories.length)];
+    issue.status = statuses[Math.floor(Math.random() * statuses.length)];
+    data.push(issue);
+  }
+  return data;
+};
+
+// console.log(writeMessages(20));
 // DUMMY DATASETS //
 
 const dummyUsers = [
@@ -969,103 +985,245 @@ const dummyComments = [
 const dummyMessages = [
   {
     body:
-      "Impedit distinctio corrupti debitis ipsum. Doloribus voluptas iure veniam eaque possimus. Vel minima aliquid in id deleniti et. Fugiat ratione ea corrupti. Quia esse nisi. Ipsam blanditiis soluta architecto libero.",
-    timestamp: "1603330454010",
+      "Enim architecto aut voluptas consequatur. Adipisci incidunt ut eaque dicta et molestias. Totam maxime quae veritatis natus veniam enim. Esse eum expedita ipsam nihil autem quaerat ea.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Sapiente et veritatis illum id iste debitis doloribus commodi culpa. Assumenda doloribus cupiditate et dolore rem. In occaecati sit labore quae quia perspiciatis ab dolore. Qui sit et.",
-    timestamp: "1603330454010",
+      "Odio saepe alias. Sunt consequatur consequatur totam illum ut. Ad tempore tempore aut molestias accusamus. Dolorem vel voluptas aut praesentium harum qui itaque. Qui cumque totam.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
+  },
+  {
+    body: "Sequi sed totam beatae quia aut. Et atque reprehenderit.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Et ea iusto accusantium et. Est ut ullam velit. Aut vel incidunt temporibus reiciendis soluta ratione ipsa. Veniam ab explicabo ut perspiciatis aut accusamus. Quam et facere earum.",
-    timestamp: "1603330454010",
+      "Nihil vero error aut dicta voluptatibus voluptas optio saepe est. Blanditiis minus voluptas consequatur itaque et qui voluptatibus ullam sit. Saepe et incidunt dolorum rerum distinctio. Sint hic maxime quia quaerat.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Quidem dolorum sint cum amet ducimus omnis optio non. Voluptas qui ab eius.",
-    timestamp: "1603330454010",
+      "Iusto quis mollitia sed accusamus temporibus aut quisquam inventore qui. Assumenda magni doloremque similique.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Repellat ea qui voluptas. Ut nostrum rerum. Aspernatur odit similique quia et voluptates earum dignissimos. Aut aut explicabo. Qui voluptatibus deserunt deleniti sint dolor est ut.",
-    timestamp: "1603330454010",
+      "Vel voluptatem facere non laboriosam nihil tempora et et a. Consectetur asperiores ratione et. Quis ea et voluptas quos non voluptatibus accusamus. Eaque aspernatur magni voluptatem quaerat. Aliquid et ut commodi laborum earum ut provident.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Pariatur laboriosam voluptatem distinctio eveniet ut. Exercitationem cum omnis aut et facilis debitis voluptatem dolores reprehenderit.",
-    timestamp: "1603330454010",
+      "Aliquid unde optio id. Aperiam illum non consequatur cupiditate est quisquam beatae placeat. Quis debitis esse qui voluptatum. Quia consequatur voluptatem facere nam officiis. Consequatur voluptatem dicta quae exercitationem exercitationem.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Et necessitatibus molestias natus odio velit. Tenetur consequatur ducimus vel explicabo nostrum.",
-    timestamp: "1603330454010",
+      "Veniam et quis fugit. Temporibus aspernatur voluptatibus aliquid libero repellat cumque quia consectetur. Magnam voluptatem dolores. Doloribus vitae et ducimus similique quasi cumque aspernatur culpa consequatur. Enim reprehenderit tenetur eaque repellendus sit asperiores laudantium rerum beatae.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Quidem blanditiis dolorum sit quo quia dolores recusandae commodi molestiae. Suscipit corrupti ipsam magni.",
-    timestamp: "1603330454010",
+      "Repudiandae eligendi exercitationem. Voluptas officiis eum deleniti quidem fuga magni voluptatibus cum molestias.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Dolorem rerum velit. Voluptatem architecto itaque quas officia. Omnis non vitae beatae explicabo velit rerum sit deleniti fugit. Debitis voluptas occaecati nulla et iusto. Aperiam eum vero voluptas molestiae vero. Occaecati qui harum rerum incidunt.",
-    timestamp: "1603330454010",
+      "Alias et eum occaecati sunt qui iste eaque voluptatem officiis. Veniam rerum eligendi labore reiciendis quaerat voluptates vel. Deleniti laudantium velit rerum fugit voluptas laudantium rem.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Temporibus distinctio eum quia inventore dolorem recusandae ratione quasi. Voluptas enim nihil. Voluptatem ea quibusdam exercitationem. Occaecati suscipit molestiae quaerat harum aliquam et delectus voluptatem.",
-    timestamp: "1603330454010",
+      "Repellendus dolorem doloremque. Aut ipsam odit perspiciatis aliquid ex. Similique iste sequi voluptatibus et.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Adipisci porro quia vitae. Ipsa est illo incidunt. Ratione aut qui quibusdam aut velit. Sit nemo dolore ut quia. Nobis deleniti et.",
-    timestamp: "1603330454010",
+      "Tempora et molestiae maiores voluptate reiciendis voluptates molestiae aut. Ipsum quia natus. Animi consectetur rerum quaerat cum harum doloremque cupiditate quis.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Rem cumque et cum et voluptas et. Non ratione velit sit officiis natus qui sapiente. Optio commodi dolorem rerum optio cumque incidunt repellendus quasi quis.",
-    timestamp: "1603330454010",
+      "Modi atque atque vel ducimus commodi facere odio delectus. Repellat nostrum error corrupti enim. Maxime ad ipsa eaque. Sequi aut distinctio nulla qui eligendi quia fugiat quaerat.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Alias dolorem delectus molestiae quo exercitationem. Ut provident autem aut veritatis cum consequatur repudiandae molestias earum. Est perspiciatis asperiores est id ipsam laborum ea. Similique dolor omnis est necessitatibus sequi voluptatem necessitatibus sint.",
-    timestamp: "1603330454010",
+      "Dolorem dolorem veritatis. Nobis accusamus beatae quibusdam delectus totam velit voluptatum autem. Ipsa a qui dolor quasi est numquam et pariatur odio. Veniam consequatur ullam.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Beatae sit enim quia repellat. Harum minima aut quas dolorum repellat ipsam. Vero natus aut laboriosam tenetur id architecto sapiente voluptatem.",
-    timestamp: "1603330454010",
+      "Nemo modi illo totam provident. Facilis officia aut ut possimus exercitationem ut beatae. Soluta delectus facilis ratione fuga ut totam recusandae. Id explicabo et omnis officiis velit aliquam voluptatem. Hic temporibus hic ut sequi aut quae eum officiis est. Velit et sit id atque.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Autem ea itaque blanditiis. Quia nihil et neque rerum ut est doloremque harum. Dolorem voluptatem ut quas ea voluptatum cumque quo placeat illum. Consequatur magnam dolores mollitia dolore ducimus vero dolore.",
-    timestamp: "1603330454010",
+      "Assumenda neque veritatis. Facere itaque laborum sequi fugiat sunt eaque.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Voluptatem quia quo unde recusandae maxime. Quis possimus non qui facilis. Cum nisi tempora repudiandae natus omnis autem fuga fugit. Quia dicta rem officiis incidunt dolorem officia necessitatibus aut. Consectetur repellendus neque earum in. Nemo excepturi eveniet animi et architecto porro ex voluptates.",
-    timestamp: "1603330454010",
+      "Amet sunt voluptatem enim et. Magni fugit vel omnis explicabo rem et est exercitationem.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Quas tempora non doloribus incidunt vel fugiat quae. Suscipit sapiente error dolor. Aut rerum odio voluptatem est. Aut optio quia voluptas. Ut nihil quo accusantium dolores. Et numquam commodi similique alias.",
-    timestamp: "1603330454010",
+      "Tempora dolor quos nobis eligendi sed aut architecto nisi autem. Velit qui et aliquam et omnis aut repellendus eum totam. Eum commodi fugiat aperiam excepturi sapiente et voluptatem porro. Voluptatem cum ut nostrum quia dolores. Nesciunt eligendi cum.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Et est omnis recusandae aliquam officiis. Qui deleniti dolor rerum. Sit doloremque et dolorem maiores neque. Ut quia nulla sunt omnis ipsa minima fugit.",
-    timestamp: "1603330454010",
+      "Sit at magni dolorem commodi. Et sit ut adipisci odit possimus vero dolorem. Eligendi sit accusantium voluptatem alias quasi et. Quos aut facere rerum et voluptate hic quo nihil. Animi expedita est dolor sequi aliquid quia consequuntur odio. Qui numquam culpa quia nihil ad ipsam dolore.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
   },
   {
     body:
-      "Qui et nisi amet veritatis. Ab aut aut perspiciatis labore voluptatem deleniti.",
-    timestamp: "1603330454010",
+      "Vel rerum aut rerum rerum explicabo et doloribus quis. Vero consequatur inventore asperiores sit expedita ut recusandae ea ipsam. At vel nesciunt non placeat est deserunt similique mollitia.",
+    timestamp: "Fri Oct 23 2020 16:26:32 GMT-0400 (Eastern Daylight Time)",
+  },
+];
+
+const dummyIssues = [
+  {
+    ticketNumber: 327754387,
+    description:
+      "Ipsa veritatis velit quia consequatur eos placeat. Ea ducimus beatae deserunt suscipit esse nulla neque quidem. Sit tempore ut a natus fugit aut amet voluptates.",
+    category: "report",
+    status: "in progress",
   },
   {
-    body:
-      "Quaerat ea deserunt officiis maxime aliquid. Ratione ea repudiandae vero et quo corporis. Cumque animi voluptatem esse esse fugit vel mollitia.",
-    timestamp: "1603330454010",
+    ticketNumber: 1849694574,
+    description:
+      "Esse quaerat quis voluptatum. Odio sit aut ipsum. Placeat aperiam tempore possimus.",
+    category: "bug",
+    status: "closed",
+  },
+  {
+    ticketNumber: 1748188442,
+    description:
+      "Officia voluptatibus occaecati minima id ullam qui et aut vitae. Nesciunt illum ut voluptas et officia laboriosam officiis mollitia itaque. Voluptas cupiditate ullam.",
+    category: "feature",
+    status: "open",
+  },
+  {
+    ticketNumber: 365847140,
+    description:
+      "Delectus libero est voluptatem voluptatem. Pariatur deserunt provident. Quia vero sit voluptatem praesentium non dolorem quo odio minima.",
+    category: "bug",
+    status: "in progress",
+  },
+  {
+    ticketNumber: 223207431,
+    description:
+      "Sint illum velit deleniti ducimus ut qui illo. Dignissimos voluptatem autem molestiae aperiam exercitationem. Et laboriosam blanditiis labore eligendi quis.",
+    category: "task",
+    status: "open",
+  },
+  {
+    ticketNumber: 335631529,
+    description:
+      "Aut provident molestiae fugiat rerum amet impedit. Error dolores impedit id tempora unde. Eligendi voluptatem aut repellendus ducimus molestiae atque.",
+    category: "task",
+    status: "open",
+  },
+  {
+    ticketNumber: 1518774344,
+    description:
+      "Ea rerum neque. Eveniet dolorem provident necessitatibus fugit iusto voluptates. Eligendi dolor magnam explicabo fugit.",
+    category: "task",
+    status: "in progress",
+  },
+  {
+    ticketNumber: 2571858702,
+    description:
+      "Sint eaque laborum quo tempora distinctio necessitatibus quod. Repellat atque rerum vel. Enim quasi doloribus necessitatibus voluptate dolorem ipsa nulla.",
+    category: "bug",
+    status: "open",
+  },
+  {
+    ticketNumber: 1160664754,
+    description:
+      "Nam excepturi deserunt. Iusto ipsa assumenda cum ullam fugit aliquam voluptatem. Illum rem vero consequuntur fugiat corrupti sunt veritatis.",
+    category: "task",
+    status: "open",
+  },
+  {
+    ticketNumber: 610735282,
+    description:
+      "In doloribus repellendus est. Quia nisi sapiente vero architecto occaecati labore consequatur et. Adipisci dolor est.",
+    category: "task",
+    status: "open",
+  },
+  {
+    ticketNumber: 1435728709,
+    description:
+      "Quia nobis architecto similique. Iste fuga consectetur et velit libero dicta dolorem incidunt sint. Provident vel aut repellat qui.",
+    category: "bug",
+    status: "in progress",
+  },
+  {
+    ticketNumber: 1636375932,
+    description:
+      "Quia esse eligendi sequi sit. Fuga molestias harum praesentium officiis temporibus. Ut nisi reprehenderit ipsum numquam quas nemo soluta.",
+    category: "feature",
+    status: "closed",
+  },
+  {
+    ticketNumber: 1889018969,
+    description:
+      "Dolor et est laboriosam modi error amet qui rerum. Veritatis asperiores consectetur reiciendis perspiciatis. Voluptate sunt quaerat quia ullam.",
+    category: "feature",
+    status: "closed",
+  },
+  {
+    ticketNumber: 1574722910,
+    description:
+      "Minus sit soluta fuga vel et odio. Ea doloremque qui. Ut deserunt qui qui et rerum impedit dolorum harum.",
+    category: "feature",
+    status: "open",
+  },
+  {
+    ticketNumber: 1951122634,
+    description:
+      "Pariatur accusamus saepe incidunt ut voluptatem dolorem laboriosam autem ad. Harum neque quis nam tenetur maiores. Assumenda illum saepe perferendis sit quia cupiditate.",
+    category: "feature",
+    status: "in progress",
+  },
+  {
+    ticketNumber: 1818245412,
+    description:
+      "Sapiente debitis enim dolorem reiciendis natus fugit possimus et nisi. Molestiae est voluptatem. Magni incidunt beatae voluptas quas voluptates fugit debitis pariatur.",
+    category: "feature",
+    status: "open",
+  },
+  {
+    ticketNumber: 716441133,
+    description:
+      "Quibusdam aut repellat. Omnis optio placeat sunt vel architecto exercitationem sapiente voluptatibus animi. Eum aliquid officia sunt aut aliquam vel autem alias rerum.",
+    category: "task",
+    status: "closed",
+  },
+  {
+    ticketNumber: 2732058616,
+    description:
+      "Et voluptatem quis perferendis ut voluptatem eum. Rerum vel itaque deleniti et dolore in ad molestiae. Laborum ex voluptatem et veniam excepturi iusto vero voluptas omnis.",
+    category: "feature",
+    status: "in progress",
+  },
+  {
+    ticketNumber: 1259704441,
+    description:
+      "Aut rerum porro dolores est dolores nam et suscipit voluptatem. Voluptatem sit ut voluptatem voluptatem libero minus quos dolores. Molestias et provident quia maxime sint ut modi.",
+    category: "report",
+    status: "closed",
+  },
+  {
+    ticketNumber: 2987115913,
+    description:
+      "Et sunt aliquam ad. Dolores quia eaque recusandae nostrum voluptatem. Dignissimos laudantium non esse et veniam.",
+    category: "report",
+    status: "open",
   },
 ];
 // DUMMY ASSOCIATORS //
@@ -1139,9 +1297,9 @@ async function associateProjectUsers() {
       let project2 = projects[1];
       let curUser = users[i];
       if (i % 2 !== 0) {
-        await curUser.setOwner(project1);
+        await curUser.setContributor(project1);
       } else {
-        await curUser.setOwner(project2);
+        await curUser.setContributor(project2);
       }
     }
   } catch (err) {
@@ -1169,21 +1327,84 @@ async function associateUserMessages() {
   try {
     const messages = await Message.findAll();
     const users = await User.findAll();
-    for (let i = 0; i < messages.length; i++) {
+    for (let i = 1; i <= messages.length; i += 2) {
       let message1 = messages[i];
-      let message2 = messages[i + 1];
+      let message2 = messages[i - 1];
       let user1 = users[0];
       let user2 = users[1];
 
       user1.setSender(message1);
-      message2.setReceived(message1);
+      message1.setMessage(user2);
       user2.setSender(message2);
-      message1.setReceived(message2);
+      message2.setMessage(user1);
     }
   } catch (err) {
     console.error(err);
   }
 }
+
+async function associateProjectIssues() {
+  try {
+    const issues = await Issue.findAll();
+    const projects = await Project.findAll();
+    for (let i = 0; i < issues.length; i++) {
+      let issue = issues[i];
+      let project = projects[Math.floor(Math.random() * projects.length)];
+
+      issue.setProject(project);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function associateIssueComments() {
+  try {
+    const issues = await Issue.findAll();
+    const users = await User.findAll();
+    const comments = await Comment.findAll();
+
+    for (let i = 0; i < comments.length; i++) {
+      let comment = comments[i];
+      comment.setIssue(issues[Math.floor(Math.random() * issues.length)]);
+    }
+    for (let i = 0; i < users.length; i++) {
+      let user = users[i];
+      // let otherIssue = issues[Math.floor(Math.random() * issues.length)];
+
+      for (let j = 0; j < 4; j++) {
+        let issue = issues[Math.floor(Math.random() * issues.length)];
+        user.setAssignee(issue);
+        issue.setAssigned(user);
+      }
+      // user.setAssignee(otherIssue);
+      // issue.addAssigned(user);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function associateIssueUsers() {
+  try {
+    const users = await User.findAll();
+    const issues = await Issue.findAll();
+
+    for (let i = 0; i < users.length; i++) {
+      let user = users[i];
+      let issue = issues[Math.floor(Math.random() * issues.length)];
+
+      user.setAssignee(issue);
+      issue.setAssigned(user);
+      user.hasAssignee(issue);
+      issue.addAssigned(user);
+    }
+  } catch (err) {
+    console.error(err);
+    console.log("catch");
+  }
+}
+
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.
@@ -1219,6 +1440,9 @@ async function runSeed() {
     await seed(dummyOrgs, Organization).then(() =>
       console.log(`seeded ${dummyOrgs.length} organizations`)
     );
+    await seed(dummyIssues, Issue).then(() =>
+      console.log(`seeded ${dummyIssues.length} issues`)
+    );
     await seed(dummyProjects, Project).then(() =>
       console.log(`seeded ${dummyProjects.length} projects`)
     );
@@ -1228,14 +1452,18 @@ async function runSeed() {
     await seed(dummyMessages, Message).then(() =>
       console.log(`seeded ${dummyMessages.length} messages`)
     );
+    // await associateIssueUsers();
 
     console.log("now associating");
+
     await associateUserTeams();
     await associateTeamOrgs();
     await associateProjectTeams();
     await associateProjectUsers();
     await associateUserComments();
     await associateUserMessages();
+    await associateProjectIssues();
+    await associateIssueComments();
   } catch (err) {
     console.error(err);
   }
@@ -1257,8 +1485,9 @@ async function closeDb() {
 
 if (module === require.main) {
   runSeed();
-  // console.log(Message.prototype);
+  // console.log(Issue.prototype);
   // console.log(User.prototype);
+  // console.log(Message.prototype);
 }
 
 // ASSOCIATOR SEQUENCE //
