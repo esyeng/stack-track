@@ -67,7 +67,18 @@ const createIssues = n => {
   return data;
 };
 
-// console.log(writeMessages(20));
+const tags = n => {
+  const data = [];
+  for (let i = 0; i < n; i++) {
+    let tag = {};
+    tag.title = faker.random.word();
+    tag.category = faker.random.word();
+    data.push(tag);
+  }
+  return data;
+};
+
+// console.log(tags(5));
 // DUMMY DATASETS //
 
 const dummyUsers = [
@@ -1226,6 +1237,14 @@ const dummyIssues = [
     status: "open",
   },
 ];
+
+const dummyTags = [
+  { title: "Regional", category: "state" },
+  { title: "Intranet", category: "Lock" },
+  { title: "yellow", category: "Tuvalu" },
+  { title: "Garden", category: "South" },
+  { title: "Luxembourg", category: "granular" },
+];
 // DUMMY ASSOCIATORS //
 
 async function associateTeamOrgs() {
@@ -1343,6 +1362,21 @@ async function associateUserMessages() {
   }
 }
 
+async function tagSync() {
+  try {
+    const tags = await Tag.findAll();
+    const issues = await Issue.findAll();
+
+    for (let i = 0; i < tags.length; i++) {
+      let issue = issues[Math.floor(Math.random() * issues.length)];
+      let tag = tags[i];
+      tag.setIssue(issue);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 async function associateProjectIssues() {
   try {
     const issues = await Issue.findAll();
@@ -1358,7 +1392,7 @@ async function associateProjectIssues() {
   }
 }
 
-async function associateIssueComments() {
+async function associateIssues() {
   try {
     const issues = await Issue.findAll();
     const users = await User.findAll();
@@ -1377,31 +1411,9 @@ async function associateIssueComments() {
         user.setAssignee(issue);
         issue.setAssigned(user);
       }
-      // user.setAssignee(otherIssue);
-      // issue.addAssigned(user);
     }
   } catch (err) {
     console.error(err);
-  }
-}
-
-async function associateIssueUsers() {
-  try {
-    const users = await User.findAll();
-    const issues = await Issue.findAll();
-
-    for (let i = 0; i < users.length; i++) {
-      let user = users[i];
-      let issue = issues[Math.floor(Math.random() * issues.length)];
-
-      user.setAssignee(issue);
-      issue.setAssigned(user);
-      user.hasAssignee(issue);
-      issue.addAssigned(user);
-    }
-  } catch (err) {
-    console.error(err);
-    console.log("catch");
   }
 }
 
@@ -1452,10 +1464,11 @@ async function runSeed() {
     await seed(dummyMessages, Message).then(() =>
       console.log(`seeded ${dummyMessages.length} messages`)
     );
-    // await associateIssueUsers();
+    await seed(dummyTags, Tag).then(() =>
+      console.log(`seeded ${dummyTags.length} tags`)
+    );
 
     console.log("now associating");
-
     await associateUserTeams();
     await associateTeamOrgs();
     await associateProjectTeams();
@@ -1463,7 +1476,8 @@ async function runSeed() {
     await associateUserComments();
     await associateUserMessages();
     await associateProjectIssues();
-    await associateIssueComments();
+    await associateIssues();
+    await tagSync();
   } catch (err) {
     console.error(err);
   }

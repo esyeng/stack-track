@@ -46,7 +46,7 @@ Message.belongsToMany(User, {
 
 // √
 User.belongsTo(Team); // - seed complete -
-// X
+// √
 
 // - Project -
 // √
@@ -59,7 +59,7 @@ User.belongsToMany(Issue, {
   through: "tickets",
   as: "assignee",
 });
-// X
+// √
 Issue.belongsToMany(User, {
   through: "tickets",
   as: "assigned",
@@ -71,10 +71,10 @@ Project.hasMany(Issue);
 
 // √
 Issue.belongsTo(Project);
-// X
+// √
 // √
 Issue.hasMany(Comment);
-// X
+// √
 Issue.hasMany(Tag);
 
 // - Comment -
