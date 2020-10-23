@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
+const User = require("./User");
 
 const Message = db.define("message", {
   body: {

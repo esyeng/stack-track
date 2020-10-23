@@ -1175,10 +1175,10 @@ async function associateUserMessages() {
       let user1 = users[0];
       let user2 = users[1];
 
-      message1.setSender(user1);
-      message1.setReceiver(user2);
-      message2.setSender(user2);
-      message2.setReceiver(user1);
+      user1.setSender(message1);
+      message2.setReceived(message1);
+      user2.setSender(message2);
+      message1.setReceived(message2);
     }
   } catch (err) {
     console.error(err);
@@ -1230,8 +1230,8 @@ async function runSeed() {
     );
 
     console.log("now associating");
-    await associateTeamOrgs();
     await associateUserTeams();
+    await associateTeamOrgs();
     await associateProjectTeams();
     await associateProjectUsers();
     await associateUserComments();

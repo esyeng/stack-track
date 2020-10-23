@@ -32,25 +32,11 @@ Team.belongsTo(Organization); // - seed complete -
 User.belongsToMany(Project, { through: "user-project", as: "owner" });
 // - seed complete -
 
+User.belongsToMany(Message, { through: "user-message", as: "sender" });
 // √
-User.hasMany(Comment);
-// X
-Message.belongsToMany(User, {
-  through: "chat",
-  as: "sender",
-  foreignKey: "senderId",
-});
-Message.belongsToMany(User, {
-  through: "chat",
-  as: "receiver",
-  foreignKey: "receiverId",
-});
-// X
-User.belongsToMany(Message, {
-  through: "chat",
-  as: "message",
-  foreignKey: "messageId",
-});
+
+Message.belongsToMany(User, { through: "user-message", as: "received" });
+
 // √
 User.belongsTo(Team); // - seed complete -
 // X
