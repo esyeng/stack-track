@@ -11,18 +11,6 @@ const io = require("socket.io")(server);
 
 module.exports = app;
 
-const syncDb = async () => {
-  try {
-    console.log("..syncing database..");
-    db.sync();
-    console.log("sync successful!");
-  } catch (err) {
-    next(err);
-  }
-};
-
-// syncDb();
-
 require("./socket")(io);
 // pull in api keys as needed
 // if (process.env.NODE_ENV !== "production") require("../secrets");
@@ -39,7 +27,7 @@ app.use("/api", require("./api"));
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.use("*", (req, res) => {
+app.use("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/index.html"));
 });
 app.use((req, res, next) =>

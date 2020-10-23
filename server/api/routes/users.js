@@ -1,9 +1,16 @@
 const users = require("express").Router();
+const { User, Team } = require("../../db/models");
 module.exports = users;
 
-users.get("/", (req, res, next) => {
+// all users (test)
+users.get("/", async (req, res, next) => {
   try {
-    res.json("hello server");
+    const users = await User.findAll({
+      include: {
+        model: Team,
+      },
+    });
+    res.json(users);
   } catch (err) {
     next(err);
   }

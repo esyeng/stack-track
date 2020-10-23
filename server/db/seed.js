@@ -1,5 +1,5 @@
 "use strict";
-const { fake } = require("faker");
+
 const faker = require("faker");
 const db = require("./db");
 const {
@@ -78,7 +78,6 @@ const tags = n => {
   return data;
 };
 
-// console.log(tags(5));
 // DUMMY DATASETS //
 
 const dummyUsers = [
@@ -1251,6 +1250,7 @@ async function associateTeamOrgs() {
   try {
     const teams = await Team.findAll();
     const orgs = await Organization.findAll();
+    const users = await User.findAll();
     for (let i = 0; i < teams.length; i++) {
       let org1 = orgs[0];
       let org2 = orgs[1];
@@ -1262,6 +1262,17 @@ async function associateTeamOrgs() {
         await curTeam.setOrganization(org2);
       }
     }
+    for (let i = 0; i < users.length; i++) {
+      let team1 = teams[0];
+      let team2 = teams[1];
+
+      let curUser = users[i];
+      if (i % 2 !== 0) {
+        await curUser.setTeam(team1);
+      } else {
+        await curUser.setTeam(team2);
+      }
+    }
   } catch (err) {
     console.error(err);
   }
@@ -1269,7 +1280,6 @@ async function associateTeamOrgs() {
 
 async function associateUserTeams() {
   try {
-    const users = await User.findAll();
     const teams = await Team.findAll();
     for (let i = 0; i < users.length; i++) {
       let team1 = teams[0];
@@ -1468,8 +1478,8 @@ async function runSeed() {
       console.log(`seeded ${dummyTags.length} tags`)
     );
 
-    console.log("now associating");
     await associateUserTeams();
+    console.log("now associating");
     await associateTeamOrgs();
     await associateProjectTeams();
     await associateProjectUsers();
@@ -1494,16 +1504,13 @@ async function closeDb() {
 }
 
 // Execute the `seed` function, IF we ran this module directly (`node seed`).
-// `Async` functions always return a promise, so we can use `catch` to handle
-// any errors that might occur inside of `seed`.
 
 if (module === require.main) {
   runSeed();
-  // console.log(Issue.prototype);
-  // console.log(User.prototype);
-  // console.log(Message.prototype);
 }
-
+if (process.env.NODE_ENV === "test") {
+  runSeed().then(() => closeDb());
+}
 // ASSOCIATOR SEQUENCE //
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)

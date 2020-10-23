@@ -1,5 +1,4 @@
 const Message = require("../db/models/Message");
-const Chat = require("../db/models/Chat");
 
 module.exports = io => {
   io.on("connection", socket => {
