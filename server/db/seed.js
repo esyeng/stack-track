@@ -1244,6 +1244,7 @@ const dummyTags = [
   { title: "Garden", category: "South" },
   { title: "Luxembourg", category: "granular" },
 ];
+
 // DUMMY ASSOCIATORS //
 
 async function associateTeamOrgs() {
@@ -1426,10 +1427,6 @@ async function associateIssues() {
     console.error(err);
   }
 }
-
-// We've separated the `seed` function from the `runSeed` function.
-// This way we can isolate the error handling and exit trapping.
-// The `seed` function is concerned only with modifying the database.
 
 // MAIN SEED FUNCTION //
 
