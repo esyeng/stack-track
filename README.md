@@ -1,6 +1,7 @@
 # Software Requirement Specification:
 
-**test linux env is configured**
+## Notes
+**update 11/2/2020 - Mac damaged, switching to Ubuntu on Linux for dev**
 
 ## MVP
 
