@@ -1,5 +1,7 @@
 # Software Requirement Specification:
 
+**test linux env is configured**
+
 ## MVP
 
 Stack Track is a fast and lightweight help-desk ticket application. As an open-source JIRA inspired interface, StackTrack can be used to log technical issues and bugs for teams to track and fix, as well as to help development teams in agile development.
