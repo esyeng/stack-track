@@ -7,7 +7,7 @@ const Issue = db.define("issue", {
     allowNull: false,
   },
   description: {
-    type: Sequelize.TEXT,
+    type: Sequelize.BLOB("long"),
     allowNull: false,
   },
   category: {

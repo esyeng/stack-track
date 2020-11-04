@@ -26,9 +26,8 @@ const User = db.define("user", {
     defaultValue: "Stack-Tracker",
   },
   bio: {
-    type: Sequelize.TEXT,
+    type: Sequelize.BLOB('long'),
     allowNull: true,
-    defaultValue: "Enter your bio here! Let everyone know why you're awesome!",
   },
   profileImageUrl: {
     type: Sequelize.STRING,

@@ -7,7 +7,7 @@ const Comment = db.define("comment", {
     allowNull: false,
   },
   body: {
-    type: Sequelize.TEXT,
+    type: Sequelize.BLOB('long'),
     allowNull: false,
   },
 });
