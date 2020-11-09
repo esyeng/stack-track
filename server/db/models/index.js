@@ -13,8 +13,6 @@ const Comment = require("./Comment");
  * - Organization -
  */
 
-// done as of now: 7 / 21
-
 // √
 Organization.hasMany(Team); // - seed complete -
 
