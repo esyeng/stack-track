@@ -8,9 +8,9 @@ const Project = db.define("project", {
     unique: true,
   },
   description: {
-    type: Sequelize.BLOB('long'),
+    type: Sequelize.TEXT('long'),
     allowNull: true,
-    
+
   },
   category: {
     type: Sequelize.ENUM(

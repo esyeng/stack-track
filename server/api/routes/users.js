@@ -5,7 +5,7 @@ module.exports = users;
 // all users (test)
 users.get("/", async (req, res, next) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({ include: Team });
     res.json(users);
   } catch (err) {
     next(err);
@@ -15,7 +15,7 @@ users.get("/", async (req, res, next) => {
 users.get("/:userId", async (req, res, next) => {
   try {
     const { userId } = req.params;
-    const cur = await User.findByPk(userId);
+    const cur = await User.findByPk(userId, { include: Team });
     res.json(cur);
   } catch (err) {
     next(err);
@@ -24,9 +24,8 @@ users.get("/:userId", async (req, res, next) => {
 
 users.post("/", async (req, res, next) => {
   try {
-    // const { first, last, user, title, bio, profileImageUrl, email, password } = req.body;
     const newUser = await User.create(req.body)
-    res.send(newUser);
+    res.json(newUser);
   } catch (err) {
     next(err);
   }
@@ -53,3 +52,8 @@ users.delete("/:userId", async (req, res, next) => {
     next(err);
   }
 })
+
+// WHEN AUTH IS SET UP, PUT GET LOGGED IN USER HERE -->
+// {
+// ...
+// } 
