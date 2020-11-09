@@ -28,9 +28,9 @@ Team.belongsTo(Organization); // - seed complete -
 // - User -
 // √
 User.belongsToMany(Project, {
-  through: "user-project",
-  as: "contributor",
-  foreignKey: "contributerId",
+    through: "user-project",
+    as: "projects",
+    foreignKey: "contributorId",
 });
 // - seed complete -
 
@@ -38,8 +38,8 @@ User.belongsToMany(Message, { through: "user-message", as: "sender" });
 // √
 
 Message.belongsToMany(User, {
-  through: "user-message",
-  as: "message",
+    through: "user-message",
+    as: "message",
 });
 
 // √
@@ -50,17 +50,17 @@ User.belongsTo(Team); // - seed complete -
 // √
 Project.belongsTo(Team);
 // √
-Project.belongsToMany(User, { through: "user-project", as: "project" });
+Project.belongsToMany(User, { through: "user-project", as: "users", foreignKey: "user-proj-id" });
 // - seed complete -
 
 User.belongsToMany(Issue, {
-  through: "tickets",
-  as: "assignee",
+    through: "tickets",
+    as: "assignee",
 });
 // √
 Issue.belongsToMany(User, {
-  through: "tickets",
-  as: "assigned",
+    through: "tickets",
+    as: "assigned",
 });
 
 Project.hasMany(Issue);
@@ -86,12 +86,12 @@ Comment.belongsTo(User);
 Tag.belongsTo(Issue);
 
 module.exports = {
-  User: User,
-  Team: Team,
-  Tag: Tag,
-  Issue: Issue,
-  Project: Project,
-  Comment: Comment,
-  Organization: Organization,
-  Message: Message,
+    User: User,
+    Team: Team,
+    Tag: Tag,
+    Issue: Issue,
+    Project: Project,
+    Comment: Comment,
+    Organization: Organization,
+    Message: Message,
 };
