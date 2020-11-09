@@ -40,7 +40,6 @@ messages.post("/:toId", async (req, res, next) => {
 messages.delete("/:msgId", async (req, res, next) => {
     try {
         const { msgId } = req.params;
-        const delMsq = Message.findByPk(msgId);
         await Message.destroy({
             where: {
                 id: msgId
