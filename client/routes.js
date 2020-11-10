@@ -50,7 +50,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch(me());
+      // dispatch(me());
+      console.log("load initial data called");
     },
   };
 };
