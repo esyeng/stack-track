@@ -3,3 +3,5 @@ node_modules
 secret.js
 db.config.js
 dist
+bundle.js
+bundle.js.map
