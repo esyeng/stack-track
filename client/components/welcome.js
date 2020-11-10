@@ -6,8 +6,10 @@ export default function Welcome() {
     <div>
       <section>
         <div>
-          Welcome, log in to get started
-          <Link to="/login"> Login </Link>
+          Welcome,
+          <Link to="/login"> Login </Link> or
+          <Link to="/signup"> Sign Up </Link>
+          to get started
         </div>
       </section>
     </div>

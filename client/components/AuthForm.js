@@ -2,12 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { auth } from "../store";
+import { Link } from "react-router-dom";
 
 const AuthForm = props => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
     <div>
+      <div className="btn">
+        <Link to="/"> Go Back</Link>
+      </div>
       <form onSubmit={handleSubmit} name={name}>
         {displayName === "Sign Up" ? (
           <div className="name">
@@ -22,6 +26,12 @@ const AuthForm = props => {
                 <small className="smallText">Last Name</small>
               </label>
               <input name="lastName" type="text" />
+            </div>
+            <div>
+              <label htmlFor="username">
+                <small className="smallText">username</small>
+              </label>
+              <input name="username" type="text" />
             </div>
           </div>
         ) : (
@@ -61,10 +71,6 @@ const AuthForm = props => {
 
 /**
  * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
  */
 const mapLogin = state => {
   return {
@@ -92,7 +98,10 @@ const mapDispatch = dispatch => {
         const formName = evt.target.name;
         const email = evt.target.email.value;
         const password = evt.target.password.value;
-        dispatch(auth(email, password, formName, firstName, lastName));
+        const username = evt.target.username.value;
+        dispatch(
+          auth(email, password, formName, firstName, lastName, username)
+        );
       } else if (evt.target.name === "login") {
         const formName = evt.target.name;
         const email = evt.target.email.value;
