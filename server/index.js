@@ -3,6 +3,8 @@ const path = require("path");
 const morgan = require("morgan");
 const app = express();
 const db = require("./db");
+const session = require("express-session");
+const passport = require("passport");
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () =>
   console.log(`tracking stacks on ${PORT}`)
@@ -15,6 +17,17 @@ require("./socket")(io);
 // pull in api keys as needed
 // if (process.env.NODE_ENV !== "production") require("../secrets");
 
+passport.serializeUser((user, done) => done(null, user.id));
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.models.user.findByPk(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
 // logware
 app.use(morgan("dev"));
 
@@ -22,18 +35,29 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use("/auth", require("./auth"));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "it's a secret to everybody",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.use("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public/index.html"));
-});
-
 app.use((req, res, next) =>
   path.extname(req.path).length > 0 ? res.status(404).send("Not found") : next()
 );
+
+app.use("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public/index.html"));
+});
 
 app.use((err, req, res, next) => {
   console.error(err);
