@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Header } from "./layouts";
 
 export const UserHome = props => {
   const { email } = props;
@@ -8,6 +9,7 @@ export const UserHome = props => {
   return (
     <div className="loginPage">
       <div>
+        <Header></Header>
         <h3>Welcome, {email}</h3>
       </div>
     </div>

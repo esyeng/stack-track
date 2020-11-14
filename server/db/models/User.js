@@ -26,7 +26,7 @@ const User = db.define("user", {
     defaultValue: "Stack-Tracker",
   },
   bio: {
-    type: Sequelize.TEXT('long'),
+    type: Sequelize.TEXT("long"),
     allowNull: true,
   },
   profileImageUrl: {
@@ -65,11 +65,9 @@ User.generateSalt = function () {
 };
 
 User.encryptPassword = function (plainText, salt) {
-  return crypto
-    .createHash("RSA-SHA256")
-    .update(plainText)
-    .update(salt)
-    .digest("hex");
+  const buf = Buffer.from(plainText, "utf8");
+  const buf2 = Buffer.from(`${salt}`, "utf8");
+  return crypto.createHash("RSA-SHA256").update(buf).update(buf2).digest("hex");
 };
 
 const setAndSaltPassword = user => {

@@ -1,4 +1,5 @@
 import axios from "axios";
+// import passport from "passport";
 import history from "../history";
 
 /**
@@ -39,17 +40,24 @@ export const auth = (
   password,
   method,
   fName,
-  lName
+  lName,
+  username
 ) => async dispatch => {
   let res;
   try {
     console.log("AUTHORIZING");
-    res = await axios.post(`/auth/${method}`, {
-      ...fName,
-      ...lName,
-      ...email,
-      ...password,
-    });
+    method === "signup"
+      ? (res = await axios.post(`/auth/signup`, {
+          fName: fName,
+          lName: lName,
+          email: email,
+          password: password,
+          username: username,
+        }))
+      : (res = await axios.post(`/auth/login`, {
+          email: email,
+          password: password,
+        }));
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
   }

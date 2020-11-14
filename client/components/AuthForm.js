@@ -8,7 +8,7 @@ const AuthForm = props => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div>
+    <div className="auth">
       <div className="btn">
         <Link to="/"> Go Back</Link>
       </div>
@@ -93,15 +93,13 @@ const mapDispatch = dispatch => {
     handleSubmit(evt) {
       evt.preventDefault();
       if (evt.target.name === "signup") {
-        const firstName = evt.target.firstName.value;
-        const lastName = evt.target.lastName.value;
+        const fName = evt.target.firstName.value;
+        const lName = evt.target.lastName.value;
         const formName = evt.target.name;
         const email = evt.target.email.value;
         const password = evt.target.password.value;
         const username = evt.target.username.value;
-        dispatch(
-          auth(email, password, formName, firstName, lastName, username)
-        );
+        dispatch(auth(email, password, formName, fName, lName, username));
       } else if (evt.target.name === "login") {
         const formName = evt.target.name;
         const email = evt.target.email.value;
