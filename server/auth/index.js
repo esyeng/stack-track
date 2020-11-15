@@ -46,9 +46,9 @@ authorize.post("/signup", async (req, res, next) => {
 });
 
 authorize.post("/logout", (req, res) => {
+  res.redirect("/");
   req.logout();
   req.session.destroy();
-  res.redirect("/");
 });
 
 authorize.get("/me", (req, res) => {

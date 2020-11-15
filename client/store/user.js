@@ -7,6 +7,7 @@ import history from "../history";
  */
 
 const GET_USER = "GET_USER";
+const SET_USER = "SET_USER";
 const REMOVE_USER = "REMOVE_USER";
 
 /**
@@ -15,6 +16,11 @@ const REMOVE_USER = "REMOVE_USER";
 
 const getUser = user => ({
   type: GET_USER,
+  user,
+});
+
+const setUser = user => ({
+  type: SET_USER,
   user,
 });
 
@@ -58,6 +64,7 @@ export const auth = (
           email: email,
           password: password,
         }));
+    localStorage.setItem("user", JSON.stringify(res.data));
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
   }
@@ -74,10 +81,14 @@ export const logout = () => async dispatch => {
   try {
     await axios.post("/auth/logout");
     dispatch(removeUser());
-    history.push("/login");
+    history.push("/");
   } catch (err) {
     console.error(err);
   }
+};
+
+export const setLoggedIn = user => dispatch => {
+  dispatch(setUser(user));
 };
 
 /**
@@ -88,6 +99,8 @@ export default function (state = {}, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
+    case SET_USER:
+      return { state: { user: action.user } };
     case REMOVE_USER:
       return state;
     default:

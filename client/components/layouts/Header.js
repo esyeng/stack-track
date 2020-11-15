@@ -9,6 +9,9 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../store";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Header() {
+const Header = () => {
   const classes = useStyles();
 
   return (
@@ -40,11 +43,27 @@ export default function Header() {
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
-          <Link to="/logout">
-            <Button color="inherit">Logout</Button>
+          <Link to="/">
+            <Button className="logout" color="inherit">
+              Logout
+            </Button>
           </Link>
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
+
+const mapDispatch = dispatch => {
+  return {
+    handleSumbit(evt) {
+      evt.preventDefault();
+      if (evt.target.name === "logout") {
+        dispatch(logout());
+        localStorage.clear();
+      }
+    },
+  };
+};
+
+export default connect(null, mapDispatch)(Header);

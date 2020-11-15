@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { auth } from "../store";
+import { auth, setLoggedIn } from "../store";
 import { Link } from "react-router-dom";
 
 const AuthForm = props => {
   const { name, displayName, handleSubmit, error } = props;
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
 
   return (
     <div className="auth">

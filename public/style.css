@@ -25,3 +25,16 @@ form div {
   background-color: aliceblue;
   display: flex;
 }
+
+.logout {
+  color: aliceblue;
+}
+
+.MuiButton-label {
+  color: aliceblue;
+}
+
+.msg {
+  background-color: azure;
+  color: black;
+}

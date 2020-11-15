@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // import Header from "./layouts/Header";
+import history from "../history";
 
 export default function Welcome() {
+  const [user, setUser] = useState();
+
   return (
     <div>
       <section>
