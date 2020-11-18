@@ -16,8 +16,8 @@ export const UserHome = props => {
           <Box textAlign="center">
             <h3>Welcome, {user.fName}</h3>
           </Box>
-          <Menu />
           <Body></Body>
+          <Menu />
           <Footer></Footer>
         </div>
       </div>

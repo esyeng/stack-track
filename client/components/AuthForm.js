@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const AuthForm = props => {
   const { name, displayName, handleSubmit, error, isLoggedIn } = props;
 
-  console.log(props, isLoggedIn);
+  // console.log(props, isLoggedIn);
 
   return (
     <div className="auth">
