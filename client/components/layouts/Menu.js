@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
     backgroundColor: "grey",
     paddingRight: 20,
+    paddingTop: 20,
   },
   // necessary for content to be below app bar
   toolbar: {

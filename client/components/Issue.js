@@ -2,48 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Header, Menu, Card } from "./layouts";
-import {
-  Grid,
-  Paper,
-  Typography,
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-} from "@material-ui/core";
+import { Grid, Paper, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/Styles";
 import { fetchIssues } from "../store";
 
-// const style = {
-//   //   Paper: { padding: 10, marginTop: 10, marginBottom: 10 },
-//   //   Typography: {
-//   //     // width: 100,
-//   //     marginRight: 100,
-//   //     paddingLeft: 60,
-//   //     textAlign: "center",
-//   //   },
-//   //   root: {
-//   //     width: 80,
-//   //     color: "green",
-//   //   },
-//   root: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     height: 140,
-//     width: 100,
-//   },
-//   control: {
-//     padding: theme.spacing(2),
-//   },
-// };
-
 const classes = {
   root: {
-    flexGrow: 1,
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
   },
   paper: {
-    height: 140,
+    height: 120,
     width: 100,
   },
   control: {},
@@ -62,16 +33,24 @@ class Issue extends Component {
   render() {
     const classes = {
       root: {
-        flexGrow: 1,
-        width: 400,
-        margin: 20,
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+        overflow: "hidden",
       },
       paper: {
         flexDirection: "row",
-        // flexBasis: 8,
         alignItems: "center",
       },
       control: {},
+      content: {
+        flexDirection: "row",
+      },
+      textField: {
+        marginLeft: 200,
+        marginRight: 10,
+        marginTop: 15,
+      },
     };
     const { issues } = this.props;
     console.log(this.props);
@@ -79,6 +58,21 @@ class Issue extends Component {
       <div>
         <Header />
         <Menu />
+        <form style={classes.textField} noValidate autoComplete="off">
+          <TextField
+            id="outlined-full-width"
+            label="Search"
+            style={{ margin: 8 }}
+            placeholder="Ticket Number, Desc, etc."
+            helperText="Find tickets by filter"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+          />
+        </form>
         <Grid container justify="center" spacing={1}>
           <Grid container item xs={7}>
             <Grid
@@ -89,25 +83,30 @@ class Issue extends Component {
               alignItems="center"
             >
               {issues.length
-                ? issues.map((item, idx) => (
-                    <Grid
-                      key={idx}
-                      container
-                      item
-                      alignContent="center"
-                      justify="center"
-                      display="flex"
-                    >
-                      <Paper style={classes.paper}>
-                        <Card
-                          ticketNumber={item.ticketNumber}
-                          description={item.description}
-                          category={item.category}
-                          status={item.status}
-                        ></Card>
-                      </Paper>
-                    </Grid>
-                  ))
+                ? issues.map((item, idx) => {
+                    if (idx === 0) {
+                      return null;
+                    } else
+                      return (
+                        <Grid
+                          key={idx}
+                          container
+                          item
+                          alignContent="center"
+                          justify="center"
+                          display="flex"
+                        >
+                          <Paper style={classes.paper}>
+                            <Card
+                              ticketNumber={item.ticketNumber}
+                              description={item.description}
+                              category={item.category}
+                              status={item.status}
+                            ></Card>
+                          </Paper>
+                        </Grid>
+                      );
+                  })
                 : null}
             </Grid>
           </Grid>

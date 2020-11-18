@@ -23,6 +23,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
+  logo: {
+    maxWidth: 160,
+  },
 }));
 
 const showAlert = () => {
@@ -45,13 +48,21 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
+          <img
+            src={
+              "https://drive.google.com/uc?export=download&id=1KSZ2-FhqzwuKfDsFumDR1kL5MR3l6EJX"
+            }
+            alt="logo"
+            height="60px"
+            width="400px"
+            className={classes.logo}
+          />
           <Typography
             style={{ color: "red", fontStyle: "italic" }}
             variant="h6"
             className={classes.title}
-          >
-            StackTrack
-          </Typography>
+          ></Typography>
+
           <Link to="/">
             <Button
               style={{ color: "black" }}

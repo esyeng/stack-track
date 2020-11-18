@@ -44,7 +44,32 @@ form div {
 }
 
 .MuiGrid-root {
-  background-color: #494949;
+  /* background-color: #494949; */
+  background-color: #9be1fa;
+  display: flex;
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.MuiGrid-rootContainer {
+  background-color: lightblue;
+}
+
+.MuiCardContent-root {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+  flex-basis: auto;
+}
+
+.MuiCardContent-root > p {
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
+  align-items: center;
 }
 
 .msg {
