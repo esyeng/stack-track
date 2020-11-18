@@ -18,12 +18,16 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(22),
   },
   title: {
     flexGrow: 1,
   },
 }));
+
+const showAlert = () => {
+  return alert("clicked the burger");
+};
 
 const Header = () => {
   const classes = useStyles();
@@ -31,20 +35,29 @@ const Header = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: "silver" }}>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={() => showAlert()}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
+          <Typography
+            style={{ color: "red", fontStyle: "italic" }}
+            variant="h6"
+            className={classes.title}
+          >
+            StackTrack
           </Typography>
           <Link to="/">
-            <Button className="logout" color="inherit">
+            <Button
+              style={{ color: "black" }}
+              className="logout"
+              color="inherit"
+            >
               Logout
             </Button>
           </Link>

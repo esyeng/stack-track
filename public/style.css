@@ -27,11 +27,20 @@ form div {
 }
 
 .logout {
-  color: aliceblue;
+  color: black;
+  background-color: black;
 }
 
 .MuiButton-label {
-  color: aliceblue;
+  color: black;
+}
+
+.MuiIconButton-label {
+  color: #080c0e;
+}
+
+.MuiGrid-root {
+  background-color: #2b2b2b;
 }
 
 .msg {

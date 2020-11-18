@@ -65,6 +65,7 @@ export const auth = (
           password: password,
         }));
     localStorage.setItem("user", JSON.stringify(res.data));
+    console.log(localStorage);
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
   }
@@ -100,7 +101,7 @@ export default function (state = {}, action) {
     case GET_USER:
       return action.user;
     case SET_USER:
-      return { state: { user: action.user } };
+      return { state: { user: action.user }, isLoggedIn: true };
     case REMOVE_USER:
       return state;
     default:

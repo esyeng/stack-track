@@ -4,13 +4,12 @@ module.exports = authorize;
 
 authorize.post("/login", async (req, res, next) => {
   try {
-    console.log("before find");
     const user = await User.findOne({
       where: {
         email: req.body.email,
       },
     });
-    console.log(`User: ${user}, password: ${user.password}`);
+
     if (!user) {
       console.log(`User not found, ${req.body.email}`);
       res.status(401).send("Wrong username and/or password");

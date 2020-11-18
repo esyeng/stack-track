@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import history from "../history";
 
 export default function Welcome() {
-  const [user, setUser] = useState();
-
   return (
     <div>
       <section>

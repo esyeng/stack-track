@@ -1,5 +1,7 @@
 // export { Header } from "./Header";
 import Header from "./Header";
-// import Footer from "./Footer";
+import Footer from "./Footer";
+import Body from "./Body";
+import Menu from "./Menu";
 
-export { Header };
+export { Header, Footer, Body, Menu };
