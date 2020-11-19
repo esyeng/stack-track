@@ -4,8 +4,14 @@ import { Tab } from "@material-ui/core";
 
 export default props => {
   return (
-    <Paper>
-      <Tabs value={0} indicatorColor="primary" textColor="primary" centered>
+    <Paper className="footer">
+      <Tabs
+        className="footer"
+        value={0}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
         <Tab label="One" />
         <Tab label="Two" />
         <Tab label="Three" />

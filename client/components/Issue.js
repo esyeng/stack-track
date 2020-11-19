@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Header, Menu, Card } from "./layouts";
+import { Header, Menu, IssCard } from "./layouts";
 import { Grid, Paper, TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/Styles";
+
 import { fetchIssues } from "../store";
 
 const classes = {
@@ -97,12 +97,12 @@ class Issue extends Component {
                           display="flex"
                         >
                           <Paper style={classes.paper}>
-                            <Card
+                            <IssCard
                               ticketNumber={item.ticketNumber}
                               description={item.description}
                               category={item.category}
                               status={item.status}
-                            ></Card>
+                            ></IssCard>
                           </Paper>
                         </Grid>
                       );

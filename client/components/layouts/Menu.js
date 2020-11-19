@@ -11,7 +11,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import BugReportIcon from "@material-ui/icons/BugReport";
 // import StarsIcon from "@material-ui/icons/Stars";
-// import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
+import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
 // import GroupIcon from "@material-ui/icons/Group";
 import { Link } from "react-router-dom";
 
@@ -81,26 +81,14 @@ export default function PermanentDrawerLeft() {
               <ListItemText primary="Issues" />
             </ListItem>
           </Link>
-          {/* {["Dashboard", "Issues", "My Profile", "Projects", "Team Portal"].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index === 0 ? (
-                    <DashboardIcon />
-                  ) : index === 1 ? (
-                    <BugReportIcon />
-                  ) : index === 2 ? (
-                    <StarsIcon />
-                  ) : index === 3 ? (
-                    <DeveloperBoardIcon />
-                  ) : (
-                    <GroupIcon />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )} */}
+          <Link to="/projects">
+            <ListItem>
+              <ListItemIcon>
+                <DeveloperBoardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Projects" />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
       </Drawer>

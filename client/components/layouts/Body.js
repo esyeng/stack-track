@@ -2,19 +2,27 @@ import React from "react";
 import { Grid, Paper, Typography, Box } from "@material-ui/core";
 
 const style = {
-  Paper: { padding: 10, marginTop: 10, marginBottom: 10 },
+  Paper: {
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    display: "flex",
+    justifyContent: "flex-end",
+    marginLeft: 100,
+  },
   Typography: {
-    width: 400,
-    marginRight: 100,
-    paddingLeft: 60,
+    width: 200,
+    // marginRight: 100,
+    // paddingLeft: 80,
     textAlign: "center",
+    justifyContent: "space-evenly",
   },
 };
 
 export default props => {
   return (
     <Grid container>
-      <Grid item sm>
+      <Grid item sm={5}>
         <Paper style={style.Paper}>
           <Box textAlign="center">
             <Typography variant="h6">Statistics</Typography>
@@ -22,38 +30,19 @@ export default props => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
               Rhoncus dolor purus non enim praesent elementum facilisis leo vel.
-              Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-              gravida rutrum quisque non tellus. Convallis convallis tellus id
-              interdum velit laoreet id donec ultrices. Odio morbi quis commodo
-              odio aenean sed adipiscing. Amet nisl suscipit adipiscing bibendum
-              est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-              Metus vulputate eu scelerisque felis imperdiet proin fermentum
-              leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt
-              lobortis feugiat vivamus at augue. At augue eget arcu dictum
-              varius duis at consectetur lorem. Velit sed ullamcorper morbi
-              tincidunt. Lorem donec massa sapien faucibus et molestie ac.
+              Risus at ultrices mi tempus imperdiet.
             </Typography>
           </Box>
         </Paper>
       </Grid>
-      <Grid item sm>
+      <Grid item sm={4}>
         <Paper style={style.Paper}>
           <Box textAlign="center">
             <Typography variant="h6">Diagnostics</Typography>
             <Typography paragraph style={style.Typography}>
               Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
               ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-              elementum integer enim neque volutpat ac tincidunt. Ornare
-              suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-              volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-              Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
-              ornare massa eget egestas purus viverra accumsan in. In hendrerit
-              gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-              aliquam sem et tortor. Habitant morbi tristique senectus et.
-              Adipiscing elit duis tristique sollicitudin nibh sit. Ornare
-              aenean euismod elementum nisi quis eleifend. Commodo viverra
-              maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin
-              aliquam ultrices sagittis orci a.
+              elementum integer enim neque volutpat ac tincidunt.
             </Typography>
           </Box>
         </Paper>

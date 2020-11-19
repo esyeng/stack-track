@@ -3,3 +3,4 @@ export { default as UserHome } from "./UserHome";
 export { Login, Signup } from "./AuthForm";
 export { default as Welcome } from "./Welcome";
 export { default as Issue } from "./Issue";
+export { default as Project } from "./Project";
