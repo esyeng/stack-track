@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import IssCard from "./IssCard";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +32,17 @@ const useStyles = makeStyles({
     flexBasis: 12,
     flexGrow: 1,
   },
+  gridBox: {
+    overflow: "scroll",
+    width: "100%",
+    height: "300px",
+    backgroundColor: "white",
+  },
+  button: {
+    borderWidth: "4px",
+    borderColor: "black",
+    width: "125px",
+  },
 });
 
 export default function (props) {
@@ -45,7 +57,7 @@ export default function (props) {
     issues,
   } = props;
   // const issueArray = [props.projects[projects][id].issues];
-  console.log(props);
+  // console.log(props);
   const [show, setShowing] = useState(false);
   const [issue, setIssues] = useState(false);
   const handleShow = () => {
@@ -85,35 +97,30 @@ export default function (props) {
           <Typography variant="body2" component="p">
             {dateCreated}
           </Typography>
-          <div className={classes.container}>
-            {issue
-              ? issues.map((issue, idx) => {
-                  return (
-                    <IssCard
-                      key={idx}
-                      ticketNumber={issue.ticketNumber}
-                      description={issue.description}
-                      category={issue.category}
-                      status={issue.status}
-                      className={classes.card}
-                    ></IssCard>
-                  );
-                })
-              : null}
-          </div>
+          {issue ? (
+            <Grid container className={classes.gridBox}>
+              {issues.map((issue, idx) => {
+                return (
+                  <IssCard
+                    key={idx}
+                    ticketNumber={issue.ticketNumber}
+                    description={issue.description}
+                    category={issue.category}
+                    status={issue.status}
+                    className={classes.card}
+                  ></IssCard>
+                );
+              })}
+            </Grid>
+          ) : null}
         </CardContent>
         <CardActions>
-          <Button onClick={handleShow} size="small">
+          <Button className={classes.button} onClick={handleShow} size="small">
             Collapse
           </Button>
-          <Button onClick={showIssues} size="small">
-            View Issues
+          <Button className={classes.button} onClick={showIssues} size="small">
+            {issue ? `Hide` : `View Issues`}
           </Button>
-          {issue ? (
-            <Button onClick={showIssues} size="small">
-              Hide
-            </Button>
-          ) : null}
         </CardActions>
       </Card>
     );

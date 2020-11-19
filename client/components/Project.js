@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchProjects } from "../store";
 import { Header, Menu, ProjCard, Footer } from "./layouts";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid, Paper, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +27,11 @@ const useStyles = makeStyles({
     marginRight: 10,
     marginTop: 15,
   },
+  heading: {
+    fontFamily: "Arial Black, Gadget, sans-serif",
+    color: "#e3dadd",
+    fontSize: 48,
+  },
 });
 
 function Project(props) {
@@ -46,7 +51,9 @@ function Project(props) {
       <Header />
       <Menu />
       <div style={{ textAlign: "center", fontSize: 36, paddingLeft: 50 }}>
-        {`${projects.name}'s projects`}
+        <Typography className={classes.heading}>
+          {`${projects.name}'s projects`}
+        </Typography>
         <Grid container justify="center" spacing={1}>
           <Grid container item xs={7}>
             <Grid

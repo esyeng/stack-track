@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar style={{ backgroundColor: "silver" }}>
+        <Toolbar style={{ backgroundColor: "#97aabd" }}>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -48,15 +48,17 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <img
-            src={
-              "https://drive.google.com/uc?export=download&id=1KSZ2-FhqzwuKfDsFumDR1kL5MR3l6EJX"
-            }
-            alt="logo"
-            height="60px"
-            width="400px"
-            className={classes.logo}
-          />
+          <Link to="/home">
+            <img
+              src={
+                "https://drive.google.com/uc?export=download&id=1KSZ2-FhqzwuKfDsFumDR1kL5MR3l6EJX"
+              }
+              alt="logo"
+              height="60px"
+              width="400px"
+              className={classes.logo}
+            />
+          </Link>
           <Typography
             style={{ color: "red", fontStyle: "italic" }}
             variant="h6"

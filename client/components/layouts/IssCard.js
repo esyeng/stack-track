@@ -5,12 +5,14 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    // minWidth: 80,
-    // maxBlockSize: 160,
+    minWidth: 80,
+    maxBlockSize: 160,
     fontSize: 10,
+    flexDirection: "column",
   },
   bullet: {
     // display: "inline-block",
@@ -24,6 +26,27 @@ const useStyles = makeStyles({
   pos: {
     // marginBottom: 12,
   },
+  gridBox: {
+    overflow: "scroll",
+  },
+  gridContain: {
+    width: "500px",
+    height: "270px",
+    scrollBehavior: "smooth",
+    overflow: "scroll",
+    backgroundColor: "white",
+  },
+  gridItem: {
+    width: "25%",
+    backgroundColor: "white",
+  },
+  desc: {
+    width: "50%",
+    backgroundColor: "white",
+  },
+  action: {
+    flexDirection: "column",
+  },
 });
 
 export default function (props) {
@@ -31,23 +54,33 @@ export default function (props) {
   const { ticketNumber, description, category, status } = props;
   return (
     <Card className={classes.root}>
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          {ticketNumber}
-        </Typography>
-        <Typography className={classes.title}>{description}</Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          {category}
-        </Typography>
-        <Typography variant="body2" component="p">
-          {status}
-        </Typography>
+      <CardContent className={classes.gridBox}>
+        <Grid container className={classes.gridContain}>
+          <Grid item className={classes.gridItem}>
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              {ticketNumber}
+            </Typography>
+          </Grid>
+          <Grid item className={classes.desc}>
+            <Typography className={classes.title}>{description}</Typography>
+          </Grid>
+          <Grid item className={classes.gridItem}>
+            <Typography className={classes.pos} color="textSecondary">
+              {category}
+            </Typography>
+          </Grid>
+          <Grid item className={classes.gridItem}>
+            <Typography variant="body2" component="p">
+              {status}
+            </Typography>
+          </Grid>
+        </Grid>
       </CardContent>
-      <CardActions>
+      <CardActions className={classes.action}>
         <Button size="small">Open</Button>
       </CardActions>
     </Card>

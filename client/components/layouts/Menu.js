@@ -29,11 +29,12 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 1,
-    backgroundColor: "grey",
+    backgroundColor: "#d40f36",
+    opacity: "98%",
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: "grey",
+    backgroundColor: "#314455",
     paddingRight: 20,
     paddingTop: 20,
   },
@@ -45,6 +46,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(2),
+  },
+  linktext: {
+    color: "#e3dadd",
   },
 }));
 
@@ -65,7 +69,7 @@ export default function PermanentDrawerLeft() {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          <Link to="/home">
+          <Link to="/home" className={classes.linktext}>
             <ListItem>
               <ListItemIcon>
                 <DashboardIcon />
@@ -73,7 +77,7 @@ export default function PermanentDrawerLeft() {
               <ListItemText primary="Dashboard" />
             </ListItem>
           </Link>
-          <Link to="/issues">
+          <Link to="/issues" className={classes.linktext}>
             <ListItem>
               <ListItemIcon>
                 <BugReportIcon />
@@ -81,7 +85,7 @@ export default function PermanentDrawerLeft() {
               <ListItemText primary="Issues" />
             </ListItem>
           </Link>
-          <Link to="/projects">
+          <Link to="/projects" className={classes.linktext}>
             <ListItem>
               <ListItemIcon>
                 <DeveloperBoardIcon />

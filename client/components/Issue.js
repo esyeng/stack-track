@@ -41,6 +41,7 @@ class Issue extends Component {
       paper: {
         flexDirection: "row",
         alignItems: "center",
+        backgroundColor: "white",
       },
       control: {},
       content: {
@@ -50,6 +51,8 @@ class Issue extends Component {
         marginLeft: 200,
         marginRight: 10,
         marginTop: 15,
+        backgroundColor: "white",
+        opacity: "85%",
       },
     };
     const { issues } = this.props;
