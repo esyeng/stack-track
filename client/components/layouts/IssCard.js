@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -42,7 +43,15 @@ const useStyles = makeStyles({
 
 export function IssCard(props) {
   const classes = useStyles();
-  const { issueId, ticketNumber, description, category, status } = props;
+  const {
+    issueId,
+    ticketNumber,
+    summary,
+    description,
+    category,
+    status,
+    projectId,
+  } = props;
 
   const handleSelect = e => {
     // Pull raw attributes from which Issue Card is selected
@@ -53,7 +62,6 @@ export function IssCard(props) {
     const selected = parsedNode.child[0].attr.issueid;
     selectSingleIssueCard();
     setSingleIssueCard(selected);
-    console.log(selected);
   };
 
   return (
@@ -66,27 +74,34 @@ export function IssCard(props) {
               color="textSecondary"
               gutterBottom
             >
-              {ticketNumber}
+              Issue No. {ticketNumber}
             </Typography>
           </Grid>
           <Grid item className={classes.desc}>
-            <Typography className={classes.title}>{description}</Typography>
+            <Typography className={classes.title}>{summary}</Typography>
+          </Grid>
+          <Grid item className={classes.desc}>
+            <Typography className={classes.title}>
+              Description: {description}
+            </Typography>
           </Grid>
           <Grid item className={classes.gridItem}>
             <Typography className={classes.pos} color="textSecondary">
-              {category}
+              Type: {category}
             </Typography>
           </Grid>
           <Grid item className={classes.gridItem}>
             <Typography variant="body2" component="p">
-              {status}
+              Status: {status}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions className={classes.action}>
         <Button issueid={issueId} onClick={handleSelect} size="small">
-          <Typography issueid={issueId}>Open</Typography>
+          <Link to="/ticket">
+            <Typography issueid={issueId}>Open</Typography>
+          </Link>
         </Button>
       </CardActions>
     </Card>

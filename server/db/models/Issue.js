@@ -6,6 +6,10 @@ const Issue = db.define("issue", {
     type: Sequelize.BIGINT,
     allowNull: false,
   },
+  summary: {
+    type: Sequelize.TEXT("tiny"),
+    allowNull: false,
+  },
   description: {
     type: Sequelize.TEXT("long"),
     allowNull: false,

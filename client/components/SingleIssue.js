@@ -3,7 +3,14 @@ import { connect } from "react-redux";
 
 export const SingleIssue = props => {
   const { issueId } = props;
-  return <div></div>;
+
+  return <div>{issueId} Biden wins!</div>;
 };
 
-export default connect(null, null)(SingleIssue);
+const mapState = state => {
+  return {
+    issues: state.issues,
+  };
+};
+
+export default connect(mapState, null)(SingleIssue);

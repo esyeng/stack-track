@@ -40,13 +40,16 @@ export const Issue = props => {
 
   useEffect(() => {
     const { fetchIssues } = props;
-    fetchIssues(`${user.teamId}`).then(() => {
-      setloading(false);
-    });
+    const waitForIssues = async () => {
+      await fetchIssues(`${user.teamId}`).then(() => {
+        setloading(false);
+      });
+    };
+    waitForIssues();
   }, []);
 
   let issueToSet;
-  console.log(props);
+  // console.log(props);
   return (
     <div>
       <Header />
@@ -92,6 +95,7 @@ export const Issue = props => {
                       <IssCard
                         issueId={singleIssueCard.id}
                         ticketNumber={singleIssueCard.ticketNumber}
+                        summary={singleIssueCard.summary}
                         description={singleIssueCard.description}
                         category={singleIssueCard.category}
                         status={singleIssueId.status}
@@ -117,6 +121,7 @@ export const Issue = props => {
                           <IssCard
                             issueId={item.id}
                             ticketNumber={item.ticketNumber}
+                            summary={item.summary}
                             description={item.description}
                             category={item.category}
                             status={item.status}

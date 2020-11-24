@@ -11,6 +11,7 @@ import {
   Project,
 } from "./components/index";
 import { me } from "./store";
+import { SingleIssue } from "./components/SingleIssue";
 
 /**
  * COMPONENT
@@ -35,6 +36,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
             <Route exact path="/issues" component={Issue} />
+            <Route exact path="/ticket" component={SingleIssue} />
             <Route exact path="/projects" component={Project} />
           </Switch>
         )}
