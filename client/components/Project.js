@@ -45,14 +45,14 @@ function Project(props) {
       setloading(false);
     });
   }, []);
-
+  console.log(props);
   return (
     <div>
       <Header />
       <Menu />
       <div style={{ textAlign: "center", fontSize: 36, paddingLeft: 50 }}>
         <Typography className={classes.heading}>
-          {`${projects.name}'s projects`}
+          {/* {`${projects[0].name}'s projects`} */}
         </Typography>
         <Grid container justify="center" spacing={1}>
           <Grid container item xs={7}>

@@ -98,11 +98,11 @@ export function IssCard(props) {
         </Grid>
       </CardContent>
       <CardActions className={classes.action}>
-        <Button issueid={issueId} onClick={handleSelect} size="small">
-          <Link to="/ticket">
+        <Link to={`/issues/${issueId}`}>
+          <Button issueid={issueId} onClick={handleSelect} size="small">
             <Typography issueid={issueId}>Open</Typography>
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

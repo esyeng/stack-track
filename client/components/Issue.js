@@ -36,7 +36,6 @@ export const Issue = props => {
   const [singleIssueCard, setSingleIssue] = useState(null);
   const [loading, setloading] = useState(true);
   const { issues, user, singleIssueId, singleSelected } = props;
-  // console.log(props);
 
   useEffect(() => {
     const { fetchIssues } = props;
@@ -49,7 +48,6 @@ export const Issue = props => {
   }, []);
 
   let issueToSet;
-  // console.log(props);
   return (
     <div>
       <Header />
