@@ -45,7 +45,7 @@ function Project(props) {
       setloading(false);
     });
   }, []);
-  console.log(props);
+
   return (
     <div>
       <Header />
