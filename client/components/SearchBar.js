@@ -63,3 +63,17 @@
 //                       return item;
 //                     }
 //                   })
+
+// SEARCHBAR LOGIC
+
+// const filterIssues = () => {
+//   issues.length
+//     ? (filteredIssues = issues.filter(issue => {
+//         return toString(issue.summary.indexOf(searchValue) !== -1);
+//       }))
+//     : null;
+//   return filteredIssues;
+// };
+
+// filterIssues();
+// console.log(filteredIssues);

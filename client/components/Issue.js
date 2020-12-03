@@ -34,10 +34,10 @@ const useStyles = makeStyles({
 export const Issue = props => {
   const classes = useStyles();
   const [loading, setloading] = useState(true);
+  // Implementation for search filtering in progress
   const [isSearching, setSearching] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const { issues, user } = props;
-  let filteredIssues;
 
   useEffect(() => {
     const { fetchIssues } = props;
@@ -46,19 +46,9 @@ export const Issue = props => {
         setloading(false);
       });
     };
-    const filterIssues = () => {
-      issues.length
-        ? (filteredIssues = issues.filter(issue => {
-            return toString(issue.summary.indexOf(searchValue) !== -1);
-          }))
-        : null;
-      return filteredIssues;
-    };
+
     waitForIssues();
-    filterIssues();
-    console.log(filteredIssues);
-  }, [filteredIssues]);
-  console.log(searchValue);
+  }, []);
 
   return (
     <div>
@@ -90,7 +80,7 @@ export const Issue = props => {
             alignItems="center"
           >
             {issues.length
-              ? filteredIssues.map((item, idx) => {
+              ? issues.map((item, idx) => {
                   if (idx === 0) {
                     return null;
                   } else

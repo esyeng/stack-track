@@ -5,3 +5,4 @@ db.config.js
 dist
 bundle.js
 bundle.js.map
+SearchBar.js

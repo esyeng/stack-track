@@ -32156,7 +32156,8 @@ var Issue = function Issue(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
       loading = _useState2[0],
-      setloading = _useState2[1];
+      setloading = _useState2[1]; // Implementation for search filtering in progress
+
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
@@ -32170,7 +32171,6 @@ var Issue = function Issue(props) {
 
   var issues = props.issues,
       user = props.user;
-  var filteredIssues;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchIssues = props.fetchIssues;
 
@@ -32198,18 +32198,8 @@ var Issue = function Issue(props) {
       };
     }();
 
-    var filterIssues = function filterIssues() {
-      issues.length ? filteredIssues = issues.filter(function (issue) {
-        return toString(issue.summary.indexOf(searchValue) !== -1);
-      }) : null;
-      return filteredIssues;
-    };
-
     waitForIssues();
-    filterIssues();
-    console.log(filteredIssues);
-  }, [filteredIssues]);
-  console.log(searchValue);
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Header, {
     style: {
       position: "sticky"
@@ -32246,7 +32236,7 @@ var Issue = function Issue(props) {
     direction: "column",
     justify: "flex-end",
     alignItems: "center"
-  }, issues.length ? filteredIssues.map(function (item, idx) {
+  }, issues.length ? issues.map(function (item, idx) {
     if (idx === 0) {
       return null;
     } else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
@@ -32507,6 +32497,17 @@ var mapDispatch = function mapDispatch(dispatch) {
 //                       return item;
 //                     }
 //                   })
+// SEARCHBAR LOGIC
+// const filterIssues = () => {
+//   issues.length
+//     ? (filteredIssues = issues.filter(issue => {
+//         return toString(issue.summary.indexOf(searchValue) !== -1);
+//       }))
+//     : null;
+//   return filteredIssues;
+// };
+// filterIssues();
+// console.log(filteredIssues);
 
 /***/ }),
 
