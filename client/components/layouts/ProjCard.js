@@ -56,8 +56,7 @@ export default function (props) {
     status,
     issues,
   } = props;
-  // const issueArray = [props.projects[projects][id].issues];
-  // console.log(props);
+
   const [show, setShowing] = useState(false);
   const [issue, setIssues] = useState(false);
   const handleShow = () => {

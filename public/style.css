@@ -1,4 +1,11 @@
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: sans-serif;
 
   background-image: linear-gradient(#c96567a5, #9e5a6364),
@@ -71,7 +78,7 @@ form div {
 
 .MuiGrid-rootContainer {
   /* background-color: lightblue; */
-  width: 85%;
+  width: 100%;
 }
 
 .MuiCardContent-root {

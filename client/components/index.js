@@ -5,3 +5,4 @@ export { default as Welcome } from "./Welcome";
 export { default as Issue } from "./Issue";
 export { default as Project } from "./Project";
 export { default as SingleIssue } from "./SingleIssue";
+export { default as SearchBar } from "./SearchBar";

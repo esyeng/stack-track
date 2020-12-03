@@ -32138,14 +32138,14 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default
     alignItems: "center",
     backgroundColor: "white"
   },
-  control: {},
   content: {
     flexDirection: "row"
   },
   textField: {
     marginLeft: 200,
     marginRight: 10,
-    marginTop: 15,
+    marginTop: 20,
+    width: "88%",
     backgroundColor: "white",
     opacity: "85%"
   }
@@ -32153,20 +32153,24 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default
 var Issue = function Issue(props) {
   var classes = useStyles();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
-      singleIssueCard = _useState2[0],
-      setSingleIssue = _useState2[1];
+      loading = _useState2[0],
+      setloading = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
-      loading = _useState4[0],
-      setloading = _useState4[1];
+      isSearching = _useState4[0],
+      setSearching = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      searchValue = _useState6[0],
+      setSearchValue = _useState6[1];
 
   var issues = props.issues,
-      user = props.user,
-      singleIssueId = props.singleIssueId,
-      singleSelected = props.singleSelected;
+      user = props.user;
+  var filteredIssues;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchIssues = props.fetchIssues;
 
@@ -32194,10 +32198,23 @@ var Issue = function Issue(props) {
       };
     }();
 
+    var filterIssues = function filterIssues() {
+      issues.length ? filteredIssues = issues.filter(function (issue) {
+        return toString(issue.summary.indexOf(searchValue) !== -1);
+      }) : null;
+      return filteredIssues;
+    };
+
     waitForIssues();
-  }, []);
-  var issueToSet;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Header, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+    filterIssues();
+    console.log(filteredIssues);
+  }, [filteredIssues]);
+  console.log(searchValue);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Header, {
+    style: {
+      position: "sticky"
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
     noValidate: true,
     autoComplete: "off"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
@@ -32211,7 +32228,10 @@ var Issue = function Issue(props) {
     InputLabelProps: {
       shrink: true
     },
-    variant: "outlined"
+    variant: "outlined",
+    onChange: function onChange(evt) {
+      return setSearchValue(evt.target.value);
+    }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
     container: true,
     justify: "center",
@@ -32226,24 +32246,7 @@ var Issue = function Issue(props) {
     direction: "column",
     justify: "flex-end",
     alignItems: "center"
-  }, issues.length && singleSelected ? (issueToSet = issues.filter(function (issue) {
-    return singleIssueId === issue.id;
-  }), setSingleIssue(issueToSet[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-    container: true,
-    item: true,
-    alignContent: "center",
-    justify: "center",
-    display: "flex"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-    className: classes.paper
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.IssCard, {
-    issueId: singleIssueCard.id,
-    ticketNumber: singleIssueCard.ticketNumber,
-    summary: singleIssueCard.summary,
-    description: singleIssueCard.description,
-    category: singleIssueCard.category,
-    status: singleIssueId.status
-  })))) : issues.length && !singleSelected ? issues.map(function (item, idx) {
+  }, issues.length ? filteredIssues.map(function (item, idx) {
     if (idx === 0) {
       return null;
     } else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
@@ -32279,8 +32282,7 @@ var mapDispatch = function mapDispatch(dispatch) {
   return {
     fetchIssues: function fetchIssues() {
       return dispatch((0,_store__WEBPACK_IMPORTED_MODULE_3__.fetchIssues)("".concat(JSON.parse(localStorage.user).teamId)));
-    } // selectIssue: id => dispatch(selectIssue(id)),
-
+    }
   };
 };
 
@@ -32439,6 +32441,75 @@ var mapDispatch = function mapDispatch(dispatch) {
 
 /***/ }),
 
+/***/ "./client/components/SearchBar.js":
+/*!****************************************!*\
+  !*** ./client/components/SearchBar.js ***!
+  \****************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements:  */
+/***/ (() => {
+
+// import React, { useState, useEffect } from "react";
+// import { makeStyles } from "@material-ui/core/styles";
+// import { TextField } from "@material-ui/core";
+// const useStyles = makeStyles({
+//   textField: {
+//     marginLeft: 200,
+//     marginRight: 10,
+//     marginTop: 20,
+//     width: "88%",
+//     backgroundColor: "white",
+//     opacity: "85%",
+//   },
+// });
+// const SearchBar = props => {
+//   const classes = useStyles();
+//   const [isSearching, setSearching] = useState(false);
+//   const [searchValue, setSearchValue] = useState(null);
+//   useEffect(() => {
+//     const delayDebounceFn = setTimeout(() => {
+//       console.log(searchValue);
+//     }, 3000);
+//     return () => clearTimeout(delayDebounceFn);
+//   }, [searchValue]);
+//   return (
+//     <form noValidate autoComplete="off">
+//       <TextField
+//         id="outlined-full-width"
+//         label="Search"
+//         className={classes.textField}
+//         placeholder="Ticket Number, Desc, etc."
+//         helperText="Find tickets by filter"
+//         fullWidth
+//         margin="normal"
+//         InputLabelProps={{
+//           shrink: true,
+//         }}
+//         variant="outlined"
+//         onChange={evt => setSearchValue(evt.target.value)}
+//       />
+//     </form>
+//   );
+// };
+// export default SearchBar;
+// item => {
+//                     if (!searchValue) {
+//                       return item;
+//                     } else if (
+//                       toString(item.ticketNumber).includes(searchValue) ||
+//                       toString(item.summary)
+//                         .toLowerCase()
+//                         .includes(toString(searchValue).toLowerCase()) ||
+//                       toString(item.description)
+//                         .toLowerCase()
+//                         .includes(searchValue.toLowerCase())
+//                     ) {
+//                       return item;
+//                     }
+//                   })
+
+/***/ }),
+
 /***/ "./client/components/SingleIssue.js":
 /*!******************************************!*\
   !*** ./client/components/SingleIssue.js ***!
@@ -32447,7 +32518,7 @@ var mapDispatch = function mapDispatch(dispatch) {
 /*! export SingleIssue [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32458,15 +32529,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _layouts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layouts */ "./client/components/layouts/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -32490,9 +32560,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // import { fetchSingleIssue } from "../store";
-
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)({
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)({
   root: {
     display: "flex",
     flexWrap: "wrap",
@@ -32532,6 +32600,12 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default
     overflow: "scroll",
     width: "500px",
     scrollBehavior: "smooth",
+    backgroundColor: "white"
+  },
+  button: {
+    borderWidth: "4px",
+    borderColor: "black",
+    width: "125px",
     backgroundColor: "white"
   }
 });
@@ -32584,11 +32658,11 @@ var SingleIssue = function SingleIssue(props) {
   }, [setSingle]);
   var issues = props.issues;
   console.log(props.projects);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Header, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Header, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_layouts__WEBPACK_IMPORTED_MODULE_2__.Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
     container: true,
     spacing: 5,
     className: classes.root
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
     container: true,
     item: true,
     className: classes.root
@@ -32596,45 +32670,48 @@ var SingleIssue = function SingleIssue(props) {
     return issue.id === single;
   }).map(function (issue, i) {
     console.log(issue);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       container: true,
       spacing: 4,
       key: i,
       className: classes.root
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       container: true,
       item: true,
       className: "MuiGrid-rootContainer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+      className: classes.card
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-      className: classes.card
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
       className: classes.heading
-    }, "Ticket No. ", issue.ticketNumber), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+    }, "Ticket No. ", issue.ticketNumber), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
       className: classes.subhead
-    }, "Title: ", issue.summary), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+    }, "Title: ", issue.summary), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
       className: classes.subhead
-    }, "Status: ", issue.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+    }, "Status: ", issue.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
       className: classes.subhead
-    }, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+    }, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
       className: classes.smalltext
-    }, issue.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }, issue.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
       className: classes.card
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
       className: classes.smalltext
-    }, "Comments:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+    }, "Comments:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       container: true,
       item: true
     }, issue.comments.length ? issue.comments.map(function (comment, i) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         className: classes.gridBox,
         key: i
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: classes.smalltext
       }, comment.body));
     }) : null)))));
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Sorry, issue not found"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Sorry, issue not found"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
     to: "/issues"
-  }, "Back"))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+    className: classes.button,
+    size: "small"
+  }, "Back")))));
 };
 
 var mapState = function mapState(state) {
@@ -32761,12 +32838,13 @@ function Welcome() {
 /*! export Issue [provided] [no usage info] [missing usage info prevents renaming] -> ./client/components/Issue.js .default */
 /*! export Login [provided] [no usage info] [missing usage info prevents renaming] -> ./client/components/AuthForm.js .Login */
 /*! export Project [provided] [no usage info] [missing usage info prevents renaming] -> ./client/components/Project.js .default */
+/*! export SearchBar [provided] [no usage info] [missing usage info prevents renaming] -> ./client/components/SearchBar.js .default */
 /*! export Signup [provided] [no usage info] [missing usage info prevents renaming] -> ./client/components/AuthForm.js .Signup */
 /*! export SingleIssue [provided] [no usage info] [missing usage info prevents renaming] -> ./client/components/SingleIssue.js .default */
 /*! export UserHome [provided] [no usage info] [missing usage info prevents renaming] -> ./client/components/UserHome.js .default */
 /*! export Welcome [provided] [no usage info] [missing usage info prevents renaming] -> ./client/components/Welcome.js .default */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.n, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32778,7 +32856,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Welcome": () => /* reexport safe */ _Welcome__WEBPACK_IMPORTED_MODULE_2__.default,
 /* harmony export */   "Issue": () => /* reexport safe */ _Issue__WEBPACK_IMPORTED_MODULE_3__.default,
 /* harmony export */   "Project": () => /* reexport safe */ _Project__WEBPACK_IMPORTED_MODULE_4__.default,
-/* harmony export */   "SingleIssue": () => /* reexport safe */ _SingleIssue__WEBPACK_IMPORTED_MODULE_5__.default
+/* harmony export */   "SingleIssue": () => /* reexport safe */ _SingleIssue__WEBPACK_IMPORTED_MODULE_5__.default,
+/* harmony export */   "SearchBar": () => /* reexport default from dynamic */ _SearchBar__WEBPACK_IMPORTED_MODULE_6___default.a
 /* harmony export */ });
 /* harmony import */ var _UserHome__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserHome */ "./client/components/UserHome.js");
 /* harmony import */ var _AuthForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AuthForm */ "./client/components/AuthForm.js");
@@ -32786,7 +32865,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Issue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Issue */ "./client/components/Issue.js");
 /* harmony import */ var _Project__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Project */ "./client/components/Project.js");
 /* harmony import */ var _SingleIssue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SingleIssue */ "./client/components/SingleIssue.js");
+/* harmony import */ var _SearchBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SearchBar */ "./client/components/SearchBar.js");
+/* harmony import */ var _SearchBar__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_SearchBar__WEBPACK_IMPORTED_MODULE_6__);
 // export { default as Navbar } from "./Navbar";
+
 
 
 
@@ -33112,7 +33194,7 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default
     width: "500px",
     height: "270px",
     scrollBehavior: "smooth",
-    overflow: "scroll",
+    // overflow: "scroll",
     backgroundColor: "white"
   },
   gridItem: {
@@ -33423,8 +33505,7 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__.default
       category = props.category,
       dateCreated = props.dateCreated,
       status = props.status,
-      issues = props.issues; // const issueArray = [props.projects[projects][id].issues];
-  // console.log(props);
+      issues = props.issues;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),

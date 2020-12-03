@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     width: "500px",
     height: "270px",
     scrollBehavior: "smooth",
-    overflow: "scroll",
+    // overflow: "scroll",
     backgroundColor: "white",
   },
   gridItem: {

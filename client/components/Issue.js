@@ -18,14 +18,14 @@ const useStyles = makeStyles({
     alignItems: "center",
     backgroundColor: "white",
   },
-  control: {},
   content: {
     flexDirection: "row",
   },
   textField: {
     marginLeft: 200,
     marginRight: 10,
-    marginTop: 15,
+    marginTop: 20,
+    width: "88%",
     backgroundColor: "white",
     opacity: "85%",
   },
@@ -33,9 +33,11 @@ const useStyles = makeStyles({
 
 export const Issue = props => {
   const classes = useStyles();
-  const [singleIssueCard, setSingleIssue] = useState(null);
   const [loading, setloading] = useState(true);
-  const { issues, user, singleIssueId, singleSelected } = props;
+  const [isSearching, setSearching] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const { issues, user } = props;
+  let filteredIssues;
 
   useEffect(() => {
     const { fetchIssues } = props;
@@ -44,13 +46,23 @@ export const Issue = props => {
         setloading(false);
       });
     };
+    const filterIssues = () => {
+      issues.length
+        ? (filteredIssues = issues.filter(issue => {
+            return toString(issue.summary.indexOf(searchValue) !== -1);
+          }))
+        : null;
+      return filteredIssues;
+    };
     waitForIssues();
-  }, []);
+    filterIssues();
+    console.log(filteredIssues);
+  }, [filteredIssues]);
+  console.log(searchValue);
 
-  let issueToSet;
   return (
     <div>
-      <Header />
+      <Header style={{ position: "sticky" }} />
       <Menu />
       <form noValidate autoComplete="off">
         <TextField
@@ -65,6 +77,7 @@ export const Issue = props => {
             shrink: true,
           }}
           variant="outlined"
+          onChange={evt => setSearchValue(evt.target.value)}
         />
       </form>
       <Grid container justify="center" spacing={1}>
@@ -76,33 +89,8 @@ export const Issue = props => {
             justify="flex-end"
             alignItems="center"
           >
-            {issues.length && singleSelected
-              ? ((issueToSet = issues.filter(issue => {
-                  return singleIssueId === issue.id;
-                })),
-                setSingleIssue(issueToSet[0]),
-                (
-                  <Grid
-                    container
-                    item
-                    alignContent="center"
-                    justify="center"
-                    display="flex"
-                  >
-                    <Paper className={classes.paper}>
-                      <IssCard
-                        issueId={singleIssueCard.id}
-                        ticketNumber={singleIssueCard.ticketNumber}
-                        summary={singleIssueCard.summary}
-                        description={singleIssueCard.description}
-                        category={singleIssueCard.category}
-                        status={singleIssueId.status}
-                      ></IssCard>
-                    </Paper>
-                  </Grid>
-                ))
-              : issues.length && !singleSelected
-              ? issues.map((item, idx) => {
+            {issues.length
+              ? filteredIssues.map((item, idx) => {
                   if (idx === 0) {
                     return null;
                   } else
@@ -149,7 +137,6 @@ const mapDispatch = dispatch => {
   return {
     fetchIssues: () =>
       dispatch(fetchIssues(`${JSON.parse(localStorage.user).teamId}`)),
-    // selectIssue: id => dispatch(selectIssue(id)),
   };
 };
 

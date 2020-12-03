@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Header, Menu } from "./layouts";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import { Grid, Paper, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { fetchProjects } from "../store";
-import { number } from "prop-types";
-// import { fetchSingleIssue } from "../store";
 
 const useStyles = makeStyles({
   root: {
@@ -48,6 +46,12 @@ const useStyles = makeStyles({
     overflow: "scroll",
     width: "500px",
     scrollBehavior: "smooth",
+    backgroundColor: "white",
+  },
+  button: {
+    borderWidth: "4px",
+    borderColor: "black",
+    width: "125px",
     backgroundColor: "white",
   },
 });
@@ -144,7 +148,11 @@ export const SingleIssue = props => {
               </div>
             )}
           </div>
-          <Link to="/issues">Back</Link>
+          <Link to="/issues">
+            <Button className={classes.button} size="small">
+              Back
+            </Button>
+          </Link>
         </Grid>
       </Grid>
     </div>
