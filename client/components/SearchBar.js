@@ -77,3 +77,20 @@
 
 // filterIssues();
 // console.log(filteredIssues);
+
+// SINGLE PROJ LOG
+
+// const GET_SINGLE = "GET_SINGLE";
+
+// const getSingleProject = project => ({
+//   type: GET_SINGLE,
+//   project,
+// });
+// export const fetchSingleProjectById = projectId => async dispatch => {
+//   try {
+//     const res = await axios.get(`/api/projects/i/${projectId}`);
+//     dispatch(getSingleProject(res.data || null));
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };

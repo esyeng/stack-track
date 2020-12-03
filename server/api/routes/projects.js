@@ -66,7 +66,7 @@ projects.get("/:teamId", async (req, res, next) => {
 
 
 // GET one project include issues & users
-projects.get("/:projId", async (req, res, next) => {
+projects.get("/i/:projId", async (req, res, next) => {
     try {
         const { projId } = req.params;
         const proj = await Project.findByPk(projId, {
@@ -86,7 +86,7 @@ projects.get("/:projId", async (req, res, next) => {
                 }
             ]
         });
-
+        res.json(proj);
     } catch (err) {
         next(err);
     }

@@ -102,6 +102,7 @@ export default function (props) {
                 return (
                   <IssCard
                     key={idx}
+                    issueId={issue.id}
                     ticketNumber={issue.ticketNumber}
                     description={issue.description}
                     category={issue.category}

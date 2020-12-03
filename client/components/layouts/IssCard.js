@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -8,8 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { setSingleIssueCard, selectSingleIssueCard } from "../../store";
-const html2json = require("html2json").html2json;
+import { checkTitle } from "../../store/index";
 
 const useStyles = makeStyles({
   root: {
@@ -25,7 +24,6 @@ const useStyles = makeStyles({
     width: "500px",
     height: "270px",
     scrollBehavior: "smooth",
-    // overflow: "scroll",
     backgroundColor: "white",
   },
   gridItem: {
@@ -43,6 +41,8 @@ const useStyles = makeStyles({
 
 export function IssCard(props) {
   const classes = useStyles();
+  const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(true);
   const {
     issueId,
     ticketNumber,
@@ -51,23 +51,26 @@ export function IssCard(props) {
     category,
     status,
     projectId,
+    projectTitle,
   } = props;
 
-  const handleSelect = e => {
-    // Pull raw attributes from which Issue Card is selected
-    // Using HTML parsing module, extract supplied
-    // attribute "issueId" as JSON property
-
-    const parsedNode = html2json(e.target.outerHTML);
-    const selected = parsedNode.child[0].attr.issueid;
-    selectSingleIssueCard();
-    setSingleIssueCard(selected);
-  };
+  useEffect(() => {
+    const { checkTitle } = props;
+    const check = async () => {
+      await checkTitle(projectId);
+    };
+    check();
+  }, []);
 
   return (
     <Card className={classes.root}>
       <CardContent className={classes.gridBox}>
         <Grid container className={classes.gridContain}>
+          <Grid item className={classes.gridItem}>
+            <Typography variant="h5" color="secondary">
+              {projectTitle}
+            </Typography>
+          </Grid>
           <Grid item className={classes.gridItem}>
             <Typography
               className={classes.title}
@@ -99,7 +102,7 @@ export function IssCard(props) {
       </CardContent>
       <CardActions className={classes.action}>
         <Link to={`/issues/${issueId}`}>
-          <Button issueid={issueId} onClick={handleSelect} size="small">
+          <Button issueid={issueId} size="small">
             <Typography issueid={issueId}>Open</Typography>
           </Button>
         </Link>
@@ -109,13 +112,13 @@ export function IssCard(props) {
 }
 
 const mapState = state => ({
-  singleSelected: state.singleSelected,
-  singleIssueId: state.singleIssueId,
+  user: JSON.parse(localStorage.user),
+  project: state.project,
 });
 
 const mapDispatch = dispatch => ({
-  setSingleIssueCard: id => dispatch(setSingleIssueCard(id)),
-  selectSingleIssueCard: () => dispatch(selectSingleIssueCard()),
+  checkTitle: () =>
+    dispatch(checkTitle(`${JSON.parse(localStorage.user).teamId}`)),
 });
 
 export default connect(mapState, mapDispatch)(IssCard);

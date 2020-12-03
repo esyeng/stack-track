@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Header, Menu, IssCard } from "./layouts";
 import { Grid, Paper, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { fetchIssues } from "../store";
+import { fetchIssues, fetchProjects } from "../store";
 
 const useStyles = makeStyles({
   root: {
@@ -37,17 +37,17 @@ export const Issue = props => {
   // Implementation for search filtering in progress
   const [isSearching, setSearching] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const { issues, user } = props;
+  const { issues, user, projects } = props;
 
   useEffect(() => {
-    const { fetchIssues } = props;
-    const waitForIssues = async () => {
-      await fetchIssues(`${user.teamId}`).then(() => {
+    const { fetchIssues, fetchProjects } = props;
+    const waitForData = async () => {
+      await fetchIssues(`${user.teamId}`);
+      await fetchProjects().then(() => {
         setloading(false);
       });
     };
-
-    waitForIssues();
+    waitForData();
   }, []);
 
   return (
@@ -96,6 +96,12 @@ export const Issue = props => {
                         <Paper className={classes.paper}>
                           <IssCard
                             issueId={item.id}
+                            projectId={item.projectId}
+                            projectTitle={toString(
+                              projects.projects.filter(
+                                proj => proj.id === item.projectId
+                              ).title
+                            )}
                             ticketNumber={item.ticketNumber}
                             summary={item.summary}
                             description={item.description}
@@ -118,6 +124,7 @@ const mapState = state => {
   return {
     user: JSON.parse(localStorage.user),
     issues: state.issues,
+    projects: state.projects,
     singleIssueId: state.issueId,
     singleSelected: state.singleSelected,
   };
@@ -127,6 +134,8 @@ const mapDispatch = dispatch => {
   return {
     fetchIssues: () =>
       dispatch(fetchIssues(`${JSON.parse(localStorage.user).teamId}`)),
+    fetchProjects: () =>
+      dispatch(fetchProjects(`${JSON.parse(localStorage.user).teamId}`)),
   };
 };
 

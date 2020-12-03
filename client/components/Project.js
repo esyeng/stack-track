@@ -41,9 +41,12 @@ function Project(props) {
 
   useEffect(() => {
     const { fetchProjects } = props;
-    fetchProjects(`${user.teamId}`).then(() => {
-      setloading(false);
-    });
+    const awaitProjects = async () => {
+      await fetchProjects(`${user.teamId}`).then(() => {
+        setloading(false);
+      });
+    };
+    awaitProjects();
   }, []);
 
   return (
@@ -52,7 +55,7 @@ function Project(props) {
       <Menu />
       <div style={{ textAlign: "center", fontSize: 36, paddingLeft: 50 }}>
         <Typography className={classes.heading}>
-          {/* {`${projects[0].name}'s projects`} */}
+          {`${projects.name}'s projects`}
         </Typography>
         <Grid container justify="center" spacing={1}>
           <Grid container item xs={7}>
@@ -64,32 +67,29 @@ function Project(props) {
               alignItems="center"
             >
               {projects.projects.length
-                ? projects.projects.map((project, idx) => {
-                    if (idx === 0) {
-                      return null;
-                    } else
-                      return (
-                        <Grid
-                          key={project.id}
-                          container
-                          item
-                          alignContent="center"
-                          justify="center"
-                          display="flex"
-                        >
-                          <Paper className={classes.Paper}>
-                            <ProjCard
-                              id={project.id}
-                              title={project.title}
-                              description={project.description}
-                              category={project.category}
-                              dateCreated={project.dateCreated}
-                              status={project.status}
-                              issues={project.issues}
-                            ></ProjCard>
-                          </Paper>
-                        </Grid>
-                      );
+                ? projects.projects.map(project => {
+                    return (
+                      <Grid
+                        key={project.id}
+                        container
+                        item
+                        alignContent="center"
+                        justify="center"
+                        display="flex"
+                      >
+                        <Paper className={classes.Paper}>
+                          <ProjCard
+                            id={project.id}
+                            title={project.title}
+                            description={project.description}
+                            category={project.category}
+                            dateCreated={project.dateCreated}
+                            status={project.status}
+                            issues={project.issues}
+                          ></ProjCard>
+                        </Paper>
+                      </Grid>
+                    );
                   })
                 : null}
             </Grid>
