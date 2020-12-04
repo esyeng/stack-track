@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     justifyContent: "center",
     paddingLeft: 120,
-    // opacity: "75%",
   },
   paper: {
     flexDirection: "row",

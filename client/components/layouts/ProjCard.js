@@ -29,14 +29,17 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "right",
     flexWrap: "wrap-reverse",
-    flexBasis: 12,
-    flexGrow: 1,
+    flex: 1,
   },
   gridBox: {
     overflow: "scroll",
     width: "100%",
     height: "300px",
     backgroundColor: "white",
+    // width: "50%",
+    // ["@media (min-width:780px)"]: {
+    //   width: "80%",
+    // },
   },
   button: {
     borderWidth: "4px",

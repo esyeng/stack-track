@@ -21,6 +21,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: "auto",
     backgroundColor: "#1f2833",
   },
+  text: {
+    color: "white",
+    fontVariant: "italic",
+  },
 }));
 
 export default props => {
@@ -43,7 +47,12 @@ export default props => {
       <div className={classes.root}>
         <CssBaseline />
         <Container component="main" className={classes.main} maxWidth="sm">
-          <Typography variant="h5" component="h2" gutterBottom>
+          <Typography
+            variant="h5"
+            component="h2"
+            className={classes.text}
+            gutterBottom
+          >
             {"Tracking the stack so your team won't slack :)"}
           </Typography>
         </Container>

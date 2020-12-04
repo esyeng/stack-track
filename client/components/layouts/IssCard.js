@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { checkTitle } from "../../store/index";
+import { fetchSingleProjectById } from "../../store";
 
 const useStyles = makeStyles({
   root: {
@@ -21,13 +21,13 @@ const useStyles = makeStyles({
     overflow: "scroll",
   },
   gridContain: {
-    width: "500px",
+    width: 600,
     height: "270px",
     scrollBehavior: "smooth",
     backgroundColor: "white",
   },
   gridItem: {
-    width: "25%",
+    width: "27%",
     backgroundColor: "white",
   },
   desc: {
@@ -51,13 +51,14 @@ export function IssCard(props) {
     category,
     status,
     projectId,
-    projectTitle,
+    projects,
   } = props;
 
   useEffect(() => {
-    const { checkTitle } = props;
+    const { fetchSingleProjectById, singleproject } = props;
     const check = async () => {
-      await checkTitle(projectId);
+      await fetchSingleProjectById(projectId);
+      setTitle(singleproject.title);
     };
     check();
   }, []);
@@ -67,8 +68,8 @@ export function IssCard(props) {
       <CardContent className={classes.gridBox}>
         <Grid container className={classes.gridContain}>
           <Grid item className={classes.gridItem}>
-            <Typography variant="h5" color="secondary">
-              {projectTitle}
+            <Typography variant="h6" color="secondary">
+              {title}
             </Typography>
           </Grid>
           <Grid item className={classes.gridItem}>
@@ -113,12 +114,11 @@ export function IssCard(props) {
 
 const mapState = state => ({
   user: JSON.parse(localStorage.user),
-  project: state.project,
+  singleproject: state.singleproject,
 });
 
 const mapDispatch = dispatch => ({
-  checkTitle: () =>
-    dispatch(checkTitle(`${JSON.parse(localStorage.user).teamId}`)),
+  fetchSingleProjectById: id => dispatch(fetchSingleProjectById(id)),
 });
 
 export default connect(mapState, mapDispatch)(IssCard);

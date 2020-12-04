@@ -66,32 +66,34 @@ function Project(props) {
               justify="flex-end"
               alignItems="center"
             >
-              {projects.projects.length
-                ? projects.projects.map(project => {
-                    return (
-                      <Grid
-                        key={project.id}
-                        container
-                        item
-                        alignContent="center"
-                        justify="center"
-                        display="flex"
-                      >
-                        <Paper className={classes.Paper}>
-                          <ProjCard
-                            id={project.id}
-                            title={project.title}
-                            description={project.description}
-                            category={project.category}
-                            dateCreated={project.dateCreated}
-                            status={project.status}
-                            issues={project.issues}
-                          ></ProjCard>
-                        </Paper>
-                      </Grid>
-                    );
-                  })
-                : null}
+              {loading ? (
+                <Typography>...Loading</Typography>
+              ) : projects.projects.length ? (
+                projects.projects.map(project => {
+                  return (
+                    <Grid
+                      key={project.id}
+                      container
+                      item
+                      alignContent="center"
+                      justify="center"
+                      display="flex"
+                    >
+                      <Paper className={classes.Paper}>
+                        <ProjCard
+                          id={project.id}
+                          title={project.title}
+                          description={project.description}
+                          category={project.category}
+                          dateCreated={project.dateCreated}
+                          status={project.status}
+                          issues={project.issues}
+                        ></ProjCard>
+                      </Paper>
+                    </Grid>
+                  );
+                })
+              ) : null}
             </Grid>
           </Grid>
         </Grid>

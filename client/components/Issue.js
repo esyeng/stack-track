@@ -97,11 +97,6 @@ export const Issue = props => {
                           <IssCard
                             issueId={item.id}
                             projectId={item.projectId}
-                            projectTitle={toString(
-                              projects.projects.filter(
-                                proj => proj.id === item.projectId
-                              ).title
-                            )}
                             ticketNumber={item.ticketNumber}
                             summary={item.summary}
                             description={item.description}
