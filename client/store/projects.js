@@ -5,7 +5,6 @@ import axios from "axios";
  */
 
 const GET_PROJECTS = "GET_PROJECTS";
-const CHECK_TITLE = "CHECK_TITLE";
 
 /**
  * Action Creators
@@ -14,11 +13,6 @@ const CHECK_TITLE = "CHECK_TITLE";
 const getProjects = projects => ({
   type: GET_PROJECTS,
   projects,
-});
-
-export const checkTitle = id => ({
-  type: CHECK_TITLE,
-  id,
 });
 
 /**
@@ -34,23 +28,11 @@ export const fetchProjects = teamId => async dispatch => {
   }
 };
 
-// export const fetchSingleProjectById = projectId => async dispatch => {
-//   try {
-//     const res = await axios.get(`/api/projects/i/${projectId}`);
-//     dispatch(getSingleProject(res.data || null));
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-
 /**
  * Reducer
  */
 
-const defaultState = {
-  projects: [],
-  project: {},
-};
+const defaultState = [];
 
 export default function (state = defaultState, action) {
   switch (action.type) {

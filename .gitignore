@@ -1,8 +1,27 @@
-DS_Store
-node_modules
+
+
+
+# Ignore all node_modules
+node_modules/*
+
+# Compiled JS
+public/bundle.js
+public/bundle.js.map
+
+# OSX
+.DS_Store
+
+tests
+
 secret.js
+
 db.config.js
-dist
+
+public/dist
+
 bundle.js
+
 bundle.js.map
-SearchBar.js
+
+SearchBar.js/*
+client/components/SearchBar.js
