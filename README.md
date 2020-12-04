@@ -29,37 +29,36 @@ Automated kanban board and 3rd party integrations: GitHub & LinkedIn
 ### Tier 1:
 
 - [ ] As a developer, I must be able to:
-  - [ ] serve static files and frontend on development server [ ]
-  - [ ] access and update SQL database [ ]
-  - [ ] automate dev build process [ ]
+  - [ √ ] serve static files and frontend on development server [ ]
+  - [ √ ] access and update SQL database [ ]
+  - [ √ ] automate dev build process [ ]
   - [ ] write and pass tests for REST Api [ ]
 - [ ] As a user, I must be able to:
-  - [ ] create an account [ ]
-  - [ ] log in to account [ ]
-  - [ ] view all of my tickets, grouped by open/closed status [ ]
-  - [ ] create tickets [ ]
+  - [ √ ] create an account [ ]
+  - [ √ ] log in to account [ ]
+  - [ √ ] view all of my tickets, grouped by open/closed status [ ]
+  - [ √ ] create tickets [ ]
 - [ ] As an administrator, I require that:
   - [ ] API routes are secured from regular traffic [ ]
-  - [ ] I can view all user activity but users cannot see other users activity [ ]
+  - [ √ ] I can view all user activity but users cannot see other users activity [ ]
 - [ ] As a designer, I must ensure that:
 
   - [ ] All front end views are laid out cleanly and consistently [ ]
-  - [ ] An appealing color scheme and theme apply to components [ ]
-  - [ ] User info is conditionally rendered as updated [ ]
+  - [ √ ] An appealing color scheme and theme apply to components [ ]
+  - [ √ ] User info is conditionally rendered as updated [ ]
 
-    #### Complete by: Monday, October 19, 5:00 PM
-
+   
 ### Tier 2:
 
-- [ ] As a developer, I must be able to:
-  - [ ] host CRUD routes that update db and user view [ ]
-  - [ ] have a well seeded demonstration database [ ]
-  - [ ] secure all secrets and data using environment variables [ ]
+- [ √ ] As a developer, I must be able to:
+  - [ √ ] host CRUD routes that update db and user view [ ]
+  - [ √ ] have a well seeded demonstration database [ ]
+  - [ √ ] secure all secrets and data using environment variables [ ]
 - [ ] As a user, I must be able to:
   - [ ] perform all CRUD operations on my tickets [ ]
-  - [ ] view time-logged history of tickets [ ]
+  - [ √ ] view time-logged history of tickets [ ]
   - [ ] filter tickets by criteria via a search bar [ ]
-  - [ ] connect to other users by sending and receiving requests [ ]
+  - [ √ ] connect to other users by sending and receiving requests [ ]
   - [ ] assign colleagues as collaborators [ ]
   - [ ] comment on ticket postings [ ]
   - [ ] Access kanban automation:
@@ -68,12 +67,10 @@ Automated kanban board and 3rd party integrations: GitHub & LinkedIn
     - Done [ ]
 - [ ] As a designer, I must ensure that:
 
-  - [ ] front end navigation is logical and clear in sidebar [ ]
+  - [ √ ] front end navigation is logical and clear in sidebar [ ]
   - [ ] I have a dashboard with bright data visualizations of user data [ ]
   - [ ] forms are crisp and clean [ ]
   - [ ] everything is centered and sized consistently [ ]
-
-    #### Complete by: Monday, November 2, 10:00 AM
 
 ### Tier 3:
 
@@ -85,4 +82,3 @@ Automated kanban board and 3rd party integrations: GitHub & LinkedIn
   - [ ] view on mobile devices [ ]
   - [ ] link to external media features to increase visibility [ ]
 
-    #### Complete by: Monday, November 15, 5:00 PM
