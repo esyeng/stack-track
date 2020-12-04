@@ -2,6 +2,7 @@
 
 ## Notes
 **update 11/2/2020 - Mac damaged, switching to Ubuntu on Linux for dev**
+**update 12/4 - Completed more SRS requirements in Ubuntu env, delayed process by 4 days but back on track since mid-November. Mac repairs now completed. Tweaking current version for immediate deployment as prototype/alpha
 
 ## MVP
 
