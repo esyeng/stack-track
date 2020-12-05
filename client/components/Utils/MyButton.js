@@ -28,6 +28,7 @@ const MyButton = props => {
   return (
     <Button
       variant="contained"
+      type={props.type}
       color="primary"
       size={props.size}
       className={classes.buttonProps}
