@@ -1,5 +1,6 @@
 const issues = require("express").Router();
 const { Issue, Comment, User, Project, Tag } = require("../../db/models");
+const faker = require("faker");
 module.exports = issues;
 
 // GET all
@@ -60,13 +61,16 @@ issues.get("/:projId/:issueId", async (req, res, next) => {
 // POST new issue
 issues.post("/", async (req, res, next) => {
   try {
-    const { ticketNumber, description, category, status } = req.body;
+    const { summary, description, category, status, projectId } = req.body;
+    console.log(req.body);
     const newIssue = await Issue.create({
-      ...ticketNumber,
-      ...description,
-      ...category,
-      ...status,
+      ticketNumber: faker.random.number(),
+      summary: summary,
+      description: description,
+      category: category,
+      status: status,
     });
+    await newIssue.setProject(projectId);
     res.json(newIssue);
   } catch (err) {
     next(err);

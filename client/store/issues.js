@@ -8,7 +8,7 @@ import history from "../history";
 const GET_ISSUES = "GET_ISSUES";
 const SET_SINGLE_ISSUE = "SET_SINGLE_ISSUE";
 const SELECT_ISSUE = "SELECT_ISSUE";
-
+const CREATE_ISSUE = "CREATE_ISSUE";
 /**
  * Action Creators
  */
@@ -27,6 +27,10 @@ const selectIssue = () => ({
   type: SELECT_ISSUE,
 });
 
+const createIssue = issue => ({
+  type: CREATE_ISSUE,
+  issue,
+});
 /**
  * Thunk Creators
  */
@@ -46,6 +50,20 @@ export const fetchIssues = teamId => async dispatch => {
   } catch (err) {
     console.error(err);
   }
+};
+
+export const postNewIssue = issueData => async dispatch => {
+  try {
+    const { summary, category, status, description, projectId } = issueData;
+    const res = await axios.post(`/api/issues/`, {
+      summary: summary,
+      category: category,
+      status: status,
+      description: description,
+      projectId: projectId,
+    });
+    dispatch(createIssue(res.data));
+  } catch (err) {}
 };
 
 export const setSingleIssueCard = id => dispatch => {
@@ -76,6 +94,8 @@ export default function (state = defaultState, action) {
       return singleSelected
         ? { singleSelected: false }
         : { singleSelected: true };
+    case CREATE_ISSUE:
+      return action.issue;
     default:
       return state;
   }
