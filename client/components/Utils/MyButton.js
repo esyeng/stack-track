@@ -8,10 +8,6 @@ import { Button } from "@material-ui/core";
  */
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    margin: theme.spacing(1),
-  },
   buttonProps: {
     label: {
       font: "Roboto sans serif",
@@ -19,24 +15,26 @@ const useStyles = makeStyles(theme => ({
     containedPrimary: {
       color: "#03e8fc",
     },
+    margin: 8,
     justifyContent: "center",
     alignItems: "center",
   },
 }));
 
 const MyButton = props => {
+  // const { passedFunc } = props;
+
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        className={classes.buttonProps}
-      >
-        {props.buttonLabel || null}
-      </Button>
-    </div>
+    <Button
+      variant="contained"
+      color="primary"
+      size={props.size}
+      className={classes.buttonProps}
+      onClick={props.onClick}
+    >
+      {props.buttonLabel || null}
+    </Button>
   );
 };
 

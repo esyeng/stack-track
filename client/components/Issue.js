@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Header, Menu, IssCard } from "./layouts";
-import { Grid, Paper, TextField } from "@material-ui/core";
+import { Grid, Paper, TextField, Modal } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { fetchIssues, fetchProjects } from "../store";
 import { MyButton } from "./Utils";
+import NewIssue from "./forms/NewIssue";
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +20,15 @@ const useStyles = makeStyles({
     alignItems: "center",
     backgroundColor: "#b5deeb",
     opacity: "80%",
+  },
+  modalPaper: {
+    position: "absolute",
+    width: 600,
+    backgroundColor: "#707070",
+    opacity: "95%",
+    justifyContent: "center",
+    top: "50%",
+    left: "50%",
   },
   content: {
     flexDirection: "row",
@@ -34,12 +44,17 @@ const useStyles = makeStyles({
   },
 });
 
+export const submitTicket = () => {
+  console.log("submitted!");
+};
+
 export const Issue = props => {
   const classes = useStyles();
   const [loading, setloading] = useState(true);
   // Implementation for search filtering in progress
   const [isSearching, setSearching] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [formOpen, setOpen] = useState(false);
   const { issues, user, projects } = props;
 
   useEffect(() => {
@@ -53,6 +68,14 @@ export const Issue = props => {
     waitForData();
   }, []);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="content">
       <Header style={{ position: "sticky" }} />
@@ -64,7 +87,7 @@ export const Issue = props => {
           label="Search"
           className={classes.textField}
           placeholder="Ticket Number, Desc, etc."
-          helperText="Find tickets by filter"
+          helperText="Find tickets by filter (feature in progress)"
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -73,6 +96,7 @@ export const Issue = props => {
           variant="outlined"
           onChange={evt => setSearchValue(evt.target.value)}
         />
+
         <Grid container item xs={7}>
           <Grid
             container
@@ -81,7 +105,31 @@ export const Issue = props => {
             justify="flex-end"
             alignItems="center"
           >
-            <MyButton buttonLabel="Create Issue Ticket" />
+            <MyButton
+              buttonLabel="search"
+              size="small"
+              onClick={() =>
+                alert(`alas, you tried to search and nothing came up :(
+                here's what you typed: ${searchValue}
+                  `)
+              }
+            />
+            <MyButton
+              buttonLabel="Create Issue Ticket"
+              onClick={() => handleOpen()}
+            />
+            {formOpen ? (
+              <Modal
+                style={{ top: "25%", left: "25%" }}
+                className={classes.modalPaper}
+                open={formOpen}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                <NewIssue />
+              </Modal>
+            ) : null}
             {issues.length
               ? issues.map((item, idx) => {
                   if (idx === 0) {
