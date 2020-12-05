@@ -9,15 +9,19 @@ import { fetchProjects, fetchIssues } from "../store";
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    flexWrap: "wrap",
     justifyContent: "center",
     paddingLeft: 120,
+    paddingTop: 70,
   },
   paper: {
     flexDirection: "row",
+    flex: 1,
+    opacity: "80%",
+    paddingTop: 100,
     alignItems: "center",
     justifyContent: "center",
     padding: 30,
+    marginRight: 80,
   },
   heading: {
     fontFamily: "Arial Black, Gadget, sans-serif",
@@ -29,23 +33,16 @@ const useStyles = makeStyles({
     fontSize: 24,
     padding: 12,
   },
-  card: {
-    width: "100%",
-    alignItems: "right",
-    backgroundColor: "white",
-    justifyContent: "center",
-    flexBasis: "40%",
-  },
   smalltext: {
     fontFamily: "Arial, Gadget, sans-serif",
-    fontSize: 12,
+    fontSize: 16,
     padding: 8,
   },
   gridBox: {
     overflow: "scroll",
     width: "500px",
     scrollBehavior: "smooth",
-    backgroundColor: "white",
+    justifyContent: "center",
   },
   button: {
     borderWidth: "4px",
@@ -53,6 +50,7 @@ const useStyles = makeStyles({
     width: "175px",
     height: "min-content",
     backgroundColor: "white",
+    borderColor: "solid 1 px",
   },
 });
 
@@ -106,7 +104,7 @@ export const SingleIssue = props => {
                         className={classes.root}
                       >
                         <Grid container item className="MuiGrid-rootContainer">
-                          <Paper className={classes.card}>
+                          <Paper className={classes.paper}>
                             <Typography className={classes.heading}>
                               Ticket No. {issue.ticketNumber}
                             </Typography>
@@ -122,7 +120,7 @@ export const SingleIssue = props => {
                             <Typography className={classes.smalltext}>
                               {issue.description}
                             </Typography>
-                            <Paper className={classes.card}>
+                            <Paper className={classes.paper}>
                               <Typography className={classes.smalltext}>
                                 Comments:
                               </Typography>

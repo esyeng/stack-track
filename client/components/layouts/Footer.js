@@ -31,19 +31,7 @@ export default props => {
   const classes = useStyles();
   return (
     <div>
-      <Paper className="footer">
-        {/* <Tabs
-          className="footer"
-          value={0}
-          indicatorColor="primary"
-          textColor="primary"
-          centered
-        >
-          <Tab label="One" />
-          <Tab label="Two" />
-          <Tab label="Three" />
-        </Tabs> */}
-      </Paper>
+      <Paper className="footer"></Paper>
       <div className={classes.root}>
         <CssBaseline />
         <Container component="main" className={classes.main} maxWidth="sm">

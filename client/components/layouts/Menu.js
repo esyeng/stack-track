@@ -25,20 +25,26 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    position: "relative",
+    zIndex: theme.zIndex.drawer + 1,
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 1,
-    backgroundColor: "#d40f36",
+    flexShrink: 0,
+
     opacity: "98%",
+    minWidth: 180,
+    zIndex: 1,
   },
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: "#314455",
     paddingRight: 20,
     paddingTop: 20,
+    overflow: "auto",
+    zIndex: 1,
+    marginRight: 40,
   },
-  // necessary for content to be below app bar
   toolbar: {
     backgroundColor: "white",
   },
@@ -50,54 +56,52 @@ const useStyles = makeStyles(theme => ({
   linktext: {
     color: "#e3dadd",
   },
+  list: {
+    marginTop: 35,
+  },
 }));
 
 export default function PermanentDrawerLeft() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Drawer
+      variant="permanent"
+      classes={{
+        paper: classes.drawerPaper,
+      }}
+      anchor="left"
+    >
       <CssBaseline />
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
-          <Link to="/home" className={classes.linktext}>
-            <ListItem>
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-          </Link>
-          <Link to="/issues" className={classes.linktext}>
-            <ListItem>
-              <ListItemIcon>
-                <BugReportIcon />
-              </ListItemIcon>
-              <ListItemText primary="Issues" />
-            </ListItem>
-          </Link>
-          <Link to="/projects" className={classes.linktext}>
-            <ListItem>
-              <ListItemIcon>
-                <DeveloperBoardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Projects" />
-            </ListItem>
-          </Link>
-        </List>
-        <Divider />
-      </Drawer>
-
       <div className={classes.toolbar} />
-    </div>
+      <Divider />
+      <List className={classes.list}>
+        <Link to="/home" className={classes.linktext}>
+          <ListItem>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+        </Link>
+        <Link to="/issues" className={classes.linktext}>
+          <ListItem>
+            <ListItemIcon>
+              <BugReportIcon />
+            </ListItemIcon>
+            <ListItemText primary="Issues" />
+          </ListItem>
+        </Link>
+        <Link to="/projects" className={classes.linktext}>
+          <ListItem>
+            <ListItemIcon>
+              <DeveloperBoardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Projects" />
+          </ListItem>
+        </Link>
+      </List>
+      <Divider />
+    </Drawer>
   );
 }

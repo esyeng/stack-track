@@ -10,40 +10,29 @@ import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    // minWidth: 80,
-    // maxBlockSize: 160,
     display: "flex",
     fontSize: 10,
   },
   container: {
     maxBlockSize: 50,
   },
-  title: {
-    // fontSize: 12,
-    // width: 1200,
-  },
-  pos: {
-    // marginBottom: 12,
-  },
+
   card: {
     flexDirection: "row",
     justifyContent: "right",
     flexWrap: "wrap-reverse",
     flex: 1,
+    maxWidth: "400px",
+    minWidth: "300px",
   },
   gridBox: {
     overflow: "scroll",
-    width: "100%",
+    overflowX: "clip",
     height: "300px",
-    backgroundColor: "white",
-    // width: "50%",
-    // ["@media (min-width:780px)"]: {
-    //   width: "80%",
-    // },
+    backgroundColor: "#e1e6e5",
+    flex: 1,
   },
   button: {
-    borderWidth: "4px",
-    borderColor: "black",
     width: "125px",
   },
 });
@@ -84,7 +73,7 @@ export default function (props) {
         <CardContent>
           <Typography
             className={classes.title}
-            color="textSecondary"
+            color="textPrimary"
             gutterBottom
           >
             {`${id}:${title}`}
@@ -118,10 +107,20 @@ export default function (props) {
           ) : null}
         </CardContent>
         <CardActions>
-          <Button className={classes.button} onClick={handleShow} size="small">
+          <Button
+            className={classes.button}
+            onClick={handleShow}
+            size="small"
+            variant="outlined"
+          >
             Collapse
           </Button>
-          <Button className={classes.button} onClick={showIssues} size="small">
+          <Button
+            className={classes.button}
+            onClick={showIssues}
+            size="small"
+            variant="outlined"
+          >
             {issue ? `Hide` : `View Issues`}
           </Button>
         </CardActions>

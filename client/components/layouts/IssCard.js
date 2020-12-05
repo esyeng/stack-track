@@ -23,17 +23,13 @@ const useStyles = makeStyles({
   gridContain: {
     width: 600,
     height: "270px",
+    overflow: "scroll",
     scrollBehavior: "smooth",
-    backgroundColor: "white",
   },
   gridItem: {
-    width: "27%",
-    backgroundColor: "white",
+    width: "25%",
   },
-  desc: {
-    width: "50%",
-    backgroundColor: "white",
-  },
+
   action: {
     flexDirection: "column",
   },
@@ -103,7 +99,7 @@ export function IssCard(props) {
       </CardContent>
       <CardActions className={classes.action}>
         <Link to={`/issues/${issueId}`}>
-          <Button issueid={issueId} size="small">
+          <Button issueid={issueId} size="small" variant="outlined">
             <Typography issueid={issueId}>Open</Typography>
           </Button>
         </Link>

@@ -10,27 +10,31 @@ const useStyles = makeStyles({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
-    overflow: "hidden",
+    overflow: "scroll",
+    zIndex: 1,
   },
   paper: {
     flexDirection: "row",
     alignItems: "center",
-    width: 30,
+    overflow: "hidden",
     spacing: 1,
+    opacity: "80%",
   },
-  control: {},
-  content: {
-    flexDirection: "row",
+  box: {
+    justifyContent: "center",
   },
   textField: {
-    marginLeft: 200,
-    marginRight: 10,
+    marginLeft: 160,
+    marginRight: 20,
     marginTop: 15,
+    marginBottom: 25,
   },
   heading: {
     fontFamily: "Arial Black, Gadget, sans-serif",
     color: "#e3dadd",
-    fontSize: 48,
+    fontSize: 36,
+    paddingLeft: 40,
+    flex: 2,
   },
 });
 
@@ -50,19 +54,24 @@ function Project(props) {
   }, []);
 
   return (
-    <div>
+    <div className="content">
       <Header />
-      <Menu />
-      <div style={{ textAlign: "center", fontSize: 36, paddingLeft: 50 }}>
+      <div className="box">
+        <Menu></Menu>
         <Typography className={classes.heading}>
           {`${projects.name}'s projects`}
         </Typography>
-        <Grid container justify="center" spacing={1}>
+        <Grid
+          container
+          justify="center"
+          spacing={8}
+          style={{ marginTop: 80, justifyContent: "center" }}
+        >
           <Grid container item xs={7}>
             <Grid
               container
               spacing={5}
-              direction="column"
+              direction="row"
               justify="flex-end"
               alignItems="center"
             >
@@ -77,7 +86,6 @@ function Project(props) {
                       item
                       alignContent="center"
                       justify="center"
-                      display="flex"
                     >
                       <Paper className={classes.Paper}>
                         <ProjCard

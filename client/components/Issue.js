@@ -5,6 +5,7 @@ import { Header, Menu, IssCard } from "./layouts";
 import { Grid, Paper, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { fetchIssues, fetchProjects } from "../store";
+import { MyButton } from "./Utils";
 
 const useStyles = makeStyles({
   root: {
@@ -16,16 +17,18 @@ const useStyles = makeStyles({
   paper: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "#b5deeb",
+    opacity: "80%",
   },
   content: {
     flexDirection: "row",
   },
   textField: {
-    marginLeft: 200,
-    marginRight: 10,
-    marginTop: 20,
     width: "88%",
+    marginLeft: 220,
+    marginRight: 40,
+    marginTop: 100,
+    marginBottom: 25,
     backgroundColor: "white",
     opacity: "85%",
   },
@@ -51,10 +54,11 @@ export const Issue = props => {
   }, []);
 
   return (
-    <div>
+    <div className="content">
       <Header style={{ position: "sticky" }} />
       <Menu />
-      <form noValidate autoComplete="off">
+
+      <Grid container justify="center" spacing={1}>
         <TextField
           id="outlined-full-width"
           label="Search"
@@ -69,8 +73,6 @@ export const Issue = props => {
           variant="outlined"
           onChange={evt => setSearchValue(evt.target.value)}
         />
-      </form>
-      <Grid container justify="center" spacing={1}>
         <Grid container item xs={7}>
           <Grid
             container
@@ -79,6 +81,7 @@ export const Issue = props => {
             justify="flex-end"
             alignItems="center"
           >
+            <MyButton buttonLabel="Create Issue Ticket" />
             {issues.length
               ? issues.map((item, idx) => {
                   if (idx === 0) {

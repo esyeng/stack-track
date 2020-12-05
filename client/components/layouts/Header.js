@@ -11,11 +11,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Fragment } from "@material-ui/core";
 import { logout } from "../../store";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    marginBottom: 38,
   },
   menuButton: {
     marginRight: theme.spacing(22),
@@ -36,47 +37,32 @@ const Header = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar style={{ backgroundColor: "#97aabd" }}>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={() => showAlert()}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Link to="/home">
-            <img
-              src={
-                "https://drive.google.com/uc?export=download&id=1KSZ2-FhqzwuKfDsFumDR1kL5MR3l6EJX"
-              }
-              alt="logo"
-              height="60px"
-              width="400px"
-              className={classes.logo}
-            />
-          </Link>
-          <Typography
-            style={{ color: "red", fontStyle: "italic" }}
-            variant="h6"
-            className={classes.title}
-          ></Typography>
+    <AppBar position="fixed" color="transparent" className={classes.root}>
+      <Toolbar style={{ backgroundColor: "#97aabd" }}>
+        <Link to="/home">
+          <img
+            src={
+              "https://drive.google.com/uc?export=download&id=1KSZ2-FhqzwuKfDsFumDR1kL5MR3l6EJX"
+            }
+            alt="logo"
+            height="60px"
+            width="400px"
+            className={classes.logo}
+          />
+        </Link>
+        <Typography
+          style={{ color: "red", fontStyle: "italic" }}
+          variant="h6"
+          className={classes.title}
+        ></Typography>
 
-          <Link to="/">
-            <Button
-              style={{ color: "black" }}
-              className="logout"
-              color="inherit"
-            >
-              Logout
-            </Button>
-          </Link>
-        </Toolbar>
-      </AppBar>
-    </div>
+        <Link to="/">
+          <Button style={{ color: "black" }} className="logout" color="inherit">
+            Logout
+          </Button>
+        </Link>
+      </Toolbar>
+    </AppBar>
   );
 };
 
