@@ -15,7 +15,7 @@ tests
 
 secret.js
 
-db.config.js
+# db.config.js
 
 public/dist
 
