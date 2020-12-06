@@ -1462,11 +1462,12 @@ async function seed(data, model) {
 }
 
 // MULTI-SEEDER FUNCTION //
-
 async function runSeed() {
   console.log("seeding...");
   try {
-    // await db.sync({ force: true });
+    // // IN ORDER TO SUCCESSFULLY SEED AND ASSOCIATE, THIS CODE WILL HAVE TO RUN ONCE, FOLLOWED BY ASSOCIATION PROCEDURES//
+
+    await db.sync({ force: true });
     console.log("db synced!");
     await seed(dummyTeams, Team).then(() =>
       console.log(`seeded ${dummyTeams.length} teams`)
@@ -1492,7 +1493,12 @@ async function runSeed() {
     await seed(dummyTags, Tag).then(() =>
       console.log(`seeded ${dummyTags.length} tags`)
     );
-
+  } catch (err) {
+    console.error(err);
+  }
+}
+async function associateAll() {
+  try {
     await associateUserTeams();
     console.log("now associating");
     await associateTeamOrgs();
@@ -1503,6 +1509,15 @@ async function runSeed() {
     await associateProjectIssues();
     await associateIssues();
     await tagSync();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function runAll() {
+  try {
+    await runSeed();
+    await associateAll();
   } catch (err) {
     console.error(err);
   }
@@ -1521,7 +1536,7 @@ async function closeDb() {
 // Execute the `seed` function, IF we ran this module directly (`node seed`).
 
 if (module === require.main) {
-  runSeed();
+  runAll();
 }
 if (process.env.NODE_ENV === "test") {
   runSeed().then(() => closeDb());
