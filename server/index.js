@@ -16,7 +16,7 @@ module.exports = app;
 require("./socket")(io);
 // pull in api keys as needed
 if (process.env.NODE_ENV === "production") {
-  require("../secret.js");
+  // require("../secret.js");
   require("./db/db.config.js");
 }
 passport.serializeUser((user, done) => done(null, user.id));
