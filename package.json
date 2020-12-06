@@ -15,8 +15,8 @@
     "start-dev": "npm run build-watch & npm run start-server",
     "seed": "node server/db/seed.js",
     "seed-server": "npm run seed && npm run start-server",
-    "deploy": "script/deploy",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "deploy": "script/deploy"
+
   },
   "repository": {
     "type": "git",
