@@ -1,7 +1,7 @@
 "use strict";
 
 const faker = require("faker");
-const { default: issues } = require("../../client/store/issues");
+// const { default: issues } = require("../../client/store/issues");
 const db = require("./db");
 const {
   User,
