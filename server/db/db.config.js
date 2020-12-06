@@ -6,9 +6,9 @@ process.env.NODE_ENV === "production"
 
 module.exports = {
   HOST: host,
-  USER: process.env.DB_ADMIN.username,
-  PASSWORD: process.env.DB_ADMIN.password,
-  DB: process.env.DB_ADMIN.db,
+  USER: process.env.DATABASE_ADMIN.username,
+  PASSWORD: process.env.DATABASE_ADMIN.password,
+  DB: process.env.DATABASE_ADMIN.db,
   dialect: "mysql",
   pool: {
     max: 5,
