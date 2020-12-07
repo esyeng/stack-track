@@ -7,9 +7,9 @@ projects.get("/", async (req, res, next) => {
   try {
     const allProjects = await Project.findAll({
       include: [
-        {
-          model: User,
-        },
+        // {
+        //   model: User,
+        // },
         {
           model: Issue,
           include: {
@@ -33,13 +33,13 @@ projects.get("/:teamId", async (req, res, next) => {
         model: Project,
         as: "projects",
         include: [
-          {
-            model: User,
-            // as: "users",
-            // through: {
-            //   attributes: ["fName", "lName"],
-            // },
-          },
+          //   {
+          //     model: User,
+          //     // as: "users",
+          //     // through: {
+          //     //   attributes: ["fName", "lName"],
+          //     // },
+          //   },
           {
             model: Issue,
             include: {

@@ -77,8 +77,8 @@ function Project(props) {
             >
               {loading ? (
                 <Typography>...Loading</Typography>
-              ) : projects.projects.length ? (
-                projects.projects.map(project => {
+              ) : projects.length ? (
+                projects.map(project => {
                   return (
                     <Grid
                       key={project.id}
