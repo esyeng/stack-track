@@ -1,4 +1,4 @@
-const { dbInfo } = require("../../secret");
+const dbInfo = require("../../secret");
 
 module.exports = {
   HOST: dbInfo.HOST,
