@@ -60,7 +60,7 @@ export const Issue = props => {
   useEffect(() => {
     const { fetchIssues, fetchProjects } = props;
     const waitForData = async () => {
-      await fetchIssues(`${user.teamId}`);
+      await fetchIssues();
       await fetchProjects().then(() => {
         setloading(false);
       });
@@ -178,8 +178,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchIssues: () =>
-      dispatch(fetchIssues(`${JSON.parse(localStorage.user).teamId}`)),
+    fetchIssues: () => dispatch(fetchIssues()),
     fetchProjects: () =>
       dispatch(fetchProjects(`${JSON.parse(localStorage.user).teamId}`)),
   };

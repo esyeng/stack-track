@@ -35,17 +35,18 @@ const createIssue = issue => ({
  * Thunk Creators
  */
 
-export const fetchIssues = teamId => async dispatch => {
+export const fetchIssues = () => async dispatch => {
   try {
-    const res = await axios.get(`/api/projects/${teamId}`);
-    const issuesFromTeamProjects = [
-      res.data.projects.map(project => {
-        return project.issues;
-      }),
-    ];
+    const res = await axios.get(`/api/issues`);
+    // const issuesFromTeamProjects = [
+    //   res.data.projects.map(project => {
+    //     return project.issues;
+    //   }),
+    // ];
 
-    const nestedIssues = issuesFromTeamProjects.flat();
-    const results = nestedIssues.flat();
+    // const nestedIssues = issuesFromTeamProjects.flat();
+    // const results = nestedIssues.flat();
+    const results = res.data;
     dispatch(getIssues(results));
   } catch (err) {
     console.error(err);

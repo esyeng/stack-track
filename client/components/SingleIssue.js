@@ -188,8 +188,7 @@ const mapState = state => {
 const mapDispatch = dispatch => ({
   fetchProjects: () =>
     dispatch(fetchProjects(`${JSON.parse(localStorage.user).teamId}`)),
-  fetchIssues: () =>
-    dispatch(fetchIssues(`${JSON.parse(localStorage.user).teamId}`)),
+  fetchIssues: () => dispatch(fetchIssues()),
 });
 
 export default connect(mapState, mapDispatch)(SingleIssue);

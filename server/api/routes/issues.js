@@ -17,13 +17,10 @@ issues.get("/", async (req, res, next) => {
 });
 
 // GET all by project
-issues.get("/:projId", async (req, res, next) => {
+issues.get("/:issueId", async (req, res, next) => {
   try {
-    const { projId } = req.params;
-    const allIssues = await Issue.findAll({
-      where: {
-        projectId: projId,
-      },
+    const { issueId } = req.params;
+    const allIssues = await Issue.findByPk(issueId, {
       include: Comment,
     });
     res.json(allIssues);
@@ -33,30 +30,30 @@ issues.get("/:projId", async (req, res, next) => {
 });
 
 // GET all by tags
-issues.get("/:projId/:issueId", async (req, res, next) => {
-  try {
-    const { projId, issueId } = req.params;
-    const taggedIssues = await Issue.findAll({
-      where: {
-        projectId: projId,
-      },
-      include: [
-        {
-          model: Comment,
-        },
-        {
-          model: Tag,
-          where: {
-            issueId: issueId,
-          },
-        },
-      ],
-    });
-    res.json(taggedIssues);
-  } catch (err) {
-    next(err);
-  }
-});
+// issues.get("/:projId/:issueId", async (req, res, next) => {
+//   try {
+//     const { projId, issueId } = req.params;
+//     const taggedIssues = await Issue.findAll({
+//       where: {
+//         projectId: projId,
+//       },
+//       include: [
+//         {
+//           model: Comment,
+//         },
+//         {
+//           model: Tag,
+//           where: {
+//             issueId: issueId,
+//           },
+//         },
+//       ],
+//     });
+//     res.json(taggedIssues);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 // POST new issue
 issues.post("/", async (req, res, next) => {
