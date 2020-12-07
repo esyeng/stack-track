@@ -13,13 +13,13 @@ trap cleanup_at_exit EXIT
 # checks out a new branch called "deploy". Note that the name "deploy" here isn't magical,
 # but it needs to match the name of the branch we specify when we push to our heroku remote.
 git checkout -b deploy
+git add -f secret.js
 
 webpack
 
 
 # "force" add the otherwise gitignored build files
 git add -f public/bundle.js public/bundle.js.map
-git add -f secret.js
 
 # create a commit, even if nothing changed
 git commit --allow-empty -m 'Deploying'
