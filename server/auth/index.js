@@ -34,6 +34,7 @@ authorize.post("/signup", async (req, res, next) => {
       username: username,
       password: password,
     });
+    console.log(user);
     req.login(user, err => (err ? next(err) : res.json(user)));
   } catch (err) {
     if (err.name === "SequelizeUniqueConstraintError") {
