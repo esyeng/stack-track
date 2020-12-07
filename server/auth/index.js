@@ -26,7 +26,8 @@ authorize.post("/login", async (req, res, next) => {
 
 authorize.post("/signup", async (req, res, next) => {
   try {
-    const { fName, lName, email, username, password } = req.body;
+    const { fName, lName, email, username, password, teamId } = req.body;
+    console.log("before create", req.body);
     const user = await User.create({
       fName: fName,
       lName: lName,
@@ -34,11 +35,15 @@ authorize.post("/signup", async (req, res, next) => {
       username: username,
       password: password,
     });
+
+    if (teamId && typeof parseInt(teamId, 10) === "number") {
+      await user.setTeam(parseInt(teamId, 10));
+    }
     console.log(user);
     req.login(user, err => (err ? next(err) : res.json(user)));
   } catch (err) {
     if (err.name === "SequelizeUniqueConstraintError") {
-      res.status(401).send("User already exists");
+      res.status(401).send(err);
     } else {
       next(err);
     }

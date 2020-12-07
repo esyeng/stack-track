@@ -3,6 +3,11 @@ const db = require("../db");
 const crypto = require("crypto");
 
 const User = db.define("user", {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
   fName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -42,10 +47,11 @@ const User = db.define("user", {
   },
   password: {
     type: Sequelize.STRING,
-    get() {
-      return () => this.getDataValue("password");
-    },
+    // get() {
+    //   return () => this.getDataValue("password");
+    // },
   },
+
   // salt: {
   //   type: Sequelize.STRING,
   //   get() {
@@ -77,7 +83,9 @@ module.exports = User;
 //   }
 // };
 
-// User.beforeCreate(setAndSaltPassword);
+// User.beforeCreate(user => {
+//   user.setTeam(2);
+// });
 // User.beforeUpdate(setAndSaltPassword);
 // User.beforeBulkCreate(users => {
 //   users.forEach(setAndSaltPassword);

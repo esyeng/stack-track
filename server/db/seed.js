@@ -1,8 +1,11 @@
 "use strict";
 
 const faker = require("faker");
+const { v4: uuidv4 } = require("uuid");
+uuidv4();
 // const { default: issues } = require("../../client/store/issues");
 const db = require("./db");
+
 const {
   User,
   Comment,
@@ -89,7 +92,6 @@ const tags = n => {
 
 const dummyUsers = [
   {
-    id: 1,
     fName: "Lorilee",
     lName: "Gleadhell",
     email: "lgleadhell0@free.fr",
@@ -101,7 +103,6 @@ const dummyUsers = [
     username: "lgleadhell0",
   },
   {
-    id: 2,
     fName: "Lotty",
     lName: "Twatt",
     email: "ltwatt1@chron.com",
@@ -113,7 +114,6 @@ const dummyUsers = [
     username: "ltwatt1",
   },
   {
-    id: 3,
     fName: "Doyle",
     lName: "Housecraft",
     email: "dhousecraft2@msn.com",
@@ -125,7 +125,6 @@ const dummyUsers = [
     username: "dhousecraft2",
   },
   {
-    id: 4,
     fName: "Nevins",
     lName: "Morrieson",
     email: "nmorrieson3@youtu.be",
@@ -137,7 +136,6 @@ const dummyUsers = [
     username: "nmorrieson3",
   },
   {
-    id: 5,
     fName: "Erskine",
     lName: "Hatcliffe",
     email: "ehatcliffe4@stumbleupon.com",
@@ -149,7 +147,6 @@ const dummyUsers = [
     username: "ehatcliffe4",
   },
   {
-    id: 6,
     fName: "Ania",
     lName: "Gillcrist",
     email: "agillcrist5@prnewswire.com",
@@ -161,7 +158,6 @@ const dummyUsers = [
     username: "agillcrist5",
   },
   {
-    id: 7,
     fName: "Ozzy",
     lName: "Ales",
     email: "oales6@hp.com",
@@ -173,7 +169,6 @@ const dummyUsers = [
     username: "oales6",
   },
   {
-    id: 8,
     fName: "Samson",
     lName: "Baker",
     email: "sbaker7@google.com.br",
@@ -185,7 +180,6 @@ const dummyUsers = [
     username: "sbaker7",
   },
   {
-    id: 9,
     fName: "Wenona",
     lName: "Cripwell",
     email: "wcripwell8@youtu.be",
@@ -197,7 +191,6 @@ const dummyUsers = [
     username: "wcripwell8",
   },
   {
-    id: 10,
     fName: "Hy",
     lName: "Moral",
     email: "hmoral9@1688.com",
@@ -209,7 +202,6 @@ const dummyUsers = [
     username: "hmoral9",
   },
   {
-    id: 11,
     fName: "Elinore",
     lName: "Beeson",
     email: "ebeesona@adobe.com",
@@ -221,7 +213,6 @@ const dummyUsers = [
     username: "ebeesona",
   },
   {
-    id: 12,
     fName: "Johnna",
     lName: "Bohman",
     email: "jbohmanb@about.com",
@@ -233,7 +224,6 @@ const dummyUsers = [
     username: "jbohmanb",
   },
   {
-    id: 13,
     fName: "Fidelia",
     lName: "Gibberd",
     email: "fgibberdc@sciencedirect.com",
@@ -245,7 +235,6 @@ const dummyUsers = [
     username: "fgibberdc",
   },
   {
-    id: 14,
     fName: "Wendeline",
     lName: "Mawdsley",
     email: "wmawdsleyd@myspace.com",
@@ -257,7 +246,6 @@ const dummyUsers = [
     username: "wmawdsleyd",
   },
   {
-    id: 15,
     fName: "Germayne",
     lName: "Jacquemet",
     email: "gjacquemete@ning.com",
@@ -269,7 +257,6 @@ const dummyUsers = [
     username: "gjacquemete",
   },
   {
-    id: 16,
     fName: "Lela",
     lName: "Gorke",
     email: "lgorkef@weibo.com",
@@ -281,7 +268,6 @@ const dummyUsers = [
     username: "lgorkef",
   },
   {
-    id: 17,
     fName: "Athena",
     lName: "Trevithick",
     email: "atrevithickg@sfgate.com",
@@ -293,7 +279,6 @@ const dummyUsers = [
     username: "atrevithickg",
   },
   {
-    id: 18,
     fName: "Brnaby",
     lName: "Leving",
     email: "blevingh@tumblr.com",
@@ -305,7 +290,6 @@ const dummyUsers = [
     username: "blevingh",
   },
   {
-    id: 19,
     fName: "Lucinda",
     lName: "Dwane",
     email: "ldwanei@cisco.com",
@@ -317,7 +301,6 @@ const dummyUsers = [
     username: "ldwanei",
   },
   {
-    id: 20,
     fName: "Theodoric",
     lName: "Schaben",
     email: "tschabenj@reuters.com",
@@ -329,7 +312,6 @@ const dummyUsers = [
     username: "tschabenj",
   },
   {
-    id: 21,
     fName: "Alane",
     lName: "Scemp",
     email: "ascempk@ask.com",
@@ -341,7 +323,6 @@ const dummyUsers = [
     username: "ascempk",
   },
   {
-    id: 22,
     fName: "Lilly",
     lName: "Matusson",
     email: "lmatussonl@phoca.cz",
@@ -353,7 +334,6 @@ const dummyUsers = [
     username: "lmatussonl",
   },
   {
-    id: 23,
     fName: "Allie",
     lName: "Paxton",
     email: "apaxtonm@liveinternet.ru",
@@ -365,7 +345,6 @@ const dummyUsers = [
     username: "apaxtonm",
   },
   {
-    id: 24,
     fName: "Babara",
     lName: "Reicherz",
     email: "breicherzn@taobao.com",
@@ -377,7 +356,6 @@ const dummyUsers = [
     username: "breicherzn",
   },
   {
-    id: 25,
     fName: "Laura",
     lName: "Kleint",
     email: "lkleinto@jalbum.net",
@@ -389,7 +367,6 @@ const dummyUsers = [
     username: "lkleinto",
   },
   {
-    id: 26,
     fName: "Esta",
     lName: "Doddemeede",
     email: "edoddemeedep@xrea.com",
@@ -401,7 +378,6 @@ const dummyUsers = [
     username: "edoddemeedep",
   },
   {
-    id: 27,
     fName: "Neils",
     lName: "Spavon",
     email: "nspavonq@reference.com",
@@ -413,7 +389,6 @@ const dummyUsers = [
     username: "nspavonq",
   },
   {
-    id: 28,
     fName: "Angelico",
     lName: "Veale",
     email: "avealer@nhs.uk",
@@ -425,7 +400,6 @@ const dummyUsers = [
     username: "avealer",
   },
   {
-    id: 29,
     fName: "Grace",
     lName: "Cham",
     email: "gchams@sphinn.com",
@@ -437,7 +411,6 @@ const dummyUsers = [
     username: "gchams",
   },
   {
-    id: 30,
     fName: "Adorne",
     lName: "Lemmen",
     email: "alemment@upenn.edu",
@@ -449,7 +422,6 @@ const dummyUsers = [
     username: "alemment",
   },
   {
-    id: 31,
     fName: "Eduino",
     lName: "Chaman",
     email: "echamanu@dion.ne.jp",
@@ -461,7 +433,6 @@ const dummyUsers = [
     username: "echamanu",
   },
   {
-    id: 32,
     fName: "Arabele",
     lName: "Macourek",
     email: "amacourekv@java.com",
@@ -473,7 +444,6 @@ const dummyUsers = [
     username: "amacourekv",
   },
   {
-    id: 33,
     fName: "Bridie",
     lName: "Mimmack",
     email: "bmimmackw@netscape.com",
@@ -485,7 +455,6 @@ const dummyUsers = [
     username: "bmimmackw",
   },
   {
-    id: 34,
     fName: "Basia",
     lName: "Stannering",
     email: "bstanneringx@accuweather.com",
@@ -497,7 +466,6 @@ const dummyUsers = [
     username: "bstanneringx",
   },
   {
-    id: 35,
     fName: "Galvin",
     lName: "Pavelka",
     email: "gpavelkay@myspace.com",
@@ -508,7 +476,6 @@ const dummyUsers = [
     username: "gpavelkay",
   },
   {
-    id: 36,
     fName: "Ursala",
     lName: "Trembath",
     email: "utrembathz@hatena.ne.jp",
@@ -520,7 +487,6 @@ const dummyUsers = [
     username: "utrembathz",
   },
   {
-    id: 37,
     fName: "Adrien",
     lName: "Waiting",
     email: "awaiting10@harvard.edu",
@@ -532,7 +498,6 @@ const dummyUsers = [
     username: "awaiting10",
   },
   {
-    id: 38,
     fName: "Tory",
     lName: "Dewen",
     email: "tdewen11@goo.ne.jp",
@@ -544,7 +509,6 @@ const dummyUsers = [
     username: "tdewen11",
   },
   {
-    id: 39,
     fName: "Kenny",
     lName: "McRuvie",
     email: "kmcruvie12@globo.com",
@@ -556,7 +520,6 @@ const dummyUsers = [
     username: "kmcruvie12",
   },
   {
-    id: 40,
     fName: "Herrick",
     lName: "Rosengart",
     email: "hrosengart13@opensource.org",
@@ -568,7 +531,6 @@ const dummyUsers = [
     username: "hrosengart13",
   },
   {
-    id: 41,
     fName: "Frannie",
     lName: "Fenich",
     email: "ffenich14@cdc.gov",
@@ -580,7 +542,6 @@ const dummyUsers = [
     username: "ffenich14",
   },
   {
-    id: 42,
     fName: "Geri",
     lName: "Caw",
     email: "gcaw15@ibm.com",
@@ -592,7 +553,6 @@ const dummyUsers = [
     username: "gcaw15",
   },
   {
-    id: 43,
     fName: "Gregoire",
     lName: "Thunnerclef",
     email: "gthunnerclef16@bbb.org",
@@ -604,7 +564,6 @@ const dummyUsers = [
     username: "gthunnerclef16",
   },
   {
-    id: 44,
     fName: "Addie",
     lName: "Spawforth",
     email: "aspawforth17@google.fr",
@@ -616,7 +575,6 @@ const dummyUsers = [
     username: "aspawforth17",
   },
   {
-    id: 45,
     fName: "Jacqui",
     lName: "Mulrean",
     email: "jmulrean18@cargocollective.com",
@@ -628,7 +586,6 @@ const dummyUsers = [
     username: "jmulrean18",
   },
   {
-    id: 46,
     fName: "Galvan",
     lName: "Mitchenson",
     email: "gmitchenson19@phpbb.com",
@@ -640,7 +597,6 @@ const dummyUsers = [
     username: "gmitchenson19",
   },
   {
-    id: 47,
     fName: "Domenico",
     lName: "Corden",
     email: "dcorden1a@baidu.com",
@@ -652,7 +608,6 @@ const dummyUsers = [
     username: "dcorden1a",
   },
   {
-    id: 48,
     fName: "Joete",
     lName: "Baudin",
     email: "jbaudin1b@thetimes.co.uk",
@@ -664,7 +619,6 @@ const dummyUsers = [
     username: "jbaudin1b",
   },
   {
-    id: 49,
     fName: "Elke",
     lName: "Cushworth",
     email: "ecushworth1c@sitemeter.com",
@@ -675,7 +629,6 @@ const dummyUsers = [
     username: "ecushworth1c",
   },
   {
-    id: 50,
     fName: "Shae",
     lName: "Hancill",
     email: "shancill1d@samsung.com",
@@ -687,7 +640,6 @@ const dummyUsers = [
     username: "shancill1d",
   },
   {
-    id: 51,
     fName: "Nicola",
     lName: "Scoggins",
     email: "nscoggins1e@seattletimes.com",
@@ -699,7 +651,6 @@ const dummyUsers = [
     username: "nscoggins1e",
   },
   {
-    id: 52,
     fName: "Elke",
     lName: "Filasov",
     email: "efilasov1f@nifty.com",
@@ -711,7 +662,6 @@ const dummyUsers = [
     username: "efilasov1f",
   },
   {
-    id: 53,
     fName: "Vanni",
     lName: "Grigs",
     email: "vgrigs1g@huffingtonpost.com",
@@ -723,7 +673,6 @@ const dummyUsers = [
     username: "vgrigs1g",
   },
   {
-    id: 54,
     fName: "Hew",
     lName: "Halvorsen",
     email: "hhalvorsen1h@bbc.co.uk",
@@ -734,7 +683,6 @@ const dummyUsers = [
     username: "hhalvorsen1h",
   },
   {
-    id: 55,
     fName: "Gibbie",
     lName: "Van Giffen",
     email: "gvangiffen1i@barnesandnoble.com",
@@ -747,7 +695,6 @@ const dummyUsers = [
     username: "gvangiffen1i",
   },
   {
-    id: 56,
     fName: "Rosemary",
     lName: "Handmore",
     email: "rhandmore1j@51.la",
@@ -759,7 +706,6 @@ const dummyUsers = [
     username: "rhandmore1j",
   },
   {
-    id: 57,
     fName: "Salaidh",
     lName: "Maybery",
     email: "smaybery1k@gmpg.org",
@@ -771,7 +717,6 @@ const dummyUsers = [
     username: "smaybery1k",
   },
   {
-    id: 58,
     fName: "Devonne",
     lName: "Rooze",
     email: "drooze1l@rediff.com",
@@ -783,7 +728,6 @@ const dummyUsers = [
     username: "drooze1l",
   },
   {
-    id: 59,
     fName: "Hedvige",
     lName: "Friatt",
     email: "hfriatt1m@tuttocitta.it",
@@ -795,7 +739,6 @@ const dummyUsers = [
     username: "hfriatt1m",
   },
   {
-    id: 60,
     fName: "Saundra",
     lName: "Pudden",
     email: "spudden1n@boston.com",
@@ -808,18 +751,19 @@ const dummyUsers = [
   },
 ];
 
+// dummyUsers.forEach(user => (user.key = uuidv4()));
+
 const dummyTeams = [
-  { id: 1, name: "Heidenreich-Homenick" },
-  { id: 2, name: "Swaniawski-O'Kon" },
-  { id: 3, name: "Heaney-Blick" },
-  { id: 4, name: "Brown Inc" },
-  { id: 5, name: "Kiehn LLC" },
-  { id: 6, name: "Carroll-Marvin" },
+  { name: "Heidenreich-Homenick" },
+  { name: "Swaniawski-O'Kon" },
+  { name: "Heaney-Blick" },
+  { name: "Brown Inc" },
+  { name: "Kiehn LLC" },
+  { name: "Carroll-Marvin" },
 ];
 
 const dummyOrgs = [
   {
-    id: 1,
     name: "Nlounge",
     email: "swalthew0@paginegialle.it",
     password: "KLrmyLrTIqTI",
@@ -827,7 +771,6 @@ const dummyOrgs = [
     imageUrl: "http://dummyimage.com/127x225.jpg/ff4444/ffffff",
   },
   {
-    id: 2,
     name: "Eimbee",
     email: "alowle1@disqus.com",
     password: "ne00g4YlwHz",
@@ -836,7 +779,6 @@ const dummyOrgs = [
     imageUrl: "http://dummyimage.com/196x151.png/cc0000/ffffff",
   },
   {
-    id: 3,
     name: "Agimba",
     email: "jgambles2@smh.com.au",
     password: "00gluJHNDq",

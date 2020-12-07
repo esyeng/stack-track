@@ -9,6 +9,5 @@ const db = new Sequelize(
     logging: true,
   }
 );
-console.log(db);
 
 module.exports = db;

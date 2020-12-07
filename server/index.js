@@ -2,9 +2,12 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 const app = express();
-const db = require("./db");
+const db = require("./db/db");
 const session = require("express-session");
 const passport = require("passport");
+const Sequelize = require("sequelize");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () =>
   console.log(`tracking stacks on ${PORT}`)
