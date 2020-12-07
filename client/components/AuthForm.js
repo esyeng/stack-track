@@ -33,14 +33,6 @@ const AuthForm = props => {
               </label>
               <input name="username" type="text" />
             </div>
-            <div>
-              <label htmlFor="teamId">
-                <small className="smallText">
-                  Team ID number {`(enter '2' for now)`}
-                </small>
-              </label>
-              <input name="teamId" type="text" />
-            </div>
           </div>
         ) : (
           ""
@@ -107,7 +99,7 @@ const mapDispatch = dispatch => {
         const email = evt.target.email.value;
         const password = evt.target.password.value;
         const username = evt.target.username.value;
-        const teamId = evt.target.teamId.value;
+        // const teamId = evt.target.teamId.value;
         dispatch(auth(email, password, formName, fName, lName, username));
       } else if (evt.target.name === "login") {
         const formName = evt.target.name;
