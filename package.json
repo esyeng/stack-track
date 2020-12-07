@@ -14,7 +14,7 @@
     "start-server": "nodemon server",
     "start-dev": "npm run build-watch & npm run start-server",
     "seed": "node server/db/seed.js",
-    "seed-server": "npm run seed && npm run start-server",
+    "seed-server": "npm run seed && npm run start",
     "deploy": "script/deploy"
   },
   "repository": {
