@@ -72,7 +72,7 @@ form div {
 }
 
 .MuiGrid-rootContainer {
-  /* background-color: lightblue; */
+  overflow: scroll;
   width: 100%;
 }
 
@@ -80,33 +80,20 @@ form div {
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-content: center;
+  align-content: left;
   justify-content: center;
   text-align: left;
   padding: 10px;
   flex-basis: auto;
-  /* opacity: 77%; */
 }
 
-.MuiCardContent-root > {
-  /* opacity: 77%; */
-}
-
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1500px) {
   .MuiPaper-root {
-    flex: 1;
+    flex: 2;
     flex-wrap: wrap-reverse;
     flex-grow: 1;
   }
 }
-/* @media only screen and (max-width: 1200px) {
-  .MuiPaper-root > {
-    flex: 3;
-    flex-wrap: wrap;
-    width: 50%;
-    flex-direction: row;
-  }
-} */
 
 .MuiCardContent-root > p {
   justify-content: center;
@@ -140,5 +127,5 @@ h3 {
   /* left: 9rem; */
   display: flex;
   width: 100%;
-  overflow: scroll;
+  /* overflow: scroll; */
 }

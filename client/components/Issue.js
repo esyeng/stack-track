@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Header, Menu, IssCard } from "./layouts";
+import { Header, Menu, IssCard, Footer } from "./layouts";
 import { Grid, Paper, TextField, Modal } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { fetchIssues, fetchProjects } from "../store";

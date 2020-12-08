@@ -7,23 +7,26 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import IssCard from "./IssCard";
 import { Grid } from "@material-ui/core";
+import { Footer } from "./index";
 
 const useStyles = makeStyles({
   root: {
     display: "flex",
     fontSize: 10,
+    overflow: "scroll",
   },
   container: {
-    maxBlockSize: 50,
+    maxBlockSize: 120,
   },
 
   card: {
-    flexDirection: "row",
-    justifyContent: "right",
-    flexWrap: "wrap-reverse",
-    flex: 1,
-    maxWidth: "400px",
-    minWidth: "300px",
+    // flexDirection: "row",
+    // justifyContent: "left",
+    // flexWrap: "wrap",
+    // flex: 1,
+    // flexGrow: 1,
+    // maxWidth: "400px",
+    // minWidth: "300px",
   },
   gridBox: {
     overflow: "scroll",

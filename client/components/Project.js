@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-around",
+    justifyContent: "left",
     overflow: "scroll",
     zIndex: 1,
   },
@@ -35,6 +35,9 @@ const useStyles = makeStyles({
     fontSize: 36,
     paddingLeft: 40,
     flex: 2,
+  },
+  foot: {
+    width: "100%",
   },
 });
 
@@ -77,8 +80,8 @@ function Project(props) {
             >
               {loading ? (
                 <Typography>...Loading</Typography>
-              ) : projects.length ? (
-                projects.map(project => {
+              ) : projects.projects.length ? (
+                projects.projects.map(project => {
                   return (
                     <Grid
                       key={project.id}
@@ -105,7 +108,7 @@ function Project(props) {
             </Grid>
           </Grid>
         </Grid>
-        <Footer />
+        <Footer className={classes.foot} />
       </div>
     </div>
   );

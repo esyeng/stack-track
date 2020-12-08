@@ -51,9 +51,9 @@ const useStyles = makeStyles({
     padding: 8,
   },
   gridBox: {
-    overflow: "scroll",
+    // overflow: "scroll",
     width: "500px",
-    scrollBehavior: "smooth",
+    // scrollBehavior: "smooth",
     justifyContent: "center",
   },
   button: {
@@ -114,12 +114,22 @@ export const SingleIssue = props => {
   }, []);
   const { issues } = props;
   return (
-    <div>
+    <div className="content">
       <Header />
       <Menu />
 
       <Grid container spacing={5} className={classes.root}>
         <Grid container item className={classes.root}>
+          <Link to="/issues">
+            <Button className={classes.button} size="medium">
+              Back to Issues
+            </Button>
+          </Link>
+          <Link to="/projects">
+            <Button className={classes.button} size="medium">
+              Project board
+            </Button>
+          </Link>
           <div>
             {loading ? (
               <Typography
@@ -261,16 +271,6 @@ export const SingleIssue = props => {
               </div>
             )}
           </div>
-          <Link to="/issues">
-            <Button className={classes.button} size="medium">
-              Back to Issues
-            </Button>
-          </Link>
-          <Link to="/projects">
-            <Button className={classes.button} size="medium">
-              Project board
-            </Button>
-          </Link>
         </Grid>
       </Grid>
     </div>

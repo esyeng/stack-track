@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
+    width: "100%",
   },
   main: {
     marginTop: theme.spacing(8),
@@ -24,6 +25,7 @@ const useStyles = makeStyles(theme => ({
   text: {
     color: "white",
     fontVariant: "italic",
+    paddingLeft: 100,
   },
 }));
 
@@ -46,7 +48,9 @@ export default props => {
         </Container>
         <footer className={classes.footer}>
           <Container maxWidth="sm">
-            <Typography variant="body1">@ Emre Yenigun</Typography>
+            <Typography variant="body1" className={classes.text}>
+              @ Emre Yenigun
+            </Typography>
           </Container>
         </footer>
       </div>

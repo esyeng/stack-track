@@ -8,11 +8,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { fetchSingleProjectById } from "../../store";
+import { fetchProjects, fetchSingleProjectById } from "../../store";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 80,
+    minWidth: 180,
     maxBlockSize: 160,
     fontSize: 10,
     flexDirection: "column",
@@ -51,12 +51,15 @@ export function IssCard(props) {
   } = props;
 
   useEffect(() => {
-    const { fetchSingleProjectById, singleproject } = props;
-    const check = async () => {
-      await fetchSingleProjectById(projectId);
-      setTitle(singleproject.title);
-    };
-    check();
+    // const { fetchSingleProjectById, singleproject } = props;
+    // const getTitles = async () => {
+    //   await fetchProjects();
+    //   const titles = projects.projects.filter(project => {
+    //     return { id: project.id, title: project.title };
+    //   });
+    //   console.log(titles);
+    // };
+    // getTitles();
   }, []);
 
   return (
@@ -111,10 +114,11 @@ export function IssCard(props) {
 const mapState = state => ({
   user: JSON.parse(localStorage.user),
   singleproject: state.singleproject,
+  projects: state.projects,
 });
 
 const mapDispatch = dispatch => ({
-  fetchSingleProjectById: id => dispatch(fetchSingleProjectById(id)),
+  fetchProjects: id => dispatch(fetchProjects()),
 });
 
 export default connect(mapState, mapDispatch)(IssCard);
