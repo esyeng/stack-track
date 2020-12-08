@@ -21,7 +21,7 @@ const getSingle = project => ({
 
 export const fetchSingleProjectById = projectId => async dispatch => {
   try {
-    const res = await axios.get(`/api/projects/i/${projectId}`);
+    const res = await axios.get(`/api/projects/${projectId}`);
     // console.log(res.data);
     dispatch(getSingle(res.data));
   } catch (err) {

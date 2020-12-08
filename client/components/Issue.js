@@ -131,33 +131,36 @@ export const Issue = props => {
               </Modal>
             ) : null}
             {issues.length
-              ? issues.map((item, idx) => {
-                  if (idx === 0) {
-                    return null;
-                  } else
-                    return (
-                      <Grid
-                        key={idx}
-                        container
-                        item
-                        alignContent="center"
-                        justify="center"
-                        display="flex"
-                      >
-                        <Paper className={classes.paper}>
-                          <IssCard
-                            issueId={item.id}
-                            projectId={item.projectId}
-                            ticketNumber={item.ticketNumber}
-                            summary={item.summary}
-                            description={item.description}
-                            category={item.category}
-                            status={item.status}
-                          ></IssCard>
-                        </Paper>
-                      </Grid>
-                    );
-                })
+              ? issues
+                  .slice(0)
+                  .reverse()
+                  .map((item, idx) => {
+                    if (idx === 0) {
+                      return null;
+                    } else
+                      return (
+                        <Grid
+                          key={idx}
+                          container
+                          item
+                          alignContent="center"
+                          justify="center"
+                          display="flex"
+                        >
+                          <Paper className={classes.paper}>
+                            <IssCard
+                              issueId={item.id}
+                              projectId={item.projectId}
+                              ticketNumber={item.ticketNumber}
+                              summary={item.summary}
+                              description={item.description}
+                              category={item.category}
+                              status={item.status}
+                            ></IssCard>
+                          </Paper>
+                        </Grid>
+                      );
+                  })
               : null}
           </Grid>
         </Grid>

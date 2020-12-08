@@ -2,7 +2,19 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Header, Menu } from "./layouts";
-import { Grid, Paper, Typography, Button } from "@material-ui/core";
+import {
+  Grid,
+  Paper,
+  Typography,
+  Button,
+  TextField,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  Select,
+  MenuItem,
+  TextareaAutosize,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { fetchProjects, fetchIssues } from "../store";
 
@@ -52,6 +64,9 @@ const useStyles = makeStyles({
     backgroundColor: "white",
     borderColor: "solid 1 px",
   },
+  formInput: {
+    width: "500px",
+  },
 });
 
 export const SingleIssue = props => {
@@ -62,7 +77,29 @@ export const SingleIssue = props => {
   const classes = useStyles();
   const [single, setSingle] = useState(initialState);
   const [loading, setLoading] = useState(initialState);
+  const [editing, setEditing] = useState(false);
+  const [summary, setSummary] = useState("");
+  const [category, setCategory] = useState("");
+  const [status, setStatus] = useState("");
+  const [description, setDescription] = useState("");
+  const [save, setSave] = useState(false);
+  const [post, setPost] = useState(false);
+  const [form, setForm] = useState({});
   const { fetchIssues, fetchProjects } = props;
+
+  const toggleForm = () => {
+    editing ? setEditing(false) : setEditing(true);
+  };
+
+  const toggleSave = () => {
+    // save ? setSave(false) : setSave(true);
+    console.log("Saving...");
+  };
+
+  const sendPost = () => {
+    !post ? setPost(true) : setPost(false);
+    // postUpdate()
+  };
 
   useEffect(() => {
     const { issueid } = props.match.params;
@@ -95,7 +132,6 @@ export const SingleIssue = props => {
                 issues
                   .filter(issue => issue.id === single)
                   .map((issue, i) => {
-                    // console.log(issue);
                     return (
                       <Grid
                         container
@@ -105,21 +141,85 @@ export const SingleIssue = props => {
                       >
                         <Grid container item className="MuiGrid-rootContainer">
                           <Paper className={classes.paper}>
+                            <Button
+                              className={classes.button}
+                              size="medium"
+                              onClick={() => toggleForm()}
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              className={classes.button}
+                              size="medium"
+                              onClick={() => toggleSave()}
+                            >
+                              Save
+                            </Button>
+                            <Button className={classes.button} size="medium">
+                              Mark as resolved
+                            </Button>
                             <Typography className={classes.heading}>
                               Ticket No. {issue.ticketNumber}
                             </Typography>
-                            <Typography className={classes.subhead}>
-                              Title: {issue.summary}
-                            </Typography>
-                            <Typography className={classes.subhead}>
-                              Status: {issue.status}
-                            </Typography>
+                            {editing ? (
+                              <FormControl
+                                htmlFor="summaryForm"
+                                className={classes.formInput}
+                              >
+                                <InputLabel>Title:</InputLabel>
+                                <OutlinedInput
+                                  name="summaryForm"
+                                  value={summary}
+                                  onChange={e => setSummary(e.target.value)}
+                                ></OutlinedInput>
+                              </FormControl>
+                            ) : (
+                              <Typography className={classes.subhead}>
+                                Title: {issue.summary}
+                              </Typography>
+                            )}
+                            {editing ? (
+                              <FormControl
+                                htmlFor="statusForm"
+                                className={classes.formInput}
+                              >
+                                <InputLabel>Status:</InputLabel>
+                                <Select
+                                  name="statusForm"
+                                  value={status}
+                                  onSelect={() => setStatus()}
+                                >
+                                  <MenuItem value="in progress">
+                                    in progress
+                                  </MenuItem>
+                                  <MenuItem value="open">open</MenuItem>
+                                  <MenuItem value="closed">closed</MenuItem>
+                                </Select>
+                              </FormControl>
+                            ) : (
+                              <Typography className={classes.subhead}>
+                                Status: {issue.status}
+                              </Typography>
+                            )}
                             <Typography className={classes.subhead}>
                               Description:
                             </Typography>
-                            <Typography className={classes.smalltext}>
-                              {issue.description}
-                            </Typography>
+                            {editing ? (
+                              <FormControl
+                                htmlFor="descriptionForm"
+                                className={classes.formInput}
+                              >
+                                <TextareaAutosize
+                                  name="description"
+                                  value={description}
+                                  onChange={e => setDescription(e.target.value)}
+                                ></TextareaAutosize>
+                              </FormControl>
+                            ) : (
+                              <Typography className={classes.smalltext}>
+                                {issue.description}
+                              </Typography>
+                            )}
                             <Paper className={classes.paper}>
                               <Typography className={classes.smalltext}>
                                 Comments:
