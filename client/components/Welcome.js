@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
   btnContainer: {
     justifyContent: "center",
-    alignItems: "center",
+    textAlign: "center",
   },
   loginBtn: {
     backgroundColor: "lightgreen",
