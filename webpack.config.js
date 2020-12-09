@@ -1,5 +1,7 @@
 const path = require("path");
 const isDev = process.env.NODE_ENV !== "production";
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   mode: isDev ? "development" : "production",
@@ -10,6 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
+    publicPath: "/public",
   },
   resolve: {
     extensions: [".js", ".jsx"],
@@ -33,9 +36,17 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /.s?css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
     ],
   },
   resolve: {
     extensions: [".js", ".jsx", ".scss"],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin()],
   },
 };
