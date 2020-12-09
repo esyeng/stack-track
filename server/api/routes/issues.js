@@ -109,22 +109,22 @@ issues.post("/:issueId", async (req, res, next) => {
 issues.put("/:issueId", async (req, res, next) => {
   try {
     const { issueId } = req.params;
-    const { description, category, status } = req.body;
+    const { description, summary, status } = req.body;
     const issue = await Issue.findByPk(issueId, {
       include: [
         {
           model: Comment,
         },
-        {
-          model: Tag,
-          where: {
-            issueId: issueId,
-          },
-        },
+        // {
+        //   model: Tag,
+        //   where: {
+        //     issueId: issueId,
+        //   },
+        // },
       ],
     });
     issue.description = description;
-    issue.category = category;
+    issue.summary = summary;
     issue.status = status;
     await issue.save();
     res.json(issue);

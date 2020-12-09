@@ -16,7 +16,7 @@ import {
   TextareaAutosize,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { fetchProjects, fetchIssues } from "../store";
+import { fetchProjects, fetchIssues, updateSelectedIssue } from "../store";
 
 const useStyles = makeStyles({
   root: {
@@ -85,15 +85,30 @@ export const SingleIssue = props => {
   const [save, setSave] = useState(false);
   const [post, setPost] = useState(false);
   const [form, setForm] = useState({});
-  const { fetchIssues, fetchProjects } = props;
+  const { fetchIssues } = props;
 
   const toggleForm = () => {
     editing ? setEditing(false) : setEditing(true);
   };
 
-  const toggleSave = () => {
+  const toggleSave = async () => {
     // save ? setSave(false) : setSave(true);
-    console.log("Saving...");
+    try {
+      const { updateIssue } = props;
+      const updates = {
+        id: props.match.params.issueid,
+        status: status,
+        summary: summary,
+        description: description,
+      };
+      console.log("Saving...", updates);
+      setLoading(true);
+      await updateIssue(updates);
+      setLoading(false);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const sendPost = () => {
@@ -156,7 +171,7 @@ export const SingleIssue = props => {
                               size="medium"
                               onClick={() => toggleForm()}
                             >
-                              Edit
+                              {editing ? `Cancel` : `Edit`}
                             </Button>
                             <Button
                               className={classes.button}
@@ -197,7 +212,7 @@ export const SingleIssue = props => {
                                 <Select
                                   name="statusForm"
                                   value={status}
-                                  onSelect={() => setStatus()}
+                                  onChange={e => setStatus(e.target.value)}
                                 >
                                   <MenuItem value="in progress">
                                     in progress
@@ -289,6 +304,7 @@ const mapDispatch = dispatch => ({
   fetchProjects: () =>
     dispatch(fetchProjects(`${JSON.parse(localStorage.user).teamId}`)),
   fetchIssues: () => dispatch(fetchIssues()),
+  updateIssue: issue => dispatch(updateSelectedIssue(issue)),
 });
 
 export default connect(mapState, mapDispatch)(SingleIssue);

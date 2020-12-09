@@ -9,6 +9,7 @@ const GET_ISSUES = "GET_ISSUES";
 const SET_SINGLE_ISSUE = "SET_SINGLE_ISSUE";
 const SELECT_ISSUE = "SELECT_ISSUE";
 const CREATE_ISSUE = "CREATE_ISSUE";
+const UPDATE_ISSUE = "UPDATE_ISSUE";
 /**
  * Action Creators
  */
@@ -31,6 +32,12 @@ const createIssue = issue => ({
   type: CREATE_ISSUE,
   issue,
 });
+
+const updateIssue = issue => ({
+  type: UPDATE_ISSUE,
+  issue,
+});
+
 /**
  * Thunk Creators
  */
@@ -75,6 +82,20 @@ export const selectSingleIssueCard = () => dispatch => {
   dispatch(selectIssue());
 };
 
+export const updateSelectedIssue = issue => async dispatch => {
+  try {
+    const { summary, status, description, id } = issue;
+    const res = await axios.put(`api/issues/${id}`, {
+      summary: summary,
+      status: status,
+      description: description,
+    });
+    dispatch(updateIssue(res.data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 /**
  * Reducer
  */
@@ -96,6 +117,8 @@ export default function (state = defaultState, action) {
         ? { singleSelected: false }
         : { singleSelected: true };
     case CREATE_ISSUE:
+      return action.issue;
+    case UPDATE_ISSUE:
       return action.issue;
     default:
       return state;

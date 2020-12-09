@@ -85,10 +85,10 @@ const NewIssue = props => {
       await postNewIssue(newTicket);
       //   setLoading(false);
       const post = async () => {
-        fetchIssues();
+        await fetchIssues();
+        window.location.reload();
       };
       await post();
-      window.location.reload();
     } catch (err) {
       console.log(err);
     }
