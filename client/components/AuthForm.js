@@ -3,6 +3,14 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { auth } from "../store";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Paper, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+  },
+});
 
 const AuthForm = props => {
   const { name, displayName, handleSubmit, error } = props;
