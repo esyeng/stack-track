@@ -67,6 +67,13 @@ const useStyles = makeStyles({
   formInput: {
     width: "500px",
   },
+  commentSection: {
+    backgroundColor: "cyan",
+    overflow: "scroll",
+    width: "500px",
+    // scrollBehavior: "smooth",
+    justifyContent: "center",
+  },
 });
 
 export const SingleIssue = props => {
@@ -82,6 +89,7 @@ export const SingleIssue = props => {
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
   const [description, setDescription] = useState("");
+  const [comment, setComment] = useState("");
   const [save, setSave] = useState(false);
   const [post, setPost] = useState(false);
   const [form, setForm] = useState({});
@@ -114,6 +122,12 @@ export const SingleIssue = props => {
   const sendPost = () => {
     !post ? setPost(true) : setPost(false);
     // postUpdate()
+  };
+
+  const postComment = () => {
+    // dispatch comment action..
+    console.log(JSON.parse(localStorage.user));
+    console.log(`${JSON.parse(localStorage.user).fName} wrote:  `, comment);
   };
 
   useEffect(() => {
@@ -250,11 +264,30 @@ export const SingleIssue = props => {
                                 Comments:
                               </Typography>
                               <Grid container item>
+                                <FormControl
+                                  htmlFor="comment"
+                                  className={classes.formInput}
+                                >
+                                  <InputLabel>Comment on this issue</InputLabel>
+                                  <OutlinedInput
+                                    name="commentLine"
+                                    value={comment}
+                                    onChange={e => setComment(e.target.value)}
+                                  ></OutlinedInput>
+                                </FormControl>
+                                <Button
+                                  className={classes.button}
+                                  size="small"
+                                  onClick={() => postComment()}
+                                >
+                                  Post
+                                </Button>
+
                                 {issue.comments.length
                                   ? issue.comments.map((comment, i) => {
                                       return (
                                         <Paper
-                                          className={classes.gridBox}
+                                          className={classes.commentSection}
                                           key={i}
                                         >
                                           <Typography
