@@ -10,8 +10,8 @@ module.exports = {
     "./client/index.js",
   ],
   output: {
-    publicPath: "/",
-    path: path.join(__dirname, "public"),
+    publicPath: "/public",
+    path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
   },
   resolve: {
