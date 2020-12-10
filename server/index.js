@@ -59,9 +59,9 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 // app.use("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, "..", "public/index.html"));
 // });
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../public/index.html"));
-// });
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
+});
 
 app.use((req, res, next) =>
   path.extname(req.path).length > 0 ? res.status(404).send("Not found") : next()
