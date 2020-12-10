@@ -15,11 +15,11 @@ trap cleanup_at_exit EXIT
 git checkout -b deploy
 # git add -f secret.js
 
-webpack
 
 
 # "force" add the otherwise gitignored build files
 git add -f public/bundle.js public/bundle.js.map
+webpack
 
 # create a commit, even if nothing changed
 git commit --allow-empty -m 'Deploying'
