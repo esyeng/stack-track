@@ -57,7 +57,7 @@ app.use("/api", require("./api"));
 app.use(express.static(path.resolve(__dirname, "..", "public")));
 
 app.use("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public/index.html"));
+  res.sendFile(path.join(__dirname, "..", "public/bundle.js"));
 });
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
