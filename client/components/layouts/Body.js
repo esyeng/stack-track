@@ -27,49 +27,81 @@ const useStyles = makeStyles({
 const Body = props => {
   const [issueFetched, setIssues] = useState(false);
   const [projectFetched, setProjects] = useState(false);
-  const { issues, projects } = props;
+  const [loading, setLoading] = useState(true);
+  const { issues, projects, fetchI, fetchP } = props;
   useEffect(() => {
-    return async () => {
+    const fetch = async () => {
       await fetchI();
       setIssues(true);
       await fetchP();
       setProjects(true);
+      setLoading(false);
     };
-  });
+    fetch();
+  }, []);
 
   const classes = useStyles();
   return (
     <Grid container spacing={3} className={classes.gridLayout}>
       <Grid item sm={5}>
         <Paper className={classes.Paper}>
-          <Box textAlign="center">
-            <Typography variant="h6">Statistics</Typography>
-            <Typography paragraph className={classes.Typography}>
-              Current Issue Tickets: {`${issues.length}` || 0}
-              Open:{" "}
-              {`${issues.filter(issue => issue.status === "open").length}` || 0}
-              In Progress:{" "}
-              {`${
-                issues.filter(issue => issue.status === "in progress").length
-              }` || 0}
-              Completed:{" "}
-              {`${issues.filter(issue => issue.status === "closed").length}` ||
-                0}
-            </Typography>
-          </Box>
+          {loading ? (
+            <Box textAlign="center">
+              <Typography variant="h6">Loading..</Typography>
+            </Box>
+          ) : (
+            <Box textAlign="center">
+              <Typography variant="h6">Statistics</Typography>
+              <Typography paragraph className={classes.Typography}>
+                Current Issue Tickets: {issues.length ? `${issues.length}` : 0}
+              </Typography>
+              <Typography paragraph className={classes.Typography}>
+                Open:{" "}
+                {issues.length
+                  ? `${issues.filter(issue => issue.status === "open").length}`
+                  : 0}
+              </Typography>
+              <Typography paragraph className={classes.Typography}>
+                In Progress:{" "}
+                {issues.length
+                  ? `${
+                      issues.filter(issue => issue.status === "in progress")
+                        .length
+                    }`
+                  : 0}
+              </Typography>
+              <Typography paragraph className={classes.Typography}>
+                Completed:{" "}
+                {issues.length
+                  ? `${
+                      issues.filter(issue => issue.status === "closed").length
+                    }`
+                  : 0}
+              </Typography>
+            </Box>
+          )}
         </Paper>
       </Grid>
-      <Grid item sm={4}>
-        <Paper className={classes.Paper}>
-          <Box textAlign="center">
-            <Typography variant="h6">Team Profile</Typography>
-            <Typography paragraph className={classes.Typography}>
-              Team: {projects.name}
-              Active Projects: {projects.projects.length || 0}
-            </Typography>
-          </Box>
-        </Paper>
-      </Grid>
+      {loading ? null : (
+        <Grid item sm={4}>
+          <Paper className={classes.Paper}>
+            <Box textAlign="center">
+              <Typography variant="h6">Team Profile</Typography>
+              <Typography paragraph className={classes.Typography}>
+                Team: {projects ? projects.name : ""}
+              </Typography>
+              <Typography paragraph className={classes.Typography}>
+                Active Projects:
+                {projects
+                  ? projects.projects
+                    ? projects.projects.length
+                    : 0
+                  : 0}
+              </Typography>
+            </Box>
+          </Paper>
+        </Grid>
+      )}
     </Grid>
   );
 };
@@ -80,8 +112,9 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  fetchI: () => dispatch(fetchIssues()),
-  fetchP: () => dispatch(fetchProjects()),
+  fetchI: async () => dispatch(fetchIssues()),
+  fetchP: async () =>
+    dispatch(fetchProjects(`${JSON.parse(localStorage.user).teamId}`)),
 });
 
 export default connect(mapState, mapDispatch)(Body);
