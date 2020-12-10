@@ -54,7 +54,7 @@ app.use(passport.session());
 app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
 
-app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(express.static(path.resolve(__dirname, "..", "public")));
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
