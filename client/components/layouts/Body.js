@@ -51,7 +51,7 @@ const Body = props => {
             </Box>
           ) : (
             <Box textAlign="center">
-              <Typography variant="h6">Statistics</Typography>
+              <Typography variant="h6">Metrics</Typography>
               <Typography paragraph className={classes.Typography}>
                 Current Issue Tickets: {issues.length ? `${issues.length}` : 0}
               </Typography>
